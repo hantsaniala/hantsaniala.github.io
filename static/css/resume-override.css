@@ -1,0 +1,99 @@
+/* F6C90E */
+/* old 005B96 */
+
+:root {
+    --voatavo: #ffc423;
+    --mainty: #303841;
+}
+
+body {
+    color: #eee;
+    background-color: var(--mainty);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #eee;
+}
+
+
+.list-social-icons a:hover {
+    color: var(--voatavo);
+}
+
+.list-icons .list-inline-item i:hover {
+    color: var(--voatavo);
+}
+
+.bg-primary {
+    background-color: var(--voatavo) !important;
+}
+
+.text-primary {
+    color: var(--voatavo) !important;
+}
+
+a {
+    color: var(--voatavo);
+}
+
+a:hover,
+a:focus,
+a:active {
+    color: var(--voatavo);
+    text-decoration: none;
+}
+
+.resume-section blockquote {
+    border-left: 4px solid var(--voatavo);
+    padding-left: 1em;
+}
+
+#sideNav .navbar-brand .img-profile {
+    border: 0.5rem solid rgba(48, 56, 65, 0.5);
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: rgba(48, 56, 65, .65);
+}
+
+.navbar-dark .navbar-nav .nav-link:focus,
+.navbar-dark .navbar-nav .nav-link:hover {
+    color: rgba(48, 56, 65, .9);
+}
+
+.tag {
+    color: var(--mainty);
+    font-family: 'Open Sans', sans-serif;
+}
+
+.tag::before {
+    background: var(--mainty);
+}
+
+.tag:hover {
+    background-color: var(--voatavo);
+    color: var(--mainty);
+    text-decoration: none;
+}
+
+.tag:hover::after {
+    border-left-color: var(--voatavo)
+}
+
+.tag::after {
+    background: var(--mainty);
+}
+
+.breadcrumb {
+    padding: .75rem 3rem;
+    background-color: var(--mainty);
+}
+
+.fa-inverse:hover {
+    color: var(--mainty);
+}
