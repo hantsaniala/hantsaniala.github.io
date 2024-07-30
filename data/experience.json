@@ -1,0 +1,26 @@
+[
+    {
+        "role": "CTO & Lead Dev",
+        "company": "SAHA Technology",
+        "summary": "- Lead team of frontend and backend developer\n- Project management\n- Fullstack developer\n- Technical marketing\n- DevOps",
+        "range": "June 2022 - Present"
+    },
+    {
+        "role": "Fullstack developer (Python)",
+        "company": "Cloud Diodes (Remote - USA)",
+        "summary": "Build SaaS web app container monitoring.",
+        "range": "August 2021 - May 2022"
+    },
+    {
+        "role": "PHP Developer",
+        "company": "Linkeo Madagascar",
+        "summary": "- Existing app maintenance.\n- External module integration.\n- Migration and automation.",
+        "range": "February 2021 - July 2022"
+    },
+    {
+        "role": "Designer, Developer & SysAdmin",
+        "company": "SIR Madagascar SARL",
+        "summary": "- Computer and networks management.\n- Tech assistant\n- Automation script developer\n- Designer",
+        "range": "February 2014 - January 2021"
+    }
+]
