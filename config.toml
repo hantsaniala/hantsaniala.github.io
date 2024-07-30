@@ -1,0 +1,52 @@
+baseURL = 'https://hantsaniala.github.io/'
+languageCode = 'en-us'
+title = 'Hantsaniala'
+theme = 'hugo-resume'
+PygmentsCodeFences = true
+PygmentsCodeFencesGuessSyntax = true
+PygmentsStyle = "monokai"
+enableGitInfo = false
+
+[params]
+address = "Tanjondava, Talatamaty, Ambohidratrimo - 105"
+email = "hantsaniala@gmail.com"
+favicon = "/favicon.ico"
+firstName = "Hantsaniala"
+lastName = "Eléo"
+phone = "(+261)34 05 553 58"
+profileImage = "img/profile2.jpg"
+showQr = true
+# showContact = true
+showSocializations = true
+# sections = ["skills","creations","contributions","experience","education","blog"]
+sections = ["skills", "experience", "education"]
+
+[[params.handles]]
+link = "https://www.linkedin.com/in/hantsaniala/"
+name = "LinkedIn"
+
+[[params.handles]]
+link = "https://github.com/hantsaniala/"
+name = "GitHub"
+
+[[params.handles]]
+link = "https://stackoverflow.com/users/5527968/hantsaniala-eléo"
+name = "Stack-Overflow"
+
+[[params.handles]]
+link = "https://keybase.io/hantsaniala"
+name = "Keybase"
+
+[[params.handles]]
+link = "https://fb.me/hantsaniala"
+name = "Facebook"
+
+[[params.handles]]
+link = "https://t.me/hantsaniala3"
+name = "Telegram"
+
+[outputs]
+home = ["HTML", "JSON"]
+
+[taxonomies]
+tag = "tags"
