@@ -9,9 +9,5 @@ outputs:
 # - rss
 - json
 ---
-Passionate about the world of software development. After two years of studying software engineering,
-I worked as a Golang, Python, VueJS and Flutter developer.
-But at the same time, passionate about this world full of color, I studied several fields such as the world of graphic
-design, photography, 3D as an autodidact and I always want to learn more and more.
-All these years I affined my skills as a backend developer with Python and Golang.
+Passionate backend developer with a strong foundation in Go and Python, and a broad creative streak. After formal studies in software engineering, I honed my skills through hands-on work in backend development, DevOps, and cross-platform apps. A self-taught explorer in design, photography, and 3D, I thrive at the intersection of code and creativity—always learning, always building.
 <!-- Proven Software Platform Engineer with experience leveraging agile, DevOps, and CI/CD to manage large scale distributed platforms both on prem and in public cloud. -->
