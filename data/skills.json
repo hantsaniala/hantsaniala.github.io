@@ -1,21 +1,11 @@
 [
   {
     "grouping": "Architecture",
-    "skills": [
-      "RESTful APIs",
-      "SaaS/PaaS"
-    ]
+    "skills": ["RESTful APIs", "SaaS/PaaS"]
   },
   {
     "grouping": "Languages",
-    "skills": [
-      "Go",
-      "Python",
-      "Dart",
-      "PHP",
-      "JQuery",
-      "JavaScript"
-    ]
+    "skills": ["Bash", "Go", "Python", "Dart", "PHP", "JavaScript"]
   },
   {
     "grouping": "Framework",
@@ -40,11 +30,7 @@
   },
   {
     "grouping": "APIs",
-    "skills": [
-      "REST",
-      "GraphQL",
-      "gRPC"
-    ]
+    "skills": ["REST", "GraphQL", "gRPC"]
   },
   {
     "grouping": "Tools",
@@ -57,8 +43,7 @@
       {
         "name": "Subversion",
         "icon": "svn"
-      },
-      "Bash"
+      }
     ]
   },
   {
@@ -89,11 +74,7 @@
   },
   {
     "grouping": "Containers & Cloud",
-    "skills": [
-      "Docker",
-      "AWS",
-      "Linux"
-    ]
+    "skills": ["Docker", "AWS", "Linux"]
   },
   {
     "grouping": "Operating Systems",
