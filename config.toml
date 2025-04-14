@@ -19,7 +19,19 @@ showQr = true
 # showContact = true
 showSocializations = true
 # sections = ["skills","creations","contributions","experience","education","blog"]
-sections = ["skills", "experience", "education"]
+sections = [
+    "skills",
+    "experience",
+    "education",
+    "creations",
+    "contributions",
+    "blog",
+]
+
+[params.google]
+
+[params.google.analytics]
+trackerID = "XX-123446-01"
 
 [[params.handles]]
 link = "https://www.linkedin.com/in/hantsaniala/"
