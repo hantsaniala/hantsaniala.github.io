@@ -31,7 +31,7 @@ sections = [
 [params.google]
 
 [params.google.analytics]
-trackerID = "XX-123446-01"
+trackerID = "G-86V76P5643"
 
 [[params.handles]]
 link = "https://www.linkedin.com/in/hantsaniala/"
