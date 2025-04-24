@@ -3,7 +3,7 @@ title: kpz – DevOps CLI Toolkit for Local HTTPS Subdomain Routing
 date: 2024-11-10T11:00:00-05:00
 featured: true
 link: 'https://github.com/kopoze/kpz'
-image: '/img/kpz-preview.webp'
+# image: '/img/kpz-preview.webp'
 description: A CLI tool written in Go to simplify local development by automating subdomain-to-port mapping with HTTPS support using mkcert.
 tags:
   - Go

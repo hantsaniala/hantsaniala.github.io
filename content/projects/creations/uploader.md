@@ -3,7 +3,7 @@ title: uploader – Simple File Upload Server in Go
 date: 2024-10-05T14:00:00-05:00
 featured: true
 link: 'https://github.com/hantsaniala/uploader'
-image: '/img/uploader-preview.webp'
+# image: '/img/uploader-preview.webp'
 description: A minimal and efficient file upload server built in Go with support for form-based uploads and secure file handling.
 tags:
   - Go

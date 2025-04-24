@@ -3,7 +3,7 @@ title: Sekoliko – Open Source School Management System
 date: 2020-06-15T10:00:00-05:00
 featured: true
 link: 'https://github.com/hantsaniala/sekoliko'
-image: '/img/sekoliko-preview.webp'
+# image: '/img/sekoliko-preview.webp'
 description: A Symfony 4-based school management platform designed for educational institutions in Madagascar, offering features like student records, attendance tracking, fee management, and more.
 tags:
   - PHP

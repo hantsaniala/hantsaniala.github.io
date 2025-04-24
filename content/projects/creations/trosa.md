@@ -3,7 +3,7 @@ title: Trosa – Flutter App for Managing Loan Lists
 date: 2020-06-15T10:00:00-05:00
 featured: true
 link: 'https://github.com/hantsaniala/trosa'
-image: '/img/trosa-preview.webp'
+# image: '/img/trosa-preview.webp'
 description: A simple Flutter application to record and track personal loans—both owed and receivable.
 tags:
   - Flutter
