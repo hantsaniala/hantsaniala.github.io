@@ -1,0 +1,53 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Sidebar from '../components/Sidebar.astro';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogDescription?: string;
+  twitterDescription?: string;
+  image?: string;
+}
+
+const { title, description, ogDescription, twitterDescription, image } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <BaseHead title={title} description={description} ogDescription={ogDescription} twitterDescription={twitterDescription} image={image} />
+  <body class="min-h-screen">
+    <!-- Mesh gradient background -->
+    <div class="mesh-bg"></div>
+    <!-- Film grain overlay -->
+    <div class="grain-overlay"></div>
+
+    <div class="relative z-10 flex min-h-screen">
+      <Sidebar />
+      <main class="flex-1 lg:ml-[60px]" id="main-scroll">
+        <div class="max-w-wide mx-auto">
+          <slot />
+        </div>
+      </main>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const scrollRoot = document.getElementById('main-scroll');
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('in-view');
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { root: scrollRoot, threshold: 0.1, rootMargin: '0px 0px -60px 0px' }
+        );
+        document.querySelectorAll('[data-animate]').forEach((el) => observer.observe(el));
+      });
+    </script>
+  </body>
+</html>

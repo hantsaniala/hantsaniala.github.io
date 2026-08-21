@@ -1,0 +1,58 @@
+---
+// Theme toggle button
+---
+
+<button
+  id="theme-toggle"
+  class="flex items-center justify-center w-9 h-9 rounded-lg transition-all duration-200"
+  style="color: var(--text-muted);"
+  aria-label="Toggle dark mode"
+  title="Toggle dark mode"
+>
+  <i class="ph ph-sun text-lg" id="sun-icon"></i>
+  <i class="ph ph-moon text-lg" id="moon-icon" style="display: none;"></i>
+</button>
+
+<script>
+  function updateIcons(isDark: boolean) {
+    const sun = document.getElementById('sun-icon');
+    const moon = document.getElementById('moon-icon');
+    if (sun) (sun as HTMLElement).style.display = isDark ? 'none' : 'inline';
+    if (moon) (moon as HTMLElement).style.display = isDark ? 'inline' : 'none';
+  }
+
+  function applyTheme(theme: string) {
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+    localStorage.setItem('theme', theme);
+    updateIcons(theme === 'dark');
+  }
+
+  function getTheme(): string {
+    const stored = localStorage.getItem('theme');
+    if (stored) return stored;
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
+
+  // Apply saved theme immediately
+  const savedTheme = getTheme();
+  if (savedTheme === 'dark') document.documentElement.classList.add('dark');
+  updateIcons(savedTheme === 'dark');
+
+  // Toggle on click
+  document.getElementById('theme-toggle')?.addEventListener('click', () => {
+    const isDark = document.documentElement.classList.contains('dark');
+    applyTheme(isDark ? 'light' : 'dark');
+  });
+
+  // Listen for system preference changes
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+    if (!localStorage.getItem('theme')) {
+      applyTheme(e.matches ? 'dark' : 'light');
+    }
+  });
+</script>
+
