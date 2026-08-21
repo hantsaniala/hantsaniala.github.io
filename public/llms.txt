@@ -1,0 +1,23 @@
+# Hantsaniala Eléo — Freelance Backend Developer
+
+> Hantsaniala Eléo is a freelance software developer with 10+ years of experience building backend systems, REST APIs, microservices, and cloud infrastructure using Go and Python. Available for consulting, contract work, and long-term collaborations.
+
+## Key Services
+- `Freelance Backend Development -> https://hantsaniala.github.io/#about`: Go and Python backend systems, APIs, and microservices
+- `Technical Skills -> https://hantsaniala.github.io/#skills`: Go (Gin), Python (Django, DjangoRESTFramework), Docker, AWS, PostgreSQL
+- `Professional Experience -> https://hantsaniala.github.io/#experience`: CTO at LOVICI.FR, CTO & Lead Dev at SAHA Technology, Fullstack at Cloud Diodes
+- `Open Source Projects -> https://hantsaniala.github.io/#projects`: Go, Python, Dart, Rust projects on GitHub (15+ repos)
+- `Blog -> https://hantsaniala.github.io/blog`: Technical articles on Flutter, Go, Python, and backend development
+
+## Contact
+- Email: hantsaniala@gmail.com
+- GitHub: https://github.com/hantsaniala
+- LinkedIn: https://www.linkedin.com/in/hantsaniala/
+
+## Key Facts
+- 10+ years of software development experience
+- Specialises in Go and Python backend development
+- Experience with microservices architecture and cloud infrastructure (AWS, Docker)
+- CTO-level technical leadership across multiple companies
+- Available for freelance and remote work worldwide
+- 15+ open source repositories on GitHub
