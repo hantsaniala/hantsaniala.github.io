@@ -1,0 +1,89 @@
+---
+import { getCollection } from 'astro:content';
+import BaseHead from '../../components/BaseHead.astro';
+import Sidebar from '../../components/Sidebar.astro';
+import ThemeToggle from '../../components/ThemeToggle.astro';
+import ScrollAnimate from '../../components/ScrollAnimate.astro';
+
+const posts = (await getCollection('blog'))
+  .filter((post) => !post.data.draft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+function formatDate(date: Date): string {
+  return date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+}
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead
+      title="Blog — Backend Dev Tips on Go, Python & Flutter"
+      description="Looking to level up your Go, Python or Flutter skills? Tutorials, deep dives, and real-world dev insights from a senior engineer."
+      ogDescription="Practical tutorials and deep dives on Go, Python, Flutter & backend architecture. Real code from a senior freelance developer."
+      twitterDescription="Go, Python & Flutter tutorials from a freelance backend dev. Real-world articles on APIs, microservices & cloud."
+    />
+  </head>
+  <body class="min-h-screen" style="background: var(--bg-primary); color: var(--text-primary);">
+    <Sidebar />
+
+    <main class="lg:ml-[60px] min-h-screen">
+      <div class="max-w-3xl mx-auto px-6 py-16 lg:px-12">
+        <!-- Header -->
+        <div class="mb-12" data-animate>
+          <a href="/" class="inline-flex items-center gap-2 text-sm mb-6 transition-colors"
+             style="color: var(--text-muted);">
+            <i class="ph ph-arrow-left"></i>
+            Back to portfolio
+          </a>
+          <h1 class="text-3xl lg:text-4xl font-bold tracking-tight" style="color: var(--text-primary);">
+            Blog
+          </h1>
+          <p class="mt-3 text-lg" style="color: var(--text-muted);">
+            Thoughts on software development, architecture, and open source.
+          </p>
+        </div>
+
+        <!-- Posts -->
+        <div class="space-y-6">
+          {posts.length === 0 && (
+            <p class="text-center py-12" style="color: var(--text-muted);">
+              No posts yet. Check back soon.
+            </p>
+          )}
+          {posts.map((post) => (
+            <a
+              href={`/blog/${post.id.replace(/\.md$/, '')}`}
+              class="card block hover:translate-y-[-2px] transition-all duration-200 group"
+              data-animate
+            >
+              <div class="flex items-center gap-3 mb-3">
+                <time class="text-xs font-mono" style="color: var(--text-muted);">
+                  {formatDate(post.data.date)}
+                </time>
+                <div class="flex flex-wrap gap-1.5">
+                  {post.data.tags.map((tag) => (
+                    <span class="pill text-[0.65rem] py-0.5 px-2">{tag}</span>
+                  ))}
+                </div>
+              </div>
+              <h2 class="text-lg font-semibold mb-2 group-hover:text-primary transition-colors"
+                  style="color: var(--text-primary);">
+                {post.data.title}
+              </h2>
+              <i class="ph ph-arrow-right text-sm transition-transform group-hover:translate-x-1"
+                 style="color: var(--text-muted);"></i>
+            </a>
+          ))}
+        </div>
+      </div>
+    </main>
+
+    <ThemeToggle />
+    <ScrollAnimate />
+  </body>
+</html>
