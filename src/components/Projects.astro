@@ -1,0 +1,96 @@
+---
+const creations = [
+  { title: 'dj', description: 'Django + uv helper CLI for streamlined Django project management.', tags: ['Go', 'Docker', 'Django'], url: 'https://github.com/hantsaniala/dj', stars: null },
+  { title: 'trosa', description: 'A Flutter app to manage loan lists, built with Dart.', tags: ['Dart', 'Flutter'], url: 'https://github.com/hantsaniala/trosa', stars: 7 },
+  { title: 'backlog', description: 'Project backlog management tool.', tags: ['Go'], url: 'https://github.com/hantsaniala/backlog', stars: null },
+  { title: 'lazybacklog.nvim', description: 'LazyVim plugin for Backlog — manage projects from Neovim.', tags: ['Lua', 'Neovim'], url: 'https://github.com/hantsaniala/lazybacklog.nvim', stars: 1 },
+  { title: 'backlog-skills', description: 'OpenCode skills to manage projects in backlog format.', tags: ['Python'], url: 'https://github.com/hantsaniala/backlog-skills', stars: null },
+  { title: 'keyprrs', description: 'Recreation of the screenkey app, built with Rust.', tags: ['Rust'], url: 'https://github.com/hantsaniala/keyprrs', stars: null },
+  { title: 'hStream', description: 'A simple HLS VOD server made with Go. Stream video on demand with Docker.', tags: ['Go', 'Docker', 'HLS'], url: 'https://github.com/hantsaniala/hStream', stars: 6 },
+  { title: 'uploader', description: 'File uploader across multiple FTP servers, built with Go.', tags: ['Go', 'FTP'], url: 'https://github.com/hantsaniala/uploader', stars: 8 },
+  { title: 'flutter-cryptography', description: 'Example code for decrypting data from Django using Flutter.', tags: ['C++', 'Flutter', 'Django'], url: 'https://github.com/hantsaniala/flutter-cryptography', stars: 1 },
+];
+
+const contributions = [
+  { title: 'is-a.dev', description: "Grab your own sweet-looking '.is-a.dev' subdomain.", tags: ['JavaScript'], url: 'https://github.com/hantsaniala/is-a.dev' },
+  { title: 'chit', description: 'Go Chi template generator.', tags: ['Go'], url: 'https://github.com/hantsaniala/chit' },
+  { title: 'go-ftp', description: 'A Go client for performing common FTP operations.', tags: ['Go'], url: 'https://github.com/hantsaniala/go-ftp' },
+  { title: 'webtoon-dl', description: 'A webtoon comic downloader for the command line.', tags: ['Go'], url: 'https://github.com/hantsaniala/webtoon-dl' },
+  { title: 'hugo-resume', description: "A Hugo theme ported from startbootstrap.com's resume template.", tags: ['HTML'], url: 'https://github.com/hantsaniala/hugo-resume' },
+  { title: 'sqlparser', description: 'Simple SQL parser meant for querying CSV files.', tags: ['Go'], url: 'https://github.com/hantsaniala/sqlparser' },
+];
+---
+
+<section id="projects" class="py-24 lg:py-32" data-animate>
+  <div class="space-y-12">
+    <div class="max-w-2xl">
+      <span class="eyebrow mb-4 inline-flex">Open Source</span>
+      <h2 class="text-display-lg" style="color: var(--text-primary);">
+        Projects & Contributions
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+      <!-- Creations -->
+      <div class="space-y-5">
+        <h3 class="flex items-center gap-2 text-xs font-semibold uppercase tracking-widest" style="color: var(--text-muted);">
+          <i class="ph ph-plus-circle text-primary/60"></i> Creations
+        </h3>
+        <div class="space-y-3">
+          {creations.map((project) => (
+            <a href={project.url} target="_blank" rel="noopener noreferrer" class="block group">
+              <div class="card-outer">
+                <div class="card-inner transition-all duration-500 group-hover:border-[var(--card-border-hover)]">
+                  <div class="flex items-start justify-between">
+                    <h4 class="font-semibold group-hover:text-primary transition-colors duration-300" style="color: var(--text-primary);">{project.title}</h4>
+                    <div class="flex items-center gap-2">
+                      {project.stars && (
+                        <span class="flex items-center gap-1 text-xs" style="color: var(--text-muted);">
+                          <i class="ph-fill ph-star text-primary text-xs"></i>{project.stars}
+                        </span>
+                      )}
+                      <i class="ph ph-arrow-up-right group-hover:text-primary transition-colors text-sm" style="color: var(--text-muted);"></i>
+                    </div>
+                  </div>
+                  <p class="text-sm mt-2 leading-relaxed" style="color: var(--text-secondary);">{project.description}</p>
+                  <div class="flex flex-wrap gap-1.5 mt-3">
+                    {project.tags.map((tag) => (
+                      <span class="text-[0.65rem] font-mono px-2 py-0.5 rounded-full" style="background: var(--tag-bg); color: var(--tag-text);">{tag}</span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <!-- Contributions -->
+      <div class="space-y-5">
+        <h3 class="flex items-center gap-2 text-xs font-semibold uppercase tracking-widest" style="color: var(--text-muted);">
+          <i class="ph ph-git-fork text-primary/60"></i> Contributions
+        </h3>
+        <div class="space-y-3">
+          {contributions.map((project) => (
+            <a href={project.url} target="_blank" rel="noopener noreferrer" class="block group">
+              <div class="card-outer">
+                <div class="card-inner transition-all duration-500 group-hover:border-[var(--card-border-hover)]">
+                  <div class="flex items-start justify-between">
+                    <h4 class="font-semibold group-hover:text-primary transition-colors duration-300" style="color: var(--text-primary);">{project.title}</h4>
+                    <i class="ph ph-arrow-up-right group-hover:text-primary transition-colors text-sm mt-1" style="color: var(--text-muted);"></i>
+                  </div>
+                  <p class="text-sm mt-2 leading-relaxed" style="color: var(--text-secondary);">{project.description}</p>
+                  <div class="flex flex-wrap gap-1.5 mt-3">
+                    {project.tags.map((tag) => (
+                      <span class="text-[0.65rem] font-mono px-2 py-0.5 rounded-full" style="background: var(--tag-bg); color: var(--tag-text);">{tag}</span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

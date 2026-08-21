@@ -1,0 +1,56 @@
+---
+import experience from '../data/experience.json';
+
+function formatSummary(summary: string): string[] {
+  return summary.split('\n').filter(line => line.trim().length > 0);
+}
+---
+
+<section id="experience" class="py-24 lg:py-32" data-animate>
+  <div class="space-y-12">
+    <div class="max-w-2xl">
+      <span class="eyebrow mb-4 inline-flex">Experience</span>
+      <h2 class="text-display-lg" style="color: var(--text-primary);">
+        Professional Track Record
+      </h2>
+    </div>
+
+    <div class="relative space-y-0">
+      <div class="absolute left-[15px] top-2 bottom-2 w-px hidden sm:block" style="background: linear-gradient(to bottom, var(--accent)30, var(--scrollbar-thumb)20, transparent);"></div>
+
+      {experience.map((job) => (
+        <div class="relative flex gap-6 sm:gap-8 group py-6 first:pt-0 last:pb-0">
+          <div class="hidden sm:flex flex-shrink-0 items-start pt-2">
+            <div class="w-[31px] h-[31px] rounded-full flex items-center justify-center transition-all duration-500 group-hover:bg-[var(--accent-glow)]"
+                 style="border: 2px solid var(--timeline-dot-border); background: var(--timeline-dot-bg);">
+              <div class="w-2.5 h-2.5 rounded-full transition-colors duration-500 group-hover:bg-primary"
+                   style="background: var(--timeline-dot-border);"></div>
+            </div>
+          </div>
+
+          <div class="flex-1 min-w-0">
+            <div class="card group-hover:border-[var(--card-border-hover)]">
+              <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2 mb-4">
+                <div>
+                  <h3 class="text-lg font-semibold" style="color: var(--text-primary);">{job.role}</h3>
+                  <p class="text-primary font-medium text-sm mt-0.5">{job.company}</p>
+                </div>
+                <span class="text-xs font-mono px-3 py-1 rounded-full whitespace-nowrap self-start" style="background: var(--pill-bg); color: var(--text-muted);">
+                  {job.range}
+                </span>
+              </div>
+              <ul class="space-y-2">
+                {formatSummary(job.summary).map((line) => (
+                  <li class="flex items-start gap-3 text-sm leading-relaxed" style="color: var(--text-secondary);">
+                    <span class="w-1 h-1 rounded-full mt-2.5 flex-shrink-0" style="background: var(--accent); opacity: 0.5;"></span>
+                    <span>{line.replace(/^- /, '')}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
