@@ -1,0 +1,32 @@
+[
+    {
+        "role": "CTO",
+        "company": "LOVICI.FR",
+        "summary": "- Technical leadership and architecture decisions\n- Full-stack development and system design\n- DevOps, CI/CD, and cloud infrastructure\n- Team mentoring and code review",
+        "range": "2024 - Present"
+    },
+    {
+        "role": "CTO & Lead Dev",
+        "company": "SAHA Technology",
+        "summary": "- Lead team of frontend and backend developers\n- Project management\n- Fullstack developer\n- Technical marketing\n- DevOps",
+        "range": "June 2022 - 2024"
+    },
+    {
+        "role": "Fullstack developer (Python)",
+        "company": "Cloud Diodes (Remote - New York City)",
+        "summary": "Build SaaS web app container monitoring.",
+        "range": "August 2021 - May 2022"
+    },
+    {
+        "role": "PHP Developer",
+        "company": "Linkeo Madagascar",
+        "summary": "Existing app maintenance. External module integration. Migration and automation.",
+        "range": "February 2021 - July 2021"
+    },
+    {
+        "role": "Designer, Developer & SysAdmin",
+        "company": "SIR Madagascar SARL",
+        "summary": "Computer and networks management. Tech assistant. Automation script developer. Designer.",
+        "range": "February 2014 - January 2021"
+    }
+]
