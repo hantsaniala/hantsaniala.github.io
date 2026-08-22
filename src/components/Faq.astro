@@ -33,11 +33,10 @@ const faqs = [
     <script type="application/ld+json" set:html={JSON.stringify({
       '@context': 'https://schema.org',
       '@type': 'FAQPage',
-      mainEntity: faqs.map((faq) => ({
-        '@type': 'Question',
-        name: faq.q,
-        acceptedAnswer: { '@type': 'Answer', text: faq.a },
-      })),
+      mainEntity: [
+        { '@type': 'Question', name: 'What does Hantsaniala Eléo do?', acceptedAnswer: { '@type': 'Answer', text: 'Hantsaniala is a freelance backend developer specialising in Go and Python.' } },
+        { '@type': 'Question', name: 'What technologies does Hantsaniala work with?', acceptedAnswer: { '@type': 'Answer', text: 'Primary stack is Go (Gin) and Python (Django).' } },
+      ],
     })} />
   </div>
 </section>
