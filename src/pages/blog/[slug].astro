@@ -14,7 +14,7 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { Content } = await render(post);
-const postDescription = post.data.description || `${post.data.title} — a technical article by Hantsaniala Eléo.`;
+const postDescription = post.data.description || `${post.data.title}, a technical article by Hantsaniala Eléo.`;
 
 // SEO title: keep under 60 chars
 const brand = ' | Hantsaniala';
@@ -43,10 +43,10 @@ function formatDate(date: Date): string {
     />
   </head>
   <body class="min-h-screen" style="background: var(--bg-primary); color: var(--text-primary);">
-    <Sidebar />
+    <Sidebar hideDesktopNav />
 
-    <main class="lg:ml-[60px] min-h-screen">
-      <article class="max-w-3xl mx-auto px-6 py-16 lg:px-12">
+    <main class="min-h-screen">
+      <article class="max-w-3xl mx-auto px-6 pt-24 pb-16 lg:px-12">
         <!-- Back link -->
         <a href="/blog" class="inline-flex items-center gap-2 text-sm mb-8 transition-colors"
            style="color: var(--text-muted);">
