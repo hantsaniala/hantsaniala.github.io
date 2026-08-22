@@ -12,7 +12,7 @@
   --text: #1a1a1a;
   --text-secondary: #555;
   --text-muted: #999;
-  --accent: #eab308;
+  --accent: #ffd200;
   --accent-text: #0a0a0a;
   --pill-bg: #e8e8e8;
   --pill-hover: #ddd;
@@ -25,7 +25,7 @@
   --text: #f0f0f0;
   --text-secondary: #aaa;
   --text-muted: #666;
-  --accent: #ca8a04;
+  --accent: #eab308;
   --accent-text: #fafafa;
   --pill-bg: #1a1a1a;
   --pill-hover: #222;
@@ -146,7 +146,7 @@ body::before {
    ═══════════════════════════════════════════ */
 
 .type-hero {
-  font-size: clamp(3.5rem, 8vw, 8rem);
+  font-size: clamp(2.75rem, 6vw, 5rem);
   font-weight: 800;
   letter-spacing: -0.04em;
   line-height: 0.95;
@@ -156,7 +156,7 @@ body::before {
 
 @media (max-width: 1023px) {
   .type-hero {
-    font-size: clamp(2.5rem, 8vw, 3.5rem);
+    font-size: clamp(2.25rem, 6.5vw, 3rem);
   }
 }
 
