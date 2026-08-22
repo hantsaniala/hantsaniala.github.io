@@ -101,4 +101,13 @@ const personSchema = JSON.stringify({
       if (t === 'dark') document.documentElement.classList.add('dark');
     })();
   </script>
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-86V76P5643"></script>
+  <script is:inline>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-86V76P5643');
+  </script>
 </head>
