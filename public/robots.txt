@@ -1,5 +1,5 @@
 # robots.txt — AI Search Optimised
-# https://hantsaniala.github.io
+# https://hantsaniala.is-a.dev
 
 User-agent: *
 Allow: /
@@ -34,4 +34,4 @@ Disallow: /
 User-agent: cohere-ai
 Disallow: /
 
-Sitemap: https://hantsaniala.github.io/sitemap.xml
+Sitemap: https://hantsaniala.is-a.dev/sitemap.xml

@@ -2,7 +2,7 @@ export const site = {
   title: 'Hantsaniala Eléo',
   description:
     'Freelance software developer specializing in Go, Python, and full-stack development. Available for consulting and contract work.',
-  url: 'https://hantsaniala.github.io',
+  url: 'https://hantsaniala.is-a.dev',
   author: 'Hantsaniala Eléo',
 
   firstName: 'Hantsaniala',
