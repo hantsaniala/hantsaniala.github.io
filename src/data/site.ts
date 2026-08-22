@@ -12,8 +12,9 @@ export const site = {
   phone: "(+261)32 99 025 43",
   whatsapp: "https://wa.me/261329902543",
   address: "Tanjondava, Talatamaty, Ambohidratrimo - 105",
-  profileImage: "/img/profile2.png",
-  logo: "/img/logo.png",
+  profileImage: "/assets/profile2.png",
+  logo: "/assets/logo.png",
+  ogImage: "/assets/og-card.png",
 
   bio: `Freelance software developer with over a decade of experience building robust backend systems, APIs, and full-stack applications. I specialize in Go and Python, with deep expertise in microservices architecture, cloud infrastructure, and open-source tooling. Available for consulting, contract work, and long-term collaborations.`,
 

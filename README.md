@@ -53,12 +53,12 @@ npm run preview    # serve the production build locally
 ├── .github/workflows/
 │   └── deploy.yml            # GitHub Pages build + deploy
 ├── public/                   # static assets
+│   ├── assets/               # logo, profile photos, og card
 │   ├── llms.txt              # LLM-readable summary of the site
 │   ├── robots.txt            # crawler rules incl. AI search bots
 │   ├── resume.pdf
 │   ├── typing.js             # typewriter + counter scripts
 │   ├── favicon.ico
-│   └── img/                  # logo, profile photos
 ├── src/
 │   ├── components/           # Astro components (Hero, Sidebar, Skills, …)
 │   ├── content/
