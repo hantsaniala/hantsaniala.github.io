@@ -9,7 +9,7 @@ export const site = {
   lastName: 'Eléo',
   role: 'Freelance Software Developer',
   email: 'hantsaniala@gmail.com',
-  phone: '(+261)34 05 553 58',
+  phone: '(+261)32 99 025 43',
   whatsapp: 'https://wa.me/261329902543',
   address: 'Tanjondava, Talatamaty, Ambohidratrimo - 105',
   profileImage: '/img/profile2.png',
