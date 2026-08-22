@@ -33,7 +33,7 @@ const { title, description } = Astro.props;
     </button>
 
     <script>
-      // Cursor follower — abstract blobs
+      // Cursor follower — abstract blobs (pauses when tab hidden)
       (function() {
         const canvas = document.getElementById('cursor-canvas') as HTMLCanvasElement;
         if (!canvas) return;
@@ -43,6 +43,8 @@ const { title, description } = Astro.props;
         let W = 0, H = 0;
         let mouseX = 0, mouseY = 0;
         let targetX = 0, targetY = 0;
+        let running = true;
+        let rafId = 0;
 
         const blobs = [
           { x: 0, y: 0, r: 300, color: 'rgba(234,179,8,0.08)', speed: 0.03 },
@@ -64,6 +66,7 @@ const { title, description } = Astro.props;
         });
 
         function animate() {
+          if (!running) return;
           ctx.clearRect(0, 0, W, H);
           targetX += (mouseX - targetX) * 0.05;
           targetY += (mouseY - targetY) * 0.05;
@@ -78,9 +81,20 @@ const { title, description } = Astro.props;
             ctx.fillRect(0, 0, W, H);
           });
 
-          requestAnimationFrame(animate);
+          rafId = requestAnimationFrame(animate);
         }
-        animate();
+
+        document.addEventListener('visibilitychange', () => {
+          if (document.hidden) {
+            running = false;
+            cancelAnimationFrame(rafId);
+          } else {
+            running = true;
+            rafId = requestAnimationFrame(animate);
+          }
+        });
+
+        rafId = requestAnimationFrame(animate);
       })();
 
       // Back to top
