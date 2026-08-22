@@ -14,7 +14,7 @@ export const site = {
   address: "Tanjondava, Talatamaty, Ambohidratrimo - 105",
   profileImage: "/assets/profile2.png",
   logo: "/assets/logo.png",
-  ogImage: "/assets/og-card.png",
+  ogImage: "/assets/og-card.jpg",
 
   bio: `Freelance software developer with over a decade of experience building robust backend systems, APIs, and full-stack applications. I specialize in Go and Python, with deep expertise in microservices architecture, cloud infrastructure, and open-source tooling. Available for consulting, contract work, and long-term collaborations.`,
 
