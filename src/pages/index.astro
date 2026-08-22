@@ -1,0 +1,48 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import About from '../components/About.astro';
+import Skills from '../components/Skills.astro';
+import Comparison from '../components/Comparison.astro';
+import Experience from '../components/Experience.astro';
+import Education from '../components/Education.astro';
+import Projects from '../components/Projects.astro';
+import Faq from '../components/Faq.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout
+  title="Freelance Go & Python Developer for Hire | Hantsaniala"
+  description="Need a backend dev who ships? Freelance Go & Python developer with 10+ years in APIs, microservices & cloud. Available now."
+  ogDescription="10+ years building backend systems in Go & Python. Freelance developer specialising in APIs, microservices, and cloud infrastructure. Let's talk."
+  twitterDescription="Freelance Go & Python developer. 10+ years shipping backend systems, APIs & cloud infrastructure. Available for hire."
+>
+  <!-- 1. Hero — H1 + AEO + CTA -->
+  <Hero />
+
+  <div class="px-6 py-12 lg:px-12 lg:py-16 space-y-4">
+    <!-- 2. Problem + 3. Solution + 7. How It Works + 6. Mid-page CTA -->
+    <About />
+
+    <!-- 4. Features as Benefits -->
+    <Skills />
+
+    <!-- 5. Social Proof (hidden for now) -->
+
+    <!-- 8. Comparison table -->
+    <Comparison />
+
+    <!-- Credentials -->
+    <Experience />
+    <Education />
+
+    <!-- Open Source portfolio -->
+    <Projects />
+
+    <!-- 9. FAQ -->
+    <Faq />
+
+    <!-- 10. Trust Signals + 11. Final CTA -->
+    <Footer />
+  </div>
+</BaseLayout>

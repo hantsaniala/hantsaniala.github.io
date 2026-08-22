@@ -1,0 +1,42 @@
+---
+const faqs = [
+  { i18nQ: 'faq.q1', i18nA: 'faq.a1' },
+  { i18nQ: 'faq.q2', i18nA: 'faq.a2' },
+  { i18nQ: 'faq.q3', i18nA: 'faq.a3' },
+  { i18nQ: 'faq.q4', i18nA: 'faq.a4' },
+  { i18nQ: 'faq.q5', i18nA: 'faq.a5' },
+  { i18nQ: 'faq.q6', i18nA: 'faq.a6' },
+];
+---
+
+<section id="faq" class="section">
+  <div class="max-w-6xl mx-auto space-y-10">
+    <div class="max-w-2xl reveal">
+      <span class="pill mb-6" data-i18n="faq.pill">FAQ</span>
+      <h2 class="type-display" style="color: var(--text);" data-i18n="faq.title">Frequently asked questions</h2>
+    </div>
+
+    <div class="max-w-3xl space-y-3 reveal mx-auto">
+      {faqs.map((faq) => (
+        <details class="group">
+          <summary class="flex items-center justify-between gap-4 cursor-pointer list-none px-5 py-4 rounded-2xl font-semibold text-sm transition-all duration-200" style="background: var(--bg-alt); color: var(--text);">
+            <span data-i18n={faq.i18nQ}>{faq.i18nQ}</span>
+            <i class="ph ph-plus transition-transform duration-200 group-open:rotate-45 flex-shrink-0" style="color: var(--text-muted);"></i>
+          </summary>
+          <div class="px-5 pb-4 pt-2" style="color: var(--text-secondary);">
+            <p class="text-sm leading-relaxed" data-i18n={faq.i18nA}>{faq.i18nA}</p>
+          </div>
+        </details>
+      ))}
+    </div>
+
+    <script type="application/ld+json" set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: [
+        { '@type': 'Question', name: 'What does Hantsaniala Eléo do?', acceptedAnswer: { '@type': 'Answer', text: 'Hantsaniala is a freelance backend developer specialising in Go and Python.' } },
+        { '@type': 'Question', name: 'What technologies does Hantsaniala work with?', acceptedAnswer: { '@type': 'Answer', text: 'Primary stack is Go (Gin) and Python (Django).' } },
+      ],
+    })} />
+  </div>
+</section>

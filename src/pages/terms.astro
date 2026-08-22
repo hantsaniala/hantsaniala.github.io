@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Terms of Service">
+  <section class="py-24 lg:py-32">
+    <div class="max-w-2xl space-y-8">
+      <h1 class="text-display-lg" style="color: var(--text-primary);">Terms of Service</h1>
+      <div class="space-y-6" style="color: var(--text-secondary);">
+        <p class="text-sm leading-relaxed">Last updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+        <p class="text-sm leading-relaxed">By engaging Hantsaniala Eléo for freelance development services, you agree to the following terms.</p>
+        <h2 class="text-lg font-semibold" style="color: var(--text-primary);">Services</h2>
+        <p class="text-sm leading-relaxed">Services are provided as described in the project scope agreement. All work is performed remotely unless otherwise specified.</p>
+        <h2 class="text-lg font-semibold" style="color: var(--text-primary);">Payment</h2>
+        <p class="text-sm leading-relaxed">Payment terms are established in the project scope agreement. Invoices are due within 14 days of issuance unless otherwise agreed.</p>
+        <h2 class="text-lg font-semibold" style="color: var(--text-primary);">Intellectual Property</h2>
+        <p class="text-sm leading-relaxed">Upon full payment, all intellectual property rights for the delivered work transfer to the client. Pre-existing tools and libraries remain the property of their respective owners.</p>
+        <h2 class="text-lg font-semibold" style="color: var(--text-primary);">Contact</h2>
+        <p class="text-sm leading-relaxed">For questions about these terms, contact hantsaniala@gmail.com.</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,41 @@
+---
+const rows = [
+  { criteria: 'Cost', i18nKey: 'cost', freelance: 'Lower overhead, pay for hours worked', agency: 'Higher rates, agency margin', fulltime: 'Highest total, salary + benefits' },
+  { criteria: 'Speed', i18nKey: 'speed', freelance: 'Days, begin as soon as scope is agreed', agency: 'Weeks, onboarding, team assignment', fulltime: 'Months, recruiting, notice period' },
+  { criteria: 'Flexibility', i18nKey: 'flexibility', freelance: 'Scale up or down per sprint', agency: 'Contractual commitments', fulltime: 'Fixed capacity' },
+  { criteria: 'Depth', i18nKey: 'depth', freelance: 'Deep specialist, you get the builder', agency: 'Variable, leads may oversee juniors', fulltime: 'Growing specialist' },
+  { criteria: 'Availability', i18nKey: 'availability', freelance: 'Dedicated, no competing projects', agency: 'Shared across clients', fulltime: 'Fully dedicated' },
+];
+---
+
+<section id="comparison" class="section">
+  <div class="max-w-6xl mx-auto space-y-10">
+    <div class="max-w-2xl reveal">
+      <h2 class="type-display" style="color: var(--text);" data-i18n="comparison.title">Freelance vs agency vs full-time</h2>
+      <p class="type-body mt-4" data-i18n="comparison.subtitle">Not sure if freelance is right for your project? Here's an honest comparison.</p>
+    </div>
+
+    <div class="overflow-x-auto reveal">
+      <table class="w-full text-sm">
+        <thead>
+          <tr>
+            <th class="text-left py-3 px-4 font-medium text-xs uppercase tracking-wider" style="color: var(--text-muted);" data-i18n="comparison.criteria">Criteria</th>
+            <th class="text-left py-3 px-4 font-semibold text-xs uppercase tracking-wider" style="color: var(--text);" data-i18n="comparison.freelance">Freelance</th>
+            <th class="text-left py-3 px-4 font-medium text-xs uppercase tracking-wider" style="color: var(--text-muted);" data-i18n="comparison.agency">Agency</th>
+            <th class="text-left py-3 px-4 font-medium text-xs uppercase tracking-wider" style="color: var(--text-muted);" data-i18n="comparison.fulltime">Full-time</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((row) => (
+            <tr style="border-top: 1px solid var(--border);">
+              <td class="py-3 px-4 font-medium" style="color: var(--text);" data-i18n={`comparison.${row.i18nKey}`}>{row.criteria}</td>
+              <td class="py-3 px-4" style="color: var(--text-secondary);" data-i18n={`comparison.${row.i18nKey}.freelance`}>{row.freelance}</td>
+              <td class="py-3 px-4" style="color: var(--text-muted);" data-i18n={`comparison.${row.i18nKey}.agency`}>{row.agency}</td>
+              <td class="py-3 px-4" style="color: var(--text-muted);" data-i18n={`comparison.${row.i18nKey}.fulltime`}>{row.fulltime}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

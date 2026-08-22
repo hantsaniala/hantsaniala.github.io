@@ -1,0 +1,34 @@
+---
+const benefits = [
+  { skill: 'Go (Gin)', i18nKey: 'go', icon: 'ph-diamonds-four' },
+  { skill: 'Python (Django)', i18nKey: 'python', icon: 'ph-code' },
+  { skill: 'REST & GraphQL APIs', i18nKey: 'apis', icon: 'ph-plugs' },
+  { skill: 'Microservices', i18nKey: 'microservices', icon: 'ph-squares-four' },
+  { skill: 'Docker & AWS', i18nKey: 'docker', icon: 'ph-cloud' },
+  { skill: 'PostgreSQL & GORM', i18nKey: 'postgres', icon: 'ph-database' },
+  { skill: 'Neovim & OpenCode', i18nKey: 'neovim', icon: 'ph-terminal' },
+  { skill: 'DevOps & CI/CD', i18nKey: 'devops', icon: 'ph-arrows-clockwise' },
+];
+---
+
+<section id="skills" class="section">
+  <div class="max-w-6xl mx-auto space-y-12">
+    <div class="max-w-2xl reveal">
+      <span class="pill mb-6" data-i18n="skills.pill">Technical Expertise</span>
+      <h2 class="type-display" style="color: var(--text);" data-i18n="skills.title">What you get</h2>
+      <p class="type-body mt-4" data-i18n="skills.subtitle">Every skill maps to a concrete outcome for your project.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 reveal">
+      {benefits.map((item, i) => (
+        <div class={`flat-card ${i === 0 || i === 3 ? 'md:col-span-2' : ''}`}>
+          <div class="flex items-center gap-3 mb-3">
+            <span class="pill"><i class={`ph ${item.icon}`}></i></span>
+            <h3 class="font-semibold text-sm" style="color: var(--text);">{item.skill}</h3>
+          </div>
+          <p class="type-small" data-i18n={`skills.${item.i18nKey}`}>Ship fast, type-safe APIs that handle high concurrency with minimal memory footprint</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

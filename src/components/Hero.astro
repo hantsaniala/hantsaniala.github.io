@@ -1,0 +1,73 @@
+---
+import { site } from '../data/site';
+---
+
+<section id="hero" class="min-h-[80dvh] flex items-center relative overflow-hidden">
+  <!-- Abstract geometric background -->
+  <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+    <div class="absolute -top-32 -right-32 w-[500px] h-[500px] rounded-full" style="background: radial-gradient(circle, var(--accent) 0%, transparent 70%); opacity: 0.06;"></div>
+    <div class="absolute -bottom-20 -left-20 w-[300px] h-[300px] rounded-full" style="background: radial-gradient(circle, #22c55e 0%, transparent 70%); opacity: 0.04;"></div>
+    <div class="absolute inset-0" style="background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px); background-size: 80px 80px; opacity: 0.08;"></div>
+    <div class="absolute top-0 right-1/4 w-px h-full" style="background: linear-gradient(to bottom, transparent, var(--accent), transparent); opacity: 0.06; transform: rotate(12deg); transform-origin: top;"></div>
+  </div>
+
+  <div class="relative z-10 w-full max-w-6xl mx-auto px-6 py-16 lg:py-20">
+    <div class="flex flex-col lg:flex-row lg:items-center lg:gap-16">
+      <!-- Text content -->
+      <div class="flex-1 space-y-5 min-w-0">
+        <span class="pill" data-i18n="hero.available">
+          <span class="w-2 h-2 rounded-full bg-green-500"></span>
+          Available for hire
+        </span>
+
+        <!-- Big headline — typing effect -->
+        <h1 class="type-hero" style="color: var(--text);">
+          <span id="typing-text" data-i18n="hero.headline">Ship Reliable Backends</span><span class="typing-cursor" aria-hidden="true">|</span>
+        </h1>
+
+        <!-- Subtext -->
+        <p class="type-body text-lg max-w-xl">
+          <strong>{site.firstName} {site.lastName}</strong>, <span data-i18n="hero.subtext.1">freelance Go & Python developer building APIs, microservices, and cloud infrastructure.</span>
+        </p>
+
+        <!-- CTAs -->
+        <div class="flex flex-wrap items-center gap-4 pt-2">
+          <a href={site.whatsapp} target="_blank" rel="noopener noreferrer" class="btn btn-primary" data-i18n="hero.cta.discuss">
+            Let's discuss
+            <i class="ph ph-arrow-up-right"></i>
+          </a>
+          <a href="/resume.pdf" download class="btn btn-outline" data-i18n="hero.cta.resume">
+            <i class="ph ph-download-simple"></i>
+            Download Resume
+          </a>
+        </div>
+
+        <!-- Stats counters -->
+        <div class="flex flex-wrap items-baseline gap-8 pt-4" id="hero-stats">
+          <div class="flex flex-col">
+            <span class="text-4xl lg:text-5xl font-bold counter" data-target="10" data-suffix="+">0</span>
+            <span class="text-sm mt-1" style="color: var(--text-secondary);" data-i18n="hero.stats.years">Years experience</span>
+          </div>
+          <div class="flex flex-col">
+            <span class="text-4xl lg:text-5xl font-bold counter" data-target="3" data-suffix="+">0</span>
+            <span class="text-sm mt-1" style="color: var(--text-secondary);" data-i18n="hero.stats.companies">Companies</span>
+          </div>
+          <div class="flex flex-col">
+            <span class="text-4xl lg:text-5xl font-bold counter" data-target="15" data-suffix="+">0</span>
+            <span class="text-sm mt-1" style="color: var(--text-secondary);" data-i18n="hero.stats.tools">Tools</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Profile photo -->
+      <div class="hidden lg:block mt-10 lg:mt-0 flex-shrink-0">
+        <div class="relative w-56 h-80 lg:w-72 lg:h-[26rem] rounded-3xl overflow-hidden" style="background: var(--bg-alt);">
+          <img src="/assets/profile2.png" alt="{site.firstName} {site.lastName}" class="w-full h-full object-cover" style="object-position: 59% center;" loading="eager" />
+          <div class="absolute inset-0 rounded-3xl" style="box-shadow: inset 0 0 0 2px var(--accent); opacity: 0.3;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline src="/typing.js" defer></script>

@@ -1,0 +1,28 @@
+---
+const publications = [
+  { title: 'Organic DevOps', description: 'A collection of articles, presentations or talks on Culture and DevOps.', date: '2020', url: 'https://github.com/hantsaniala' },
+];
+---
+
+<section id="publications" class="section">
+  <div class="max-w-6xl mx-auto space-y-10">
+    <div class="max-w-2xl reveal">
+      <h2 class="type-display" style="color: var(--text);">Articles & talks</h2>
+      <p class="type-body mt-4">A collection of articles, presentations or talks on Culture and DevOps.</p>
+    </div>
+
+    <div class="space-y-3 max-w-2xl reveal">
+      {publications.map((pub) => (
+        <a href={pub.url} class="block group">
+          <div class="flat-card flex items-start justify-between gap-6">
+            <div>
+              <h4 class="font-semibold group-hover:opacity-70 transition-opacity" style="color: var(--text);">{pub.title}</h4>
+              <p class="type-small mt-1">{pub.description}</p>
+            </div>
+            <span class="pill text-xs">{pub.date}</span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

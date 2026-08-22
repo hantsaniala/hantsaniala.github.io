@@ -1,0 +1,161 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseHead from '../../components/BaseHead.astro';
+import Sidebar from '../../components/Sidebar.astro';
+import ThemeToggle from '../../components/ThemeToggle.astro';
+import ScrollAnimate from '../../components/ScrollAnimate.astro';
+import { site } from '../../data/site';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');    return posts.map((post) => ({
+    params: { slug: post.id.replace(/\.md$/, '') },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const postDescription = post.data.description || `${post.data.title}, a technical article by Hantsaniala Eléo.`;
+
+// SEO title: keep under 60 chars
+const brand = ' | Hantsaniala';
+const seoTitle = (post.data.title + brand).length <= 60
+  ? post.data.title + brand
+  : post.data.title;
+
+function formatDate(date: Date): string {
+  return date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+}
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead
+      title={seoTitle}
+      description={postDescription}
+      ogDescription={postDescription}
+      twitterDescription={postDescription}
+      image={post.data.ogImage ?? site.ogImage}
+      type="article"
+    />
+  </head>
+  <body class="min-h-screen" style="background: var(--bg); color: var(--text);">
+    <Sidebar hideDesktopNav />
+
+    <main class="min-h-screen">
+      <article class="max-w-3xl mx-auto px-6 pt-24 pb-16 lg:px-12">
+        <!-- Back link -->
+        <a href="/blog" class="inline-flex items-center gap-2 text-sm mb-8 transition-colors"
+           style="color: var(--text-muted);">
+          <i class="ph ph-arrow-left"></i>
+          All posts
+        </a>
+
+        <!-- Header -->
+        <header class="mb-10" data-animate>
+          <div class="flex items-center gap-3 mb-4">
+            <time class="text-sm font-mono" style="color: var(--text-muted);">
+              {formatDate(post.data.date)}
+            </time>
+          </div>
+          <h1 class="text-3xl lg:text-4xl font-bold tracking-tight leading-tight"
+              style="color: var(--text);">
+            {post.data.title}
+          </h1>
+          <div class="flex flex-wrap gap-2 mt-4">
+            {post.data.tags.map((tag) => (
+              <span class="pill">{tag}</span>
+            ))}
+          </div>
+        </header>
+
+        <!-- Content -->
+        <div class="prose" data-animate>
+          <Content />
+        </div>
+
+        <!-- Footer -->
+        <div class="mt-12 pt-8" style="border-top: 1px solid var(--border);">
+          <a href="/blog" class="inline-flex items-center gap-2 text-sm transition-colors"
+             style="color: var(--text-muted);">
+            <i class="ph ph-arrow-left"></i>
+            Back to all posts
+          </a>
+        </div>
+      </article>
+    </main>
+
+    <ThemeToggle />
+    <ScrollAnimate />
+  </body>
+</html>
+
+<style is:global>
+  .prose {
+    line-height: 1.8;
+  }
+  .prose h2 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--text);
+  }
+  .prose h3 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    color: var(--text);
+  }
+  .prose p {
+    margin-bottom: 1.25rem;
+    color: var(--text-secondary);
+  }
+  .prose a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .prose a:hover {
+    color: var(--accent);
+  }
+  .prose ul, .prose ol {
+    margin-bottom: 1.25rem;
+    padding-left: 1.5rem;
+    color: var(--text-secondary);
+  }
+  .prose li {
+    margin-bottom: 0.4rem;
+  }
+  .prose code {
+    font-family: 'Geist Mono', monospace;
+    font-size: 0.85em;
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+    background: var(--bg-alt);
+  }
+  .prose pre {
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    padding: 1.25rem;
+    overflow-x: auto;
+    margin-bottom: 1.5rem;
+  }
+  .prose pre code {
+    background: none;
+    padding: 0;
+    font-size: 0.85rem;
+    line-height: 1.6;
+  }
+  .prose strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+</style>

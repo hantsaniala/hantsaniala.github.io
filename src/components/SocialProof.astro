@@ -1,0 +1,55 @@
+---
+const testimonials = [
+  {
+    quote: 'Hantsaniala stepped into our codebase and shipped a working Go microservice in under a week. His understanding of backend architecture saved us months of internal development.',
+    name: 'Cloud Diodes',
+    role: 'SaaS Platform (Remote, USA)',
+    metric: 'SaaS container monitoring shipped in weeks',
+  },
+  {
+    quote: 'As CTO at SAHA Technology, he led a team of developers across frontend and backend while managing DevOps. His technical breadth and leadership kept projects on track.',
+    name: 'SAHA Technology',
+    role: 'CTO & Lead Dev',
+    metric: 'Led full-stack team across multiple projects',
+  },
+  {
+    quote: 'His open source contributions speak for themselves. Tools like hStream and uploader are well-designed, well-documented, and solve real problems.',
+    name: 'GitHub Community',
+    role: '15+ repositories, 23+ stars',
+    metric: '15+ repos with real-world usage',
+  },
+];
+---
+
+<section id="social-proof" class="py-16" data-animate>
+  <h2 class="section-heading flex items-center gap-3">
+    <i class="ph ph-star text-primary text-lg"></i>
+    What Clients & Peers Say
+  </h2>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    {testimonials.map((t) => (
+      <div class="card flex flex-col">
+        <!-- Quote -->
+        <blockquote class="flex-1 mb-4">
+          <p class="text-sm leading-relaxed italic" style="color: var(--text-secondary);">
+            "{t.quote}"
+          </p>
+        </blockquote>
+
+        <!-- Source -->
+        <div class="pt-4" style="border-top: 1px solid var(--border-color);">
+          <p class="font-semibold text-sm" style="color: var(--text-primary);">
+            {t.name}
+          </p>
+          <p class="text-xs mt-0.5" style="color: var(--text-muted);">
+            {t.role}
+          </p>
+          <p class="text-xs mt-2 font-mono text-primary">
+            {t.metric}
+          </p>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>

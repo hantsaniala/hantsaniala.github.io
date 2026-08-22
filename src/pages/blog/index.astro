@@ -1,0 +1,179 @@
+---
+import { getCollection } from 'astro:content';
+import BaseHead from '../../components/BaseHead.astro';
+import Sidebar from '../../components/Sidebar.astro';
+import ThemeToggle from '../../components/ThemeToggle.astro';
+import ScrollAnimate from '../../components/ScrollAnimate.astro';
+
+const posts = (await getCollection('blog'))
+  .filter((post) => !post.data.draft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+function formatDate(date: Date): string {
+  return date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+}
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead
+      title="Blog - Backend Dev Tips on Go, Python & Flutter"
+      description="Looking to level up your Go, Python or Flutter skills? Tutorials, deep dives, and real-world dev insights from a senior engineer."
+      ogDescription="Practical tutorials and deep dives on Go, Python, Flutter & backend architecture. Real code from a senior freelance developer."
+      twitterDescription="Go, Python & Flutter tutorials from a freelance backend dev. Real-world articles on APIs, microservices & cloud."
+    />
+  </head>
+  <body class="min-h-screen" style="background: var(--bg); color: var(--text);">
+    <Sidebar hideDesktopNav />
+
+    <main class="min-h-screen">
+      <div class="max-w-3xl mx-auto px-6 pt-24 pb-16 lg:px-12">
+        <!-- Header -->
+        <div class="mb-8">
+          <a href="/" class="inline-flex items-center gap-2 text-sm mb-6 transition-colors"
+             style="color: var(--text-muted);">
+            <i class="ph ph-arrow-left"></i>
+            Back to portfolio
+          </a>
+          <h1 class="text-3xl lg:text-4xl font-bold tracking-tight" style="color: var(--text);">
+            Blog
+          </h1>
+          <p class="mt-3 text-lg" style="color: var(--text-muted);">
+            Thoughts on software development, architecture, and open source.
+          </p>
+        </div>
+
+        <!-- Search -->
+        <div class="relative mb-8">
+          <i class="ph ph-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-sm" style="color: var(--text-muted);"></i>
+          <input
+            id="blog-search"
+            type="text"
+            placeholder="Search articles..."
+            class="w-full pl-10 pr-4 py-3 rounded-xl text-sm outline-none transition-all duration-300"
+            style="background: var(--bg-alt); border: 1px solid var(--border); color: var(--text);"
+          />
+          <kbd class="absolute right-4 top-1/2 -translate-y-1/2 text-[0.65rem] font-mono px-1.5 py-0.5 rounded hidden sm:inline-block"
+               style="background: var(--pill-bg); color: var(--text-muted); border: 1px solid var(--border);">
+            /
+          </kbd>
+        </div>
+
+        <!-- No results message -->
+        <p id="no-results" class="text-center py-12 hidden" style="color: var(--text-muted);">
+          No articles match your search.
+        </p>
+
+        <!-- Posts -->
+        <div id="blog-posts" class="space-y-5">
+          {posts.length === 0 && (
+            <p class="text-center py-12" style="color: var(--text-muted);">
+              No posts yet. Check back soon.
+            </p>
+          )}
+          {posts.map((post) => (
+            <a
+              href={`/blog/${post.id.replace(/\.md$/, '')}`}
+              class="block group rounded-2xl transition-all duration-300 hover:translate-y-[-2px] blog-post"
+              style="background: var(--bg-alt); border: 1px solid var(--border);"
+              data-title={post.data.title.toLowerCase()}
+              data-description={(post.data.description || '').toLowerCase()}
+              data-tags={post.data.tags.join(' ').toLowerCase()}
+            >
+              <div class="p-6">
+                <!-- Meta row -->
+                <div class="flex items-center gap-3 mb-3">
+                  <time class="text-xs font-mono" style="color: var(--text-muted);">
+                    {formatDate(post.data.date)}
+                  </time>
+                  <span class="w-1 h-1 rounded-full" style="background: var(--border);"></span>
+                  <div class="flex flex-wrap gap-1.5">
+                    {post.data.tags.slice(0, 4).map((tag) => (
+                      <span class="text-[0.65rem] font-mono px-2 py-0.5 rounded-full"
+                            style="background: var(--pill-bg); color: var(--text-secondary);">
+                        {tag}
+                      </span>
+                    ))}
+                    {post.data.tags.length > 4 && (
+                      <span class="text-[0.65rem] font-mono px-2 py-0.5 rounded-full"
+                            style="background: var(--pill-bg); color: var(--text-muted);">
+                        +{post.data.tags.length - 4}
+                      </span>
+                    )}
+                  </div>
+                </div>
+
+                <!-- Title -->
+                <h2 class="text-lg font-semibold mb-2 group-hover:text-primary transition-colors duration-300"
+                    style="color: var(--text);">
+                  {post.data.title}
+                </h2>
+
+                <!-- Description -->
+                {post.data.description && (
+                  <p class="text-sm leading-relaxed mb-4" style="color: var(--text-secondary);">
+                    {post.data.description}
+                  </p>
+                )}
+
+                <!-- Read more -->
+                <div class="flex items-center gap-2 text-sm font-medium text-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  Read article
+                  <i class="ph ph-arrow-right text-sm transition-transform duration-300 group-hover:translate-x-1"></i>
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </main>
+
+    <ThemeToggle />
+    <ScrollAnimate />
+
+    <script>
+      const searchInput = document.getElementById('blog-search') as HTMLInputElement;
+      const posts = document.querySelectorAll('.blog-post');
+      const noResults = document.getElementById('no-results');
+
+      if (searchInput) {
+        // Keyboard shortcut: / to focus search
+        document.addEventListener('keydown', (e) => {
+          if (e.key === '/' && document.activeElement !== searchInput) {
+            e.preventDefault();
+            searchInput.focus();
+          }
+          if (e.key === 'Escape' && document.activeElement === searchInput) {
+            searchInput.blur();
+            searchInput.value = '';
+            filterPosts('');
+          }
+        });
+
+        searchInput.addEventListener('input', (e) => {
+          const query = (e.target as HTMLInputElement).value.toLowerCase().trim();
+          filterPosts(query);
+        });
+      }
+
+      function filterPosts(query: string) {
+        let visible = 0;
+        posts.forEach((post) => {
+          const el = post as HTMLElement;
+          const title = el.dataset.title || '';
+          const desc = el.dataset.description || '';
+          const tags = el.dataset.tags || '';
+          const match = !query || title.includes(query) || desc.includes(query) || tags.includes(query);
+          el.style.display = match ? '' : 'none';
+          if (match) visible++;
+        });
+        noResults?.classList.toggle('hidden', visible > 0);
+      }
+    </script>
+  </body>
+</html>

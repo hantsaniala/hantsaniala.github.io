@@ -1,0 +1,57 @@
+---
+import experience from '../data/experience.json';
+
+function formatSummary(summary: string): string[] {
+  return summary.split('\n').filter(line => line.trim().length > 0);
+}
+---
+
+<section id="experience" class="section">
+  <div class="max-w-6xl mx-auto space-y-10">
+    <div class="max-w-2xl reveal">
+      <h2 class="type-display" style="color: var(--text);" data-i18n="experience.title">Experience</h2>
+    </div>
+
+    <div class="space-y-4 reveal">
+      {experience.map((job) => (
+        <div class="flat-card">
+          <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2 mb-3">
+            <div>
+              <h3 class="font-semibold" style="color: var(--text);">{job.role}</h3>
+              <p class="text-sm font-medium" style="color: var(--text-muted);">{job.company}</p>
+            </div>
+            <span class="pill text-xs">{job.range}</span>
+          </div>
+          <ul class="space-y-1.5">
+            {formatSummary(job.summary).map((line) => (
+              <li class="flex items-start gap-2 text-sm" style="color: var(--text-secondary);">
+                <span class="mt-2 w-1 h-1 rounded-full flex-shrink-0" style="background: var(--text-muted);"></span>
+                <span>{line.replace(/^- /, '')}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+
+    <script type="application/ld+json" set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'Person',
+      name: 'Hantsaniala Eléo',
+      hasOccupation: {
+        '@type': 'Occupation',
+        name: 'Freelance Software Developer',
+        occupationLocation: { '@type': 'Country', name: 'Madagascar' },
+        skills: 'Go, Python, Django, Gin, Docker, AWS, PostgreSQL, Microservices, REST API, GraphQL, DevOps, CI/CD',
+      },
+      hasWorkExperience: experience.map((job) => ({
+        '@type': 'OrganizationRole',
+        roleName: job.role,
+        namedOrganization: { '@type': 'Organization', name: job.company },
+        description: job.summary.replace(/^- /gm, ''),
+        startDate: job.range.split(' - ')[0],
+        endDate: job.range.includes('Present') ? undefined : job.range.split(' - ')[1],
+      })),
+    })} />
+  </div>
+</section>

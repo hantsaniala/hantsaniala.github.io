@@ -1,0 +1,170 @@
+---
+import { site } from '../data/site';
+import ThemeToggle from './ThemeToggle.astro';
+
+interface Props {
+  hideDesktopNav?: boolean;
+}
+const { hideDesktopNav = false } = Astro.props;
+
+const navIcons: Record<string, string> = {
+  About: 'ph-user',
+  Skills: 'ph-lightbulb',
+  Experience: 'ph-briefcase',
+  Education: 'ph-graduation-cap',
+  Blog: 'ph-article',
+};
+---
+
+<!-- Desktop top bar -->
+{!hideDesktopNav && (
+<header class="hidden lg:flex fixed top-6 left-1/2 -translate-x-1/2 z-50 items-center gap-2 px-3 py-2 rounded-full" style="background: var(--pill-bg);">
+  <nav class="flex items-center gap-1">
+    {site.navItems.map((item) => {
+      const icon = navIcons[item.label] ?? 'ph-circle';
+      return (
+        <a href={item.href} class="flex items-center gap-1.5 px-3 py-2 rounded-full text-sm font-medium transition-all duration-200 hover:bg-[var(--pill-hover)]" style="color: var(--text-secondary);" data-i18n={`nav.${item.label.toLowerCase()}`}>
+          <i class={`ph ${icon}`}></i>
+          <span>{item.label}</span>
+        </a>
+      );
+    })}
+  </nav>
+
+  <div class="w-px h-5" style="background: var(--border);"></div>
+
+  <ThemeToggle />
+  
+  <button id="lang-switcher" class="flex items-center gap-1 px-3 py-2 rounded-full text-sm font-medium transition-all duration-200 hover:bg-[var(--pill-hover)]" style="color: var(--text-secondary);" aria-label="Switch language">
+    <i class="ph ph-translate"></i>
+    <span class="lang-label">FR</span>
+  </button>
+
+  <div class="w-px h-5" style="background: var(--border);"></div>
+
+  <a href={site.whatsapp} target="_blank" rel="noopener noreferrer"
+     class="flex items-center gap-2 px-5 py-2 rounded-full text-sm font-semibold transition-all duration-200 hover:scale-[0.97] ml-1 whitespace-nowrap"
+     style="background: var(--accent); color: var(--accent-text);" data-i18n="nav.discuss">
+    Let's discuss
+  </a>
+</header>
+)}
+
+<!-- Mobile floating pill -->
+<div id="mobile-nav-pill" class="lg:hidden fixed top-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2 px-3 py-2 rounded-full transition-all duration-300"
+     style="background: var(--pill-bg);">
+  <a href="/" class="flex items-center gap-2 pl-1 pr-2" aria-label="Home">
+    <div class="w-7 h-7 rounded-full overflow-hidden">
+      <img src={site.logo} alt="HE" class="w-full h-full object-cover" />
+    </div>
+  </a>
+
+  <div class="w-px h-4" style="background: var(--border);"></div>
+
+  <ThemeToggle />
+
+  <div class="w-px h-4" style="background: var(--border);"></div>
+
+  <button id="lang-switcher-mobile" class="flex items-center gap-1 px-2 py-2 rounded-full text-sm font-medium" style="color: var(--text-secondary);" aria-label="Switch language">
+    <i class="ph ph-translate"></i>
+    <span class="lang-label">FR</span>
+  </button>
+
+  <div class="w-px h-4" style="background: var(--border);"></div>
+
+  <button id="mobile-menu-toggle" class="relative w-8 h-8 flex items-center justify-center rounded-full" style="color: var(--text-secondary);" aria-label="Open navigation">
+    <span class="hamburger-line absolute w-4 h-px transition-all duration-300" style="background: currentColor; transform: translateY(-3px);"></span>
+    <span class="hamburger-line absolute w-4 h-px transition-all duration-300" style="background: currentColor; transform: translateY(3px);"></span>
+  </button>
+</div>
+
+<!-- Mobile nav overlay -->
+<div id="mobile-menu" class="lg:hidden fixed inset-0 z-40 hidden flex items-center justify-center" style="background: var(--bg);">
+  <button id="mobile-menu-close" class="absolute top-6 right-6 w-10 h-10 flex items-center justify-center rounded-full" style="background: var(--pill-bg); color: var(--text-secondary);" aria-label="Close navigation">
+    <i class="ph ph-x text-lg"></i>
+  </button>
+
+  <nav>
+    <ul class="flex flex-col items-center gap-6">
+      {site.navItems.map((item, i) => (
+        <li class="mobile-nav-item" style={`opacity: 0; transform: translateY(1rem); transition: opacity 0.4s ease ${80 + i * 60}ms, transform 0.4s ease ${80 + i * 60}ms;`}>
+          <a href={item.href} class="flex items-center gap-3 text-2xl font-semibold mobile-nav-link transition-colors duration-200" style="color: var(--text-secondary);" data-i18n={`nav.${item.label.toLowerCase()}`}>
+            <i class={`ph ${navIcons[item.label] ?? 'ph-circle'} text-xl`}></i>
+            {item.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+</div>
+
+<script>
+  const toggle = document.getElementById('mobile-menu-toggle');
+  const close = document.getElementById('mobile-menu-close');
+  const menu = document.getElementById('mobile-menu');
+  const pill = document.getElementById('mobile-nav-pill');
+  const items = document.querySelectorAll('.mobile-nav-item');
+  const links = document.querySelectorAll('.mobile-nav-link');
+
+  let isOpen = false;
+
+  function openMenu() {
+    isOpen = true;
+    menu?.classList.remove('hidden');
+    pill?.classList.add('opacity-0', 'pointer-events-none');
+    items.forEach((el) => {
+      (el as HTMLElement).style.opacity = '1';
+      (el as HTMLElement).style.transform = 'translateY(0)';
+    });
+  }
+
+  function closeMenu() {
+    isOpen = false;
+    items.forEach((el, i) => {
+      (el as HTMLElement).style.transition = `opacity 0.2s ease ${i * 30}ms, transform 0.2s ease ${i * 30}ms`;
+      (el as HTMLElement).style.opacity = '0';
+      (el as HTMLElement).style.transform = 'translateY(1rem)';
+    });
+    setTimeout(() => {
+      menu?.classList.add('hidden');
+      pill?.classList.remove('opacity-0', 'pointer-events-none');
+      items.forEach((el, i) => {
+        (el as HTMLElement).style.transition = `opacity 0.4s ease ${80 + i * 60}ms, transform 0.4s ease ${80 + i * 60}ms`;
+      });
+    }, 250);
+  }
+
+  toggle?.addEventListener('click', () => isOpen ? closeMenu() : openMenu());
+  close?.addEventListener('click', closeMenu);
+  links.forEach((link) => link.addEventListener('click', closeMenu));
+
+  // Hide pill on scroll
+  let lastY = 0;
+  let ticking = false;
+  window.addEventListener("scroll", () => {
+    if (isOpen) return;
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        const y = window.scrollY;
+        const delta = y - lastY;
+        if (delta > 5 && y > 80) {
+          pill?.classList.add("-translate-y-16", "opacity-0");
+        } else if (delta < -5) {
+          pill?.classList.remove("-translate-y-16", "opacity-0");
+        }
+        lastY = y;
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, { passive: true });
+
+  // Mobile lang switcher
+  const mobileLangBtn = document.getElementById('lang-switcher-mobile');
+  if (mobileLangBtn) {
+    mobileLangBtn.addEventListener('click', () => {
+      // Trigger the same event as desktop switcher
+      document.getElementById('lang-switcher')?.click();
+    });
+  }
+</script>
