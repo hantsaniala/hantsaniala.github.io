@@ -3,24 +3,26 @@ import { site } from '../data/site';
 ---
 
 <section id="hero" class="min-h-[80dvh] flex items-center relative overflow-hidden">
-  <!-- Unsplash background with parallax -->
-  <div class="parallax-container absolute inset-0">
-    <div class="parallax-bg" style="background-image: url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1920&q=80'); opacity: 0.08;"></div>
+  <!-- Abstract geometric background -->
+  <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+    <div class="absolute -top-32 -right-32 w-[500px] h-[500px] rounded-full" style="background: radial-gradient(circle, var(--accent) 0%, transparent 70%); opacity: 0.06;"></div>
+    <div class="absolute -bottom-20 -left-20 w-[300px] h-[300px] rounded-full" style="background: radial-gradient(circle, #22c55e 0%, transparent 70%); opacity: 0.04;"></div>
+    <div class="absolute inset-0" style="background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px); background-size: 80px 80px; opacity: 0.08;"></div>
+    <div class="absolute top-0 right-1/4 w-px h-full" style="background: linear-gradient(to bottom, transparent, var(--accent), transparent); opacity: 0.06; transform: rotate(12deg); transform-origin: top;"></div>
   </div>
 
   <div class="relative z-10 w-full max-w-6xl mx-auto px-6 py-16 lg:py-20">
     <div class="flex flex-col lg:flex-row lg:items-center lg:gap-16">
       <!-- Text content -->
-      <div class="flex-1 space-y-5">
-        <!-- Eyebrow pill -->
+      <div class="flex-1 space-y-5 min-w-0">
         <span class="pill">
           <span class="w-2 h-2 rounded-full bg-green-500"></span>
           Available for hire
         </span>
 
-        <!-- Big headline -->
+        <!-- Big headline — typing effect -->
         <h1 class="type-hero" style="color: var(--text);">
-          Ship Reliable<br />Backends
+          <span id="typing-text"></span><span class="typing-cursor" aria-hidden="true">|</span>
         </h1>
 
         <!-- Subtext -->
@@ -58,41 +60,14 @@ import { site } from '../data/site';
       </div>
 
       <!-- Profile photo -->
-      <div class="mt-10 lg:mt-0 flex-shrink-0">
-        <div class="w-48 h-48 lg:w-64 lg:h-64 rounded-full overflow-hidden" style="background: var(--pill-bg);">
-          <img src="/img/profile2.png" alt="{site.firstName} {site.lastName}" class="w-full h-full object-cover" />
+      <div class="hidden lg:block mt-10 lg:mt-0 flex-shrink-0">
+        <div class="relative w-56 h-80 lg:w-72 lg:h-[26rem] rounded-3xl overflow-hidden" style="background: var(--bg-alt);">
+          <img src="/img/profile2.png" alt="{site.firstName} {site.lastName}" class="w-full h-full object-cover" style="object-position: 59% center;" loading="eager" />
+          <div class="absolute inset-0 rounded-3xl" style="box-shadow: inset 0 0 0 2px var(--accent); opacity: 0.3;"></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<script>
-  function animateCounters() {
-    const counters = document.querySelectorAll('.counter');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const el = entry.target as HTMLElement;
-          const target = parseInt(el.dataset.target || '0');
-          const suffix = el.dataset.suffix || '';
-          let current = 0;
-          const increment = Math.max(1, Math.floor(target / 40));
-          const timer = setInterval(() => {
-            current += increment;
-            if (current >= target) {
-              current = target;
-              clearInterval(timer);
-            }
-            el.textContent = current + suffix;
-          }, 30);
-          observer.unobserve(el);
-        }
-      });
-    }, { threshold: 0.5 });
-
-    counters.forEach((c) => observer.observe(c));
-  }
-
-  animateCounters();
-</script>
+<script is:inline src="/typing.js" defer></script>

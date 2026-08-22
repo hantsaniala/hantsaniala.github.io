@@ -150,6 +150,14 @@ body::before {
   font-weight: 800;
   letter-spacing: -0.04em;
   line-height: 0.95;
+  overflow: hidden;
+  height: 2em;
+}
+
+@media (max-width: 1023px) {
+  .type-hero {
+    font-size: clamp(2.5rem, 8vw, 3.5rem);
+  }
 }
 
 .type-display {
@@ -310,3 +318,22 @@ body::before {
 
 /* Counter */
 .counter { color: var(--accent); font-variant-numeric: tabular-nums; }
+
+/* ═══════════════════════════════════════════
+   TYPING CURSOR
+   ═══════════════════════════════════════════ */
+
+.typing-cursor {
+  color: var(--accent);
+  font-weight: 800;
+  animation: blink-cursor 0.8s step-end infinite;
+  margin-left: 2px;
+}
+
+@keyframes blink-cursor {
+  50% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .typing-cursor { animation: none; }
+}
