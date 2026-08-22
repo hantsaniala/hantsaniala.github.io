@@ -9,41 +9,90 @@ import { site } from '../data/site';
   </div>
 
   <div class="relative z-10 w-full max-w-6xl mx-auto px-6 py-16 lg:py-20">
-    <div class="space-y-5">
-      <!-- Eyebrow pill -->
-      <span class="pill">
-        <span class="w-2 h-2 rounded-full bg-green-500"></span>
-        Available for hire
-      </span>
+    <div class="flex flex-col lg:flex-row lg:items-center lg:gap-16">
+      <!-- Text content -->
+      <div class="flex-1 space-y-5">
+        <!-- Eyebrow pill -->
+        <span class="pill">
+          <span class="w-2 h-2 rounded-full bg-green-500"></span>
+          Available for hire
+        </span>
 
-      <!-- Big headline -->
-      <h1 class="type-hero" style="color: var(--text);">
-        Ship Reliable<br />Backends
-      </h1>
+        <!-- Big headline -->
+        <h1 class="type-hero" style="color: var(--text);">
+          Ship Reliable<br />Backends
+        </h1>
 
-      <!-- Subtext -->
-      <p class="type-body text-lg max-w-xl">
-        <strong>{site.firstName} {site.lastName}</strong>, freelance Go & Python developer building APIs, microservices, and cloud infrastructure.
-      </p>
+        <!-- Subtext -->
+        <p class="type-body text-lg max-w-xl">
+          <strong>{site.firstName} {site.lastName}</strong>, freelance Go & Python developer building APIs, microservices, and cloud infrastructure.
+        </p>
 
-      <!-- CTAs -->
-      <div class="flex flex-wrap items-center gap-4 pt-4">
-        <a href={site.whatsapp} target="_blank" rel="noopener noreferrer" class="btn btn-primary">
-          Let's discuss
-          <i class="ph ph-arrow-up-right"></i>
-        </a>
-        <a href="/resume.pdf" download class="btn btn-outline">
-          <i class="ph ph-download-simple"></i>
-          Download Resume
-        </a>
+        <!-- CTAs -->
+        <div class="flex flex-wrap items-center gap-4 pt-2">
+          <a href={site.whatsapp} target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+            Let's discuss
+            <i class="ph ph-arrow-up-right"></i>
+          </a>
+          <a href="/resume.pdf" download class="btn btn-outline">
+            <i class="ph ph-download-simple"></i>
+            Download Resume
+          </a>
+        </div>
+
+        <!-- Stats counters -->
+        <div class="flex flex-wrap items-baseline gap-8 pt-4" id="hero-stats">
+          <div class="flex flex-col">
+            <span class="text-4xl lg:text-5xl font-bold counter" data-target="10" data-suffix="+">0</span>
+            <span class="text-sm mt-1" style="color: var(--text-secondary);">Years experience</span>
+          </div>
+          <div class="flex flex-col">
+            <span class="text-4xl lg:text-5xl font-bold counter" data-target="3" data-suffix="+">0</span>
+            <span class="text-sm mt-1" style="color: var(--text-secondary);">Companies</span>
+          </div>
+          <div class="flex flex-col">
+            <span class="text-4xl lg:text-5xl font-bold counter" data-target="15" data-suffix="+">0</span>
+            <span class="text-sm mt-1" style="color: var(--text-secondary);">Tools</span>
+          </div>
+        </div>
       </div>
 
-      <!-- Stats pills -->
-      <div class="flex flex-wrap gap-3 pt-4">
-        <span class="pill">10+ years experience</span>
-        <span class="pill">Go & Python</span>
-        <span class="pill">Remote-first</span>
+      <!-- Profile photo -->
+      <div class="mt-10 lg:mt-0 flex-shrink-0">
+        <div class="w-48 h-48 lg:w-64 lg:h-64 rounded-full overflow-hidden" style="background: var(--pill-bg);">
+          <img src="/img/profile2.png" alt="{site.firstName} {site.lastName}" class="w-full h-full object-cover" />
+        </div>
       </div>
     </div>
   </div>
 </section>
+
+<script>
+  function animateCounters() {
+    const counters = document.querySelectorAll('.counter');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const el = entry.target as HTMLElement;
+          const target = parseInt(el.dataset.target || '0');
+          const suffix = el.dataset.suffix || '';
+          let current = 0;
+          const increment = Math.max(1, Math.floor(target / 40));
+          const timer = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+              current = target;
+              clearInterval(timer);
+            }
+            el.textContent = current + suffix;
+          }, 30);
+          observer.unobserve(el);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    counters.forEach((c) => observer.observe(c));
+  }
+
+  animateCounters();
+</script>
