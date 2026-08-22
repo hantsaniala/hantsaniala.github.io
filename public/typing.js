@@ -2,6 +2,9 @@
   var el = document.getElementById('typing-text');
   if (!el) return;
 
+  // Clear static fallback text so crawlers see it but users see typing
+  el.textContent = '';
+
   var phrases = [
     'Ship Reliable Backends',
     'Scale Without the Headache',
