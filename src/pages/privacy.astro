@@ -1,0 +1,21 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Privacy Policy">
+  <section class="py-24 lg:py-32">
+    <div class="max-w-2xl space-y-8">
+      <h1 class="text-display-lg" style="color: var(--text-primary);">Privacy Policy</h1>
+      <div class="space-y-6" style="color: var(--text-secondary);">
+        <p class="text-sm leading-relaxed">Last updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+        <p class="text-sm leading-relaxed">This privacy policy describes how Hantsaniala Eléo collects, uses, and protects information when you visit this website.</p>
+        <h2 class="text-lg font-semibold" style="color: var(--text-primary);">Information Collection</h2>
+        <p class="text-sm leading-relaxed">This website does not collect personal information automatically. Contact information provided voluntarily through WhatsApp or email is used solely to respond to your inquiry.</p>
+        <h2 class="text-lg font-semibold" style="color: var(--text-primary);">Third-Party Services</h2>
+        <p class="text-sm leading-relaxed">This website uses no tracking cookies, analytics services, or third-party advertising. WhatsApp links open the WhatsApp application directly.</p>
+        <h2 class="text-lg font-semibold" style="color: var(--text-primary);">Contact</h2>
+        <p class="text-sm leading-relaxed">For privacy-related questions, contact hantsaniala@gmail.com.</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
