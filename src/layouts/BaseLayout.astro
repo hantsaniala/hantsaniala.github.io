@@ -12,7 +12,7 @@ const { title, description } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="fr">
   <BaseHead title={title} description={description} />
   <body>
     <!-- Skip to content -->
@@ -32,10 +32,311 @@ const { title, description } = Astro.props;
       <i class="ph ph-arrow-up text-lg"></i>
     </button>
 
-    <script>
+    <script is:inline>
+      // i18n translations
+      const translations = {
+        en: {
+          'nav.about': 'About',
+          'nav.skills': 'Skills',
+          'nav.experience': 'Experience',
+          'nav.education': 'Education',
+          'nav.blog': 'Blog',
+          'nav.discuss': "Let's discuss",
+          'hero.available': 'Available for hire',
+          'hero.headline': 'Ship Reliable Backends',
+          'hero.subtext.1': 'freelance Go & Python developer building APIs, microservices, and cloud infrastructure.',
+          'hero.cta.discuss': "Let's discuss",
+          'hero.cta.resume': 'Download Resume',
+          'hero.stats.years': 'Years experience',
+          'hero.stats.companies': 'Companies',
+          'hero.stats.tools': 'Tools',
+          'about.pill': 'About',
+          'about.title': 'Why hire a freelance backend developer?',
+          'about.problem.pill': 'The Problem',
+          'about.problem.1': 'Hiring a full-time backend engineer is expensive and slow. Your API is sluggish. Your microservices are tangled. Your cloud bill keeps climbing.',
+          'about.problem.2': 'You need someone who can step in, understand the system fast, and ship fixes, not someone who needs six months to ramp up.',
+          'about.solution.pill': 'The Solution',
+          'about.solution.1': "I'm Hantsaniala, a freelance backend developer who has spent 10+ years building and scaling systems in Go and Python. I've shipped microservices for SaaS platforms, built REST and GraphQL APIs, and configured cloud infrastructure.",
+          'about.solution.2': 'Whether you need a new API built from scratch, a legacy system migrated, or DevOps pipelines set up, I can start within days.',
+          'about.how': 'How it works',
+          'about.step1.title': 'Discovery call',
+          'about.step1.desc': 'We discuss your project, tech stack, and goals. I assess feasibility and suggest the best approach.',
+          'about.step2.title': 'Plan & build',
+          'about.step2.desc': 'I deliver in weekly sprints with demos. You see progress early and often. No surprises.',
+          'about.step3.title': 'Ship & support',
+          'about.step3.desc': 'I deploy your system, write documentation, and stay available for handoff and maintenance.',
+          'skills.pill': 'Technical Expertise',
+          'skills.title': 'What you get',
+          'skills.subtitle': 'Every skill maps to a concrete outcome for your project.',
+          'skills.go': 'Ship fast, type-safe APIs that handle high concurrency with minimal memory footprint',
+          'skills.python': 'Rapidly build secure, maintainable backends with built-in admin, ORM, and auth',
+          'skills.apis': 'Design clean, documented APIs that frontend and mobile teams enjoy consuming',
+          'skills.microservices': 'Decouple monoliths into independently deployable services that scale per-component',
+          'skills.docker': 'Containerise and deploy with repeatable, infrastructure-as-code pipelines',
+          'skills.postgres': 'Design performant schemas and queries that stay fast as your data grows',
+          'skills.neovim': 'Terminal-speed workflows with keyboard-driven editing and AI-assisted coding',
+          'skills.devops': 'Automate testing, building, and deployment so you ship with confidence',
+          'comparison.title': 'Freelance vs agency vs full-time',
+          'comparison.subtitle': "Not sure if freelance is right for your project? Here's an honest comparison.",
+          'comparison.criteria': 'Criteria',
+          'comparison.freelance': 'Freelance',
+          'comparison.agency': 'Agency',
+          'comparison.fulltime': 'Full-time',
+          'comparison.cost': 'Cost',
+          'comparison.cost.freelance': 'Lower overhead, pay for hours worked',
+          'comparison.cost.agency': 'Higher rates, agency margin',
+          'comparison.cost.fulltime': 'Highest total, salary + benefits',
+          'comparison.speed': 'Speed',
+          'comparison.speed.freelance': 'Days, begin as soon as scope is agreed',
+          'comparison.speed.agency': 'Weeks, onboarding, team assignment',
+          'comparison.speed.fulltime': 'Months, recruiting, notice period',
+          'comparison.flexibility': 'Flexibility',
+          'comparison.flexibility.freelance': 'Scale up or down per sprint',
+          'comparison.flexibility.agency': 'Contractual commitments',
+          'comparison.flexibility.fulltime': 'Fixed capacity',
+          'comparison.depth': 'Depth',
+          'comparison.depth.freelance': 'Deep specialist, you get the builder',
+          'comparison.depth.agency': 'Variable, leads may oversee juniors',
+          'comparison.depth.fulltime': 'Growing specialist',
+          'comparison.availability': 'Availability',
+          'comparison.availability.freelance': 'Dedicated, no competing projects',
+          'comparison.availability.agency': 'Shared across clients',
+          'comparison.availability.fulltime': 'Fully dedicated',
+          'experience.title': 'Experience',
+          'education.title': 'Education & certifications',
+          'projects.title': 'Projects & contributions',
+          'projects.creations': 'Creations',
+          'projects.contributions': 'Contributions',
+          'projects.dj.desc': 'Django + uv helper CLI for streamlined Django project management.',
+          'projects.trosa.desc': 'A Flutter app to manage loan lists, built with Dart.',
+          'projects.backlog.desc': 'Project backlog management tool.',
+          'projects.lazybacklog.desc': 'LazyVim plugin for Backlog, manage projects from Neovim.',
+          'projects.hstream.desc': 'A simple HLS VOD server made with Go. Stream video on demand with Docker.',
+          'projects.uploader.desc': 'File uploader across multiple FTP servers, built with Go.',
+          'projects.isadev.desc': "Grab your own sweet-looking '.is-a.dev' subdomain.",
+          'projects.chit.desc': 'Go Chi template generator.',
+          'projects.goftp.desc': 'A Go client for performing common FTP operations.',
+          'faq.pill': 'FAQ',
+          'faq.title': 'Frequently asked questions',
+          'faq.q1': 'What does Hantsaniala Eléo do?',
+          'faq.a1': 'Hantsaniala is a freelance backend developer specialising in Go and Python. He builds REST APIs, microservices, and cloud infrastructure for startups and small businesses.',
+          'faq.q2': 'What technologies does Hantsaniala work with?',
+          'faq.a2': 'Primary stack is Go (Gin) and Python (Django, DjangoRESTFramework). He also works with Docker, AWS, PostgreSQL, Neovim, and CI/CD pipelines for deployment.',
+          'faq.q3': 'How much does freelance backend development cost?',
+          'faq.a3': 'Rates depend on project scope and complexity. Contact Hantsaniala for a free consultation and quote. He offers both hourly and fixed-price arrangements.',
+          'faq.q4': 'Can Hantsaniala help migrate a legacy backend?',
+          'faq.a4': 'Yes. He has experience migrating legacy PHP and monolith systems to modern Go or Python microservices architectures with zero-downtime deployment strategies.',
+          'faq.q5': 'Does Hantsaniala work with international clients remotely?',
+          'faq.a5': 'Yes. He has worked remotely with US-based companies and is available for international freelance engagements across all time zones.',
+          'faq.q6': 'How can I hire Hantsaniala for a project?',
+          'faq.a6': 'Send a message on WhatsApp or email hantsaniala@gmail.com with your project details. He typically responds within 24 hours and can start within days of agreeing on scope.',
+          'footer.cta.title': 'Ready to build something?',
+          'footer.cta.desc': "I'm available for freelance backend development projects. Whether you need a new API, a system migration, or DevOps setup, let's talk.",
+          'footer.cta.discuss': "Let's discuss",
+          'footer.credentials': 'Credentials',
+          'footer.cred.1': '10+ years software development',
+          'footer.cred.2': 'CTO-level technical leadership',
+          'footer.cred.3': '15+ open source repositories',
+          'footer.cred.4': 'Remote-first, worldwide',
+          'footer.links': 'Quick links',
+          'footer.link.skills': 'Technical Skills',
+          'footer.link.experience': 'Work Experience',
+          'footer.link.projects': 'Open Source Projects',
+          'footer.link.blog': 'Blog & Articles',
+          'footer.link.resume': 'Download Resume',
+          'footer.contact': 'Contact',
+          'footer.whatsapp': 'WhatsApp',
+          'footer.location': 'Madagascar (Remote)',
+          'footer.privacy': 'Privacy',
+          'footer.terms': 'Terms',
+          'footer.built': 'Built with <span style="color: var(--text);">Astro</span>',
+        },
+        fr: {
+          'nav.about': 'À propos',
+          'nav.skills': 'Compétences',
+          'nav.experience': 'Expérience',
+          'nav.education': 'Formation',
+          'nav.blog': 'Blog',
+          'nav.discuss': 'Discutons',
+          'hero.available': 'Disponible pour recrutement',
+          'hero.headline': 'Développez des backends fiables',
+          'hero.subtext.1': 'développeur freelance Go & Python construisant des APIs, microservices et infrastructures cloud.',
+          'hero.cta.discuss': 'Discutons',
+          'hero.cta.resume': 'Télécharger le CV',
+          'hero.stats.years': "Années d'expérience",
+          'hero.stats.companies': 'Entreprises',
+          'hero.stats.tools': 'Outils',
+          'about.pill': 'À propos',
+          'about.title': 'Pourquoi recruter un développeur backend freelance ?',
+          'about.problem.pill': 'Le problème',
+          'about.problem.1': "Recruter un ingénieur backend à temps plein est coûteux et lent. Votre API est lente. Vos microservices sont emmêlés. Votre facture cloud ne cesse d'augmenter.",
+          'about.problem.2': "Vous avez besoin de quelqu'un qui peut intervenir, comprendre le système rapidement et livrer des correctifs, pas quelqu'un qui a besoin de six mois pour se former.",
+          'about.solution.pill': 'La solution',
+          'about.solution.1': "Je suis Hantsaniala, développeur backend freelance avec plus de 10 ans d'expérience dans la construction et l'échelle de systèmes en Go et Python. J'ai livré des microservices pour des plateformes SaaS, construit des APIs REST et GraphQL, et configuré des infrastructures cloud.",
+          'about.solution.2': "Que vous ayez besoin d'une nouvelle API construite de zéro, d'une migration de système existant, ou de pipelines DevOps, je peux commencer en quelques jours.",
+          'about.how': 'Comment ça marche',
+          'about.step1.title': 'Appel de découverte',
+          'about.step1.desc': 'Nous discutons de votre projet, stack technique et objectifs. Je évalue la faisabilité et suggère la meilleure approche.',
+          'about.step2.title': 'Planification & développement',
+          'about.step2.desc': 'Je livre en sprints hebdomadaires avec des démos. Vous voyez les progrès tôt et souvent. Pas de surprises.',
+          'about.step3.title': 'Déploiement & support',
+          'about.step3.desc': "Je déploie votre système, rédige la documentation et reste disponible pour la passation et la maintenance.",
+          'skills.pill': 'Expertise technique',
+          'skills.title': 'Ce que vous obtenez',
+          'skills.subtitle': 'Chaque compétence correspond à un résultat concret pour votre projet.',
+          'skills.go': "Livrez des APIs rapides et typées gérant une forte concurrence avec une empreinte mémoire minimale",
+          'skills.python': 'Construisez rapidement des backends sécurisés et maintenables avec admin, ORM et auth intégrés',
+          'skills.apis': 'Concevez des APIs propres et documentées que les équipes frontend et mobile apprécient d\'utiliser',
+          'skills.microservices': "Découplez les monolithes en services indépendamment déployables qui s'échellonnent par composant",
+          'skills.docker': 'Conteneurisez et déployez avec des pipelines reproductibles d\'infrastructure en tant que code',
+          'skills.postgres': 'Concevez des schémas et requêtes performants qui restent rapides à mesure que vos données croissent',
+          'skills.neovim': 'Flux de travail à vitesse terminal avec édition pilotée par clavier et codage assisté par IA',
+          'skills.devops': 'Automatisez les tests, la compilation et le déploiement pour livrer en toute confiance',
+          'comparison.title': 'Freelance vs agence vs temps plein',
+          'comparison.subtitle': "Vous ne savez pas si le freelance convient à votre projet ? Voici une comparaison honnête.",
+          'comparison.criteria': 'Critère',
+          'comparison.freelance': 'Freelance',
+          'comparison.agency': 'Agence',
+          'comparison.fulltime': 'Temps plein',
+          'comparison.cost': 'Coût',
+          'comparison.cost.freelance': 'Moins de frais, payez pour les heures travaillées',
+          'comparison.cost.agency': 'Tarifs plus élevés, marge de l\'agence',
+          'comparison.cost.fulltime': 'Le plus élevé, salaire + avantages',
+          'comparison.speed': 'Vitesse',
+          'comparison.speed.freelance': 'Jours, commence dès que le périmètre est défini',
+          'comparison.speed.agency': 'Semaines, intégration, affectation d\'équipe',
+          'comparison.speed.fulltime': 'Mois, recrutement, préavis',
+          'comparison.flexibility': 'Flexibilité',
+          'comparison.flexibility.freelance': 'Montez ou descendez en fonction du sprint',
+          'comparison.flexibility.agency': 'Engagements contractuels',
+          'comparison.flexibility.fulltime': 'Capacité fixe',
+          'comparison.depth': 'Profondeur',
+          'comparison.depth.freelance': 'Spécialiste approfondi, vous avez le développeur',
+          'comparison.depth.agency': 'Variable, les leads peuvent superviser les juniors',
+          'comparison.depth.fulltime': 'Spécialiste en croissance',
+          'comparison.availability': 'Disponibilité',
+          'comparison.availability.freelance': 'Dédié, pas de projets concurrents',
+          'comparison.availability.agency': 'Partagé entre les clients',
+          'comparison.availability.fulltime': 'Pleinement dédié',
+          'experience.title': 'Expérience',
+          'education.title': 'Formation & certifications',
+          'projects.title': 'Projets & contributions',
+          'projects.creations': 'Créations',
+          'projects.contributions': 'Contributions',
+          'projects.dj.desc': 'CLI helper Django + uv pour une gestion de projet Django simplifiée.',
+          'projects.trosa.desc': 'Une application Flutter pour gérer des listes de prêts, construite avec Dart.',
+          'projects.backlog.desc': 'Outil de gestion de backlog de projet.',
+          'projects.lazybacklog.desc': 'Plugin LazyVim pour Backlog, gérez les projets depuis Neovim.',
+          'projects.hstream.desc': 'Un simple serveur HLS VOD fait avec Go. Diffusez de la vidéo à la demande avec Docker.',
+          'projects.uploader.desc': 'Envoi de fichiers sur plusieurs serveurs FTP, construit avec Go.',
+          'projects.isadev.desc': "Récupérez votre propre sous-domaine '.is-a.dev' élégant.",
+          'projects.chit.desc': 'Générateur de templates Go Chi.',
+          'projects.goftp.desc': 'Un client Go pour effectuer des opérations FTP courantes.',
+          'faq.pill': 'FAQ',
+          'faq.title': 'Questions fréquemment posées',
+          'faq.q1': 'Que fait Hantsaniala Eléo ?',
+          'faq.a1': 'Hantsaniala est un développeur backend freelance spécialisé en Go et Python. Il construit des APIs REST, des microservices et des infrastructures cloud pour les startups et les petites entreprises.',
+          'faq.q2': 'Avec quelles technologies travaille Hantsaniala ?',
+          'faq.a2': 'Sa pile principale est Go (Gin) et Python (Django, DjangoRESTFramework). Il travaille également avec Docker, AWS, PostgreSQL, Neovim et des pipelines CI/CD pour le déploiement.',
+          'faq.q3': 'Combien coûte le développement backend freelance ?',
+          'faq.a3': 'Les tarifs dépendent de l\'étendue et de la complexité du projet. Contactez Hantsaniala pour une consultation et un devis gratuits. Il propose des arrangements à l\'heure et à prix fixe.',
+          'faq.q4': 'Hantsaniala peut-il aider à migrer un backend existant ?',
+          'faq.a4': 'Oui. Il a de l\'expérience dans la migration de systèmes PHP legacy et de monolithes vers des architectures microservices modernes en Go ou Python avec des stratégies de déploiement sans temps d\'arrêt.',
+          'faq.q5': 'Hantsaniala travaille-t-il à distance avec des clients internationaux ?',
+          'faq.a5': 'Oui. Il a travaillé à distance avec des entreprises basées aux USA et est disponible pour des missions freelance internationales dans tous les fuseaux horaires.',
+          'faq.q6': 'Comment puis-je engager Hantsaniala pour un projet ?',
+          'faq.a6': 'Envoyez un message sur WhatsApp ou un email à hantsaniala@gmail.com avec les détails de votre projet. Il répond généralement dans les 24 heures et peut commencer en quelques jours après accord sur le périmètre.',
+          'footer.cta.title': 'Prêt à construire quelque chose ?',
+          'footer.cta.desc': "Je suis disponible pour des projets de développement backend freelance. Que vous ayez besoin d'une nouvelle API, d'une migration système, ou de la mise en place de DevOps, discutons-en.",
+          'footer.cta.discuss': 'Discutons',
+          'footer.credentials': 'Références',
+          'footer.cred.1': '10+ ans de développement logiciel',
+          'footer.cred.2': 'Leadership technique de niveau CTO',
+          'footer.cred.3': '15+ dépôts open source',
+          'footer.cred.4': 'Télétravail d\'abord, mondial',
+          'footer.links': 'Liens rapides',
+          'footer.link.skills': 'Compétences techniques',
+          'footer.link.experience': 'Expérience professionnelle',
+          'footer.link.projects': 'Projets open source',
+          'footer.link.blog': 'Blog & articles',
+          'footer.link.resume': 'Télécharger le CV',
+          'footer.contact': 'Contact',
+          'footer.whatsapp': 'WhatsApp',
+          'footer.location': 'Madagascar (Télétravail)',
+          'footer.privacy': 'Confidentialité',
+          'footer.terms': 'Conditions',
+          'footer.built': 'Construit avec <span style="color: var(--text);">Astro</span>',
+        },
+      };
+
+      let currentLocale = 'fr';
+
+      function detectLocale() {
+        const saved = localStorage.getItem('locale');
+        if (saved && (saved === 'en' || saved === 'fr')) return saved;
+        const browserLang = navigator.language || navigator.userLanguage;
+        if (browserLang && browserLang.startsWith('en')) return 'en';
+        return 'fr';
+      }
+
+      function setLocale(locale) {
+        if (!translations[locale]) return;
+        currentLocale = locale;
+        localStorage.setItem('locale', locale);
+        document.documentElement.lang = locale;
+        applyTranslations();
+        updateSwitcherButtons();
+      }
+
+      function t(key) {
+        return translations[currentLocale]?.[key] || key;
+      }
+
+      function applyTranslations() {
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+          const key = el.getAttribute('data-i18n');
+          if (key) {
+            const text = t(key);
+            if (text) el.textContent = text;
+          }
+        });
+        document.querySelectorAll('[data-i18n-html]').forEach(el => {
+          const key = el.getAttribute('data-i18n-html');
+          if (key) {
+            const text = t(key);
+            if (text) el.innerHTML = text;
+          }
+        });
+      }
+
+      function updateSwitcherButtons() {
+        const label = currentLocale === 'en' ? 'FR' : 'EN';
+        document.querySelectorAll('.lang-label').forEach(el => {
+          el.textContent = label;
+        });
+        const targetLang = currentLocale === 'en' ? 'Français' : 'English';
+        document.querySelectorAll('#lang-switcher, #lang-switcher-mobile').forEach(btn => {
+          btn.setAttribute('aria-label', `Switch to ${targetLang}`);
+        });
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        currentLocale = detectLocale();
+        document.documentElement.lang = currentLocale;
+        applyTranslations();
+        updateSwitcherButtons();
+        document.querySelectorAll('#lang-switcher, #lang-switcher-mobile').forEach(btn => {
+          btn.addEventListener('click', () => {
+            setLocale(currentLocale === 'en' ? 'fr' : 'en');
+          });
+        });
+      });
+    </script>
+
+    <script is:inline>
       // Cursor follower — abstract blobs (pauses when tab hidden)
       (function() {
-        const canvas = document.getElementById('cursor-canvas') as HTMLCanvasElement;
+        const canvas = document.getElementById('cursor-canvas');
         if (!canvas) return;
         const ctx = canvas.getContext('2d');
         if (!ctx) return;
@@ -133,7 +434,7 @@ const { title, description } = Astro.props;
           if (rect && rect.bottom > 0 && rect.top < window.innerHeight) {
             const speed = 0.3;
             const y = (rect.top * speed);
-            (el as HTMLElement).style.transform = `translateY(${y}px)`;
+            el.style.transform = `translateY(${y}px)`;
           }
         });
       }, { passive: true });
