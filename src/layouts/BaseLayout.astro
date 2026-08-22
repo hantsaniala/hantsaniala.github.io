@@ -6,48 +6,70 @@ import '../styles/global.css';
 interface Props {
   title?: string;
   description?: string;
-  ogDescription?: string;
-  twitterDescription?: string;
-  image?: string;
 }
 
-const { title, description, ogDescription, twitterDescription, image } = Astro.props;
+const { title, description } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
-  <BaseHead title={title} description={description} ogDescription={ogDescription} twitterDescription={twitterDescription} image={image} />
-  <body class="min-h-screen">
-    <!-- Mesh gradient background -->
-    <div class="mesh-bg"></div>
-    <!-- Film grain overlay -->
-    <div class="grain-overlay"></div>
+  <BaseHead title={title} description={description} />
+  <body>
+    <!-- Skip to content -->
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:rounded-full focus:text-sm focus:font-semibold" style="background: var(--accent); color: var(--accent-text);">Skip to content</a>
 
-    <div class="relative z-10 flex min-h-screen">
-      <Sidebar />
-      <main class="flex-1 lg:ml-[60px]" id="main-scroll">
-        <div class="max-w-wide mx-auto">
-          <slot />
-        </div>
-      </main>
-    </div>
+    <Sidebar />
+
+    <main id="main-content" class="min-h-screen">
+      <slot />
+    </main>
+
+    <!-- Back to top -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 z-50 w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 opacity-0 pointer-events-none translate-y-4" style="background: var(--pill-bg); color: var(--text);" aria-label="Back to top">
+      <i class="ph ph-arrow-up text-lg"></i>
+    </button>
 
     <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        const scrollRoot = document.getElementById('main-scroll');
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                entry.target.classList.add('in-view');
-                observer.unobserve(entry.target);
-              }
-            });
-          },
-          { root: scrollRoot, threshold: 0.1, rootMargin: '0px 0px -60px 0px' }
-        );
-        document.querySelectorAll('[data-animate]').forEach((el) => observer.observe(el));
-      });
+      // Back to top
+      const btn = document.getElementById('back-to-top');
+      const hero = document.getElementById('hero');
+      if (btn && hero) {
+        window.addEventListener('scroll', () => {
+          if (hero.getBoundingClientRect().bottom < 0) {
+            btn.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-4');
+            btn.classList.add('opacity-100', 'pointer-events-auto', 'translate-y-0');
+          } else {
+            btn.classList.add('opacity-0', 'pointer-events-none', 'translate-y-4');
+            btn.classList.remove('opacity-100', 'pointer-events-auto', 'translate-y-0');
+          }
+        }, { passive: true });
+        btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+      }
+
+      // Scroll reveal
+      const reveals = document.querySelectorAll('.reveal');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      reveals.forEach(el => observer.observe(el));
+
+      // Parallax
+      const parallaxEls = document.querySelectorAll('.parallax-bg');
+      window.addEventListener('scroll', () => {
+        parallaxEls.forEach(el => {
+          const rect = el.parentElement?.getBoundingClientRect();
+          if (rect && rect.bottom > 0 && rect.top < window.innerHeight) {
+            const speed = 0.3;
+            const y = (rect.top * speed);
+            (el as HTMLElement).style.transform = `translateY(${y}px)`;
+          }
+        });
+      }, { passive: true });
     </script>
   </body>
 </html>

@@ -1,49 +1,41 @@
 ---
 const rows = [
-  { criteria: 'Cost', freelance: 'Lower overhead — pay for hours worked, no benefits', agency: 'Higher rates — agency margin + account management', fulltime: 'Highest total — salary + benefits + equipment + training' },
-  { criteria: 'Speed to Start', freelance: 'Days — begin as soon as scope is agreed', agency: 'Weeks — onboarding, team assignment', fulltime: 'Months — recruiting, interviews, notice period' },
-  { criteria: 'Flexibility', freelance: 'Scale up or down per sprint, pause anytime', agency: 'Contractual commitments, change orders', fulltime: 'Fixed capacity, restructuring needed' },
-  { criteria: 'Technical Depth', freelance: 'Deep specialist — you get the person who builds', agency: 'Variable — senior leads may oversee juniors', fulltime: 'Growing specialist — builds domain knowledge' },
-  { criteria: 'Availability', freelance: 'Dedicated during engagement — no competing projects', agency: 'Shared across clients — attention divided', fulltime: 'Fully dedicated — limited to current skill set' },
-  { criteria: 'Where Freelance Wins', freelance: 'Speed, cost, flexibility, direct communication', agency: '—', fulltime: '—' },
+  { criteria: 'Cost', freelance: 'Lower overhead, pay for hours worked', agency: 'Higher rates, agency margin', fulltime: 'Highest total, salary + benefits' },
+  { criteria: 'Speed', freelance: 'Days, begin as soon as scope is agreed', agency: 'Weeks, onboarding, team assignment', fulltime: 'Months, recruiting, notice period' },
+  { criteria: 'Flexibility', freelance: 'Scale up or down per sprint', agency: 'Contractual commitments', fulltime: 'Fixed capacity' },
+  { criteria: 'Depth', freelance: 'Deep specialist, you get the builder', agency: 'Variable, leads may oversee juniors', fulltime: 'Growing specialist' },
+  { criteria: 'Availability', freelance: 'Dedicated, no competing projects', agency: 'Shared across clients', fulltime: 'Fully dedicated' },
 ];
 ---
 
-<section id="comparison" class="py-24 lg:py-32" data-animate>
-  <div class="space-y-10">
-    <div class="max-w-2xl">
-      <span class="eyebrow mb-4 inline-flex">Comparison</span>
-      <h2 class="text-display-lg" style="color: var(--text-primary);">
-        Freelance vs Agency<br />vs Full-Time
-      </h2>
-      <p class="mt-4 text-[0.95rem] leading-relaxed" style="color: var(--text-secondary);">
-        Not sure if freelance is right for your project? Here's an honest comparison.
-      </p>
+<section id="comparison" class="section">
+  <div class="max-w-6xl mx-auto space-y-10">
+    <div class="max-w-2xl reveal">
+      <h2 class="type-display" style="color: var(--text);">Freelance vs agency vs full-time</h2>
+      <p class="type-body mt-4">Not sure if freelance is right for your project? Here's an honest comparison.</p>
     </div>
 
-    <div class="card-outer overflow-hidden">
-      <div class="overflow-x-auto">
-        <table class="w-full text-sm">
-          <thead>
-            <tr style="border-bottom: 1px solid var(--card-border);">
-              <th class="text-left py-4 px-6 font-semibold text-xs uppercase tracking-widest" style="color: var(--text-muted);">Criteria</th>
-              <th class="text-left py-4 px-6 font-semibold text-xs uppercase tracking-widest text-primary">Freelance</th>
-              <th class="text-left py-4 px-6 font-semibold text-xs uppercase tracking-widest" style="color: var(--text-muted);">Agency</th>
-              <th class="text-left py-4 px-6 font-semibold text-xs uppercase tracking-widest" style="color: var(--text-muted);">Full-Time</th>
+    <div class="overflow-x-auto reveal">
+      <table class="w-full text-sm">
+        <thead>
+          <tr>
+            <th class="text-left py-3 px-4 font-medium text-xs uppercase tracking-wider" style="color: var(--text-muted);">Criteria</th>
+            <th class="text-left py-3 px-4 font-semibold text-xs uppercase tracking-wider" style="color: var(--text);">Freelance</th>
+            <th class="text-left py-3 px-4 font-medium text-xs uppercase tracking-wider" style="color: var(--text-muted);">Agency</th>
+            <th class="text-left py-3 px-4 font-medium text-xs uppercase tracking-wider" style="color: var(--text-muted);">Full-time</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((row) => (
+            <tr style="border-top: 1px solid var(--border);">
+              <td class="py-3 px-4 font-medium" style="color: var(--text);">{row.criteria}</td>
+              <td class="py-3 px-4" style="color: var(--text-secondary);">{row.freelance}</td>
+              <td class="py-3 px-4" style="color: var(--text-muted);">{row.agency}</td>
+              <td class="py-3 px-4" style="color: var(--text-muted);">{row.fulltime}</td>
             </tr>
-          </thead>
-          <tbody>
-            {rows.map((row) => (
-              <tr style="border-bottom: 1px solid var(--card-border);">
-                <td class="py-4 px-6 font-medium" style="color: var(--text-primary);">{row.criteria}</td>
-                <td class="py-4 px-6" style="color: var(--text-secondary);">{row.freelance}</td>
-                <td class="py-4 px-6" style="color: var(--text-muted);">{row.agency}</td>
-                <td class="py-4 px-6" style="color: var(--text-muted);">{row.fulltime}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+          ))}
+        </tbody>
+      </table>
     </div>
   </div>
 </section>

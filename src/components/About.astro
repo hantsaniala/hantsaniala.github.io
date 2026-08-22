@@ -2,86 +2,45 @@
 import { site } from '../data/site';
 ---
 
-<section id="about" class="py-24 lg:py-32" data-animate>
-  <div class="space-y-16">
-    <!-- Header -->
-    <div class="max-w-2xl">
-      <span class="eyebrow mb-4 inline-flex">About</span>
-      <h2 class="text-display-lg" style="color: var(--text-primary);">
-        Why Hire a Freelance<br />Backend Developer?
-      </h2>
+<section id="about" class="section">
+  <div class="max-w-6xl mx-auto space-y-16">
+    <div class="max-w-2xl reveal">
+      <span class="pill mb-6">About</span>
+      <h2 class="type-display" style="color: var(--text);">Why hire a freelance backend developer?</h2>
     </div>
 
-    <!-- Editorial split: Problem / Solution -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
-      <!-- Problem -->
-      <div class="space-y-6">
-        <div class="flex items-center gap-3 mb-2">
-          <div class="w-8 h-8 rounded-full flex items-center justify-center" style="background: rgba(239,68,68,0.1);">
-            <i class="ph ph-warning text-red-400 text-sm"></i>
-          </div>
-          <h3 class="text-sm font-semibold uppercase tracking-widest" style="color: var(--text-muted);">The Problem</h3>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 reveal">
+      <div class="flat-card space-y-4">
+        <div class="flex items-center gap-3">
+          <span class="pill">The Problem</span>
         </div>
-        <p class="leading-relaxed text-[0.95rem]" style="color: var(--text-secondary);">
-          Hiring a full-time backend engineer is expensive and slow. Your API is sluggish.
-          Your microservices are tangled. Your cloud bill keeps climbing.
-        </p>
-        <p class="leading-relaxed text-[0.95rem]" style="color: var(--text-secondary);">
-          You need someone who can step in, understand the system fast, and ship fixes —
-          not someone who needs six months to ramp up. Legacy code piles up.
-          Documentation is missing. Sound familiar?
-        </p>
+        <p class="type-body">Hiring a full-time backend engineer is expensive and slow. Your API is sluggish. Your microservices are tangled. Your cloud bill keeps climbing.</p>
+        <p class="type-body">You need someone who can step in, understand the system fast, and ship fixes, not someone who needs six months to ramp up.</p>
       </div>
-
-      <!-- Solution -->
-      <div class="space-y-6">
-        <div class="flex items-center gap-3 mb-2">
-          <div class="w-8 h-8 rounded-full flex items-center justify-center" style="background: var(--accent-glow);">
-            <i class="ph ph-check-circle text-primary text-sm"></i>
-          </div>
-          <h3 class="text-sm font-semibold uppercase tracking-widest" style="color: var(--text-muted);">The Solution</h3>
+      <div class="flat-card space-y-4">
+        <div class="flex items-center gap-3">
+          <span class="pill pill-accent">The Solution</span>
         </div>
-        <p class="leading-relaxed text-[0.95rem]" style="color: var(--text-secondary);">
-          I'm {site.firstName} — a freelance backend developer who has spent 10+ years building and scaling
-          systems in Go and Python. I've shipped microservices for SaaS platforms, built REST and GraphQL
-          APIs, and configured cloud infrastructure on AWS and Docker.
-        </p>
-        <p class="leading-relaxed text-[0.95rem]" style="color: var(--text-secondary);">
-          Whether you need a new API built from scratch, a legacy system migrated, or DevOps
-          pipelines set up — I can start within days, not months.
-        </p>
+        <p class="type-body">I'm {site.firstName}, a freelance backend developer who has spent 10+ years building and scaling systems in Go and Python. I've shipped microservices for SaaS platforms, built REST and GraphQL APIs, and configured cloud infrastructure.</p>
+        <p class="type-body">Whether you need a new API built from scratch, a legacy system migrated, or DevOps pipelines set up, I can start within days.</p>
       </div>
     </div>
 
-    <!-- How It Works — numbered cards -->
-    <div>
-      <h3 class="text-lg font-semibold mb-8" style="color: var(--text-primary);">How It Works</h3>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+    <div class="reveal">
+      <h3 class="type-heading mb-8">How it works</h3>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
         {[
-          { num: '01', title: 'Discovery Call', desc: 'We discuss your project, tech stack, and goals. I assess feasibility and suggest the best approach.' },
-          { num: '02', title: 'Plan & Build', desc: 'I deliver in weekly sprints with demos. You see progress early and often. No surprises.' },
-          { num: '03', title: 'Ship & Support', desc: 'I deploy your system, write documentation, and stay available for handoff and maintenance.' },
+          { num: '01', title: 'Discovery call', desc: 'We discuss your project, tech stack, and goals. I assess feasibility and suggest the best approach.' },
+          { num: '02', title: 'Plan & build', desc: 'I deliver in weekly sprints with demos. You see progress early and often. No surprises.' },
+          { num: '03', title: 'Ship & support', desc: 'I deploy your system, write documentation, and stay available for handoff and maintenance.' },
         ].map((step) => (
-          <div class="card-outer">
-            <div class="card-inner">
-              <span class="text-4xl font-bold text-primary/20 tracking-tight">{step.num}</span>
-              <h4 class="font-semibold mt-4 mb-2" style="color: var(--text-primary);">{step.title}</h4>
-              <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">{step.desc}</p>
-            </div>
+          <div class="flat-card">
+            <span class="text-4xl font-bold" style="color: var(--text-muted); opacity: 0.3;">{step.num}</span>
+            <h4 class="font-semibold mt-3 mb-2" style="color: var(--text);">{step.title}</h4>
+            <p class="type-small">{step.desc}</p>
           </div>
         ))}
       </div>
-    </div>
-
-    <!-- Mid-page CTA -->
-    <div class="text-center pt-8">
-      <a href="mailto:hantsaniala@gmail.com?subject=Freelance%20Project%20Inquiry" class="btn-primary">
-        Start a Conversation
-        <span class="btn-icon">
-          <i class="ph ph-arrow-up-right text-sm"></i>
-        </span>
-      </a>
-      <p class="text-xs mt-4 tracking-wide" style="color: var(--text-muted);">No commitment · Free consultation</p>
     </div>
   </div>
 </section>
