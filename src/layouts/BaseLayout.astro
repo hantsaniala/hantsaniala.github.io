@@ -18,9 +18,12 @@ const { title, description } = Astro.props;
     <!-- Skip to content -->
     <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:rounded-full focus:text-sm focus:font-semibold" style="background: var(--accent); color: var(--accent-text);">Skip to content</a>
 
+    <!-- Cursor follower canvas -->
+    <canvas id="cursor-canvas" class="fixed inset-0 w-full h-full pointer-events-none" style="z-index: 0;"></canvas>
+
     <Sidebar />
 
-    <main id="main-content" class="min-h-screen">
+    <main id="main-content" class="min-h-screen relative" style="z-index: 1;">
       <slot />
     </main>
 
@@ -30,6 +33,56 @@ const { title, description } = Astro.props;
     </button>
 
     <script>
+      // Cursor follower — abstract blobs
+      (function() {
+        const canvas = document.getElementById('cursor-canvas') as HTMLCanvasElement;
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        if (!ctx) return;
+
+        let W = 0, H = 0;
+        let mouseX = 0, mouseY = 0;
+        let targetX = 0, targetY = 0;
+
+        const blobs = [
+          { x: 0, y: 0, r: 300, color: 'rgba(234,179,8,0.08)', speed: 0.03 },
+          { x: 0, y: 0, r: 200, color: 'rgba(234,179,8,0.05)', speed: 0.06 },
+          { x: 0, y: 0, r: 250, color: 'rgba(34,197,94,0.04)', speed: 0.02 },
+          { x: 0, y: 0, r: 180, color: 'rgba(234,179,8,0.03)', speed: 0.08 },
+        ];
+
+        function resize() {
+          W = canvas.width = window.innerWidth;
+          H = canvas.height = window.innerHeight;
+        }
+        resize();
+        window.addEventListener('resize', resize);
+
+        document.addEventListener('mousemove', (e) => {
+          mouseX = e.clientX;
+          mouseY = e.clientY;
+        });
+
+        function animate() {
+          ctx.clearRect(0, 0, W, H);
+          targetX += (mouseX - targetX) * 0.05;
+          targetY += (mouseY - targetY) * 0.05;
+
+          blobs.forEach((b) => {
+            b.x += (targetX - b.x) * b.speed;
+            b.y += (targetY - b.y) * b.speed;
+            const grad = ctx.createRadialGradient(b.x, b.y, 0, b.x, b.y, b.r);
+            grad.addColorStop(0, b.color);
+            grad.addColorStop(1, 'transparent');
+            ctx.fillStyle = grad;
+            ctx.fillRect(0, 0, W, H);
+          });
+
+          requestAnimationFrame(animate);
+        }
+        animate();
+      })();
+
       // Back to top
       const btn = document.getElementById('back-to-top');
       const hero = document.getElementById('hero');
@@ -46,7 +99,7 @@ const { title, description } = Astro.props;
         btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
       }
 
-      // Scroll reveal
+      // Scroll reveal with stagger
       const reveals = document.querySelectorAll('.reveal');
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -55,7 +108,7 @@ const { title, description } = Astro.props;
             observer.unobserve(entry.target);
           }
         });
-      }, { threshold: 0.1 });
+      }, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
       reveals.forEach(el => observer.observe(el));
 
       // Parallax
