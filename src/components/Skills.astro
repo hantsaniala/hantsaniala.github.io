@@ -3,7 +3,7 @@ const benefits = [
   { skill: 'Go (Gin)', benefit: 'Ship fast, type-safe APIs that handle high concurrency with minimal memory footprint', icon: 'ph-diamonds-four' },
   { skill: 'Python (Django)', benefit: 'Rapidly build secure, maintainable backends with built-in admin, ORM, and auth', icon: 'ph-code' },
   { skill: 'REST & GraphQL APIs', benefit: 'Design clean, documented APIs that frontend and mobile teams enjoy consuming', icon: 'ph-plugs' },
-  { skill: 'Microservices', benefit: 'Decouple monoliths into independently deployable services that scale per-component', icon: 'ph-cubes' },
+  { skill: 'Microservices', benefit: 'Decouple monoliths into independently deployable services that scale per-component', icon: 'ph-squares-four' },
   { skill: 'Docker & AWS', benefit: 'Containerise and deploy with repeatable, infrastructure-as-code pipelines', icon: 'ph-cloud' },
   { skill: 'PostgreSQL & GORM', benefit: 'Design performant schemas and queries that stay fast as your data grows', icon: 'ph-database' },
   { skill: 'Neovim & OpenCode', benefit: 'Terminal-speed workflows with keyboard-driven editing and AI-assisted coding', icon: 'ph-terminal' },
@@ -11,32 +11,22 @@ const benefits = [
 ];
 ---
 
-<section id="skills" class="py-24 lg:py-32" data-animate>
-  <div class="space-y-12">
-    <div class="max-w-2xl">
-      <span class="eyebrow mb-4 inline-flex">Technical Expertise</span>
-      <h2 class="text-display-lg" style="color: var(--text-primary);">
-        What You Get
-      </h2>
-      <p class="mt-4 text-[0.95rem] leading-relaxed" style="color: var(--text-secondary);">
-        Every skill maps to a concrete outcome for your project. Here's what each
-        technology means for your business.
-      </p>
+<section id="skills" class="section">
+  <div class="max-w-6xl mx-auto space-y-12">
+    <div class="max-w-2xl reveal">
+      <span class="pill mb-6">Technical Expertise</span>
+      <h2 class="type-display" style="color: var(--text);">What you get</h2>
+      <p class="type-body mt-4">Every skill maps to a concrete outcome for your project.</p>
     </div>
 
-    <!-- Bento grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 reveal">
       {benefits.map((item, i) => (
-        <div class={`card-outer ${i === 0 || i === 3 ? 'md:col-span-2' : ''}`}>
-          <div class={`card-inner ${i === 0 || i === 3 ? 'flex flex-col justify-center min-h-[9rem]' : ''}`}>
-            <div class="flex items-center gap-3 mb-3">
-              <div class="w-9 h-9 rounded-xl flex items-center justify-center" style="background: var(--accent-glow);">
-                <i class={`ph ph-${item.icon} text-primary text-base`}></i>
-              </div>
-              <h3 class="font-semibold text-sm" style="color: var(--text-primary);">{item.skill}</h3>
-            </div>
-            <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">{item.benefit}</p>
+        <div class={`flat-card ${i === 0 || i === 3 ? 'md:col-span-2' : ''}`}>
+          <div class="flex items-center gap-3 mb-3">
+            <span class="pill"><i class={`ph ${item.icon}`}></i></span>
+            <h3 class="font-semibold text-sm" style="color: var(--text);">{item.skill}</h3>
           </div>
+          <p class="type-small">{item.benefit}</p>
         </div>
       ))}
     </div>
