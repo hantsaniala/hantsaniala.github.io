@@ -124,14 +124,22 @@ const navIcons: Record<string, string> = {
 
   // Hide pill on scroll
   let lastY = 0;
-  window.addEventListener('scroll', () => {
+  let ticking = false;
+  window.addEventListener("scroll", () => {
     if (isOpen) return;
-    const y = window.scrollY;
-    if (y > lastY && y > 80) {
-      pill?.classList.add('-translate-y-16', 'opacity-0');
-    } else {
-      pill?.classList.remove('-translate-y-16', 'opacity-0');
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        const y = window.scrollY;
+        const delta = y - lastY;
+        if (delta > 5 && y > 80) {
+          pill?.classList.add("-translate-y-16", "opacity-0");
+        } else if (delta < -5) {
+          pill?.classList.remove("-translate-y-16", "opacity-0");
+        }
+        lastY = y;
+        ticking = false;
+      });
+      ticking = true;
     }
-    lastY = y;
   }, { passive: true });
 </script>
