@@ -23,7 +23,7 @@ const navIcons: Record<string, string> = {
     {site.navItems.map((item) => {
       const icon = navIcons[item.label] ?? 'ph-circle';
       return (
-        <a href={item.href} class="flex items-center gap-1.5 px-3 py-2 rounded-full text-sm font-medium transition-all duration-200 hover:bg-[var(--pill-hover)]" style="color: var(--text-secondary);">
+        <a href={item.href} class="flex items-center gap-1.5 px-3 py-2 rounded-full text-sm font-medium transition-all duration-200 hover:bg-[var(--pill-hover)]" style="color: var(--text-secondary);" data-i18n={`nav.${item.label.toLowerCase()}`}>
           <i class={`ph ${icon}`}></i>
           <span>{item.label}</span>
         </a>
@@ -31,11 +31,20 @@ const navIcons: Record<string, string> = {
     })}
   </nav>
 
+  <div class="w-px h-5" style="background: var(--border);"></div>
+
   <ThemeToggle />
+  
+  <button id="lang-switcher" class="flex items-center gap-1 px-3 py-2 rounded-full text-sm font-medium transition-all duration-200 hover:bg-[var(--pill-hover)]" style="color: var(--text-secondary);" aria-label="Switch language">
+    <i class="ph ph-translate"></i>
+    <span class="lang-label">FR</span>
+  </button>
+
+  <div class="w-px h-5" style="background: var(--border);"></div>
 
   <a href={site.whatsapp} target="_blank" rel="noopener noreferrer"
      class="flex items-center gap-2 px-5 py-2 rounded-full text-sm font-semibold transition-all duration-200 hover:scale-[0.97] ml-1 whitespace-nowrap"
-     style="background: var(--accent); color: var(--accent-text);">
+     style="background: var(--accent); color: var(--accent-text);" data-i18n="nav.discuss">
     Let's discuss
   </a>
 </header>
@@ -56,6 +65,13 @@ const navIcons: Record<string, string> = {
 
   <div class="w-px h-4" style="background: var(--border);"></div>
 
+  <button id="lang-switcher-mobile" class="flex items-center gap-1 px-2 py-2 rounded-full text-sm font-medium" style="color: var(--text-secondary);" aria-label="Switch language">
+    <i class="ph ph-translate"></i>
+    <span class="lang-label">FR</span>
+  </button>
+
+  <div class="w-px h-4" style="background: var(--border);"></div>
+
   <button id="mobile-menu-toggle" class="relative w-8 h-8 flex items-center justify-center rounded-full" style="color: var(--text-secondary);" aria-label="Open navigation">
     <span class="hamburger-line absolute w-4 h-px transition-all duration-300" style="background: currentColor; transform: translateY(-3px);"></span>
     <span class="hamburger-line absolute w-4 h-px transition-all duration-300" style="background: currentColor; transform: translateY(3px);"></span>
@@ -72,7 +88,7 @@ const navIcons: Record<string, string> = {
     <ul class="flex flex-col items-center gap-6">
       {site.navItems.map((item, i) => (
         <li class="mobile-nav-item" style={`opacity: 0; transform: translateY(1rem); transition: opacity 0.4s ease ${80 + i * 60}ms, transform 0.4s ease ${80 + i * 60}ms;`}>
-          <a href={item.href} class="flex items-center gap-3 text-2xl font-semibold mobile-nav-link transition-colors duration-200" style="color: var(--text-secondary);">
+          <a href={item.href} class="flex items-center gap-3 text-2xl font-semibold mobile-nav-link transition-colors duration-200" style="color: var(--text-secondary);" data-i18n={`nav.${item.label.toLowerCase()}`}>
             <i class={`ph ${navIcons[item.label] ?? 'ph-circle'} text-xl`}></i>
             {item.label}
           </a>
@@ -142,4 +158,13 @@ const navIcons: Record<string, string> = {
       ticking = true;
     }
   }, { passive: true });
+
+  // Mobile lang switcher
+  const mobileLangBtn = document.getElementById('lang-switcher-mobile');
+  if (mobileLangBtn) {
+    mobileLangBtn.addEventListener('click', () => {
+      // Trigger the same event as desktop switcher
+      document.getElementById('lang-switcher')?.click();
+    });
+  }
 </script>
