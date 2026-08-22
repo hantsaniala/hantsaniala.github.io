@@ -10,8 +10,10 @@ export const site = {
   role: 'Freelance Software Developer',
   email: 'hantsaniala@gmail.com',
   phone: '(+261)34 05 553 58',
+  whatsapp: 'https://wa.me/261329902543',
   address: 'Tanjondava, Talatamaty, Ambohidratrimo - 105',
-  profileImage: '/img/profile2.jpg',
+  profileImage: '/img/profile2.png',
+  logo: '/img/logo.png',
 
   bio: `Freelance software developer with over a decade of experience building robust backend systems, APIs, and full-stack applications. I specialize in Go and Python, with deep expertise in microservices architecture, cloud infrastructure, and open-source tooling. Available for consulting, contract work, and long-term collaborations.`,
 
@@ -24,6 +26,7 @@ export const site = {
     { name: 'Keybase', url: 'https://keybase.io/hantsaniala', icon: 'key' },
     { name: 'Facebook', url: 'https://fb.me/hantsaniala', icon: 'facebook-logo' },
     { name: 'Telegram', url: 'https://t.me/hantsaniala3', icon: 'telegram-logo' },
+    { name: 'WhatsApp', url: 'https://wa.me/261329902543', icon: 'whatsapp-logo' },
   ] as const,
 
   navItems: [
