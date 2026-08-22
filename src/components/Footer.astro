@@ -4,80 +4,71 @@ const currentYear = new Date().getFullYear();
 ---
 
 <!-- Final CTA -->
-<section class="py-24 lg:py-32 text-center" data-animate>
-  <div class="max-w-2xl mx-auto space-y-8">
-    <span class="eyebrow mx-auto inline-flex">Get Started</span>
-    <h2 class="text-display-lg" style="color: var(--text-primary);">
-      Ready to Build<br />Something?
-    </h2>
-    <p class="text-[0.95rem] leading-relaxed mx-auto max-w-lg" style="color: var(--text-secondary);">
-      I'm available for freelance backend development projects. Whether you need a new API,
-      a system migration, or DevOps setup — let's talk.
-    </p>
+<section class="section text-center">
+  <div class="max-w-2xl mx-auto space-y-8 reveal">
+    <h2 class="type-display" style="color: var(--text);">Ready to build something?</h2>
+    <p class="type-body mx-auto">I'm available for freelance backend development projects. Whether you need a new API, a system migration, or DevOps setup, let's talk.</p>
     <div class="flex justify-center">
-      <a href="mailto:hantsaniala@gmail.com?subject=Freelance%20Project%20Inquiry" class="btn-primary">
-        Hire Hantsaniala
-        <span class="btn-icon">
-          <i class="ph ph-arrow-up-right text-sm"></i>
-        </span>
+      <a href={site.whatsapp} target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+        Let's discuss
+        <i class="ph ph-arrow-up-right"></i>
       </a>
     </div>
   </div>
 </section>
 
 <!-- Footer -->
-<footer class="py-16 px-6 lg:px-16" style="border-top: 1px solid var(--card-border);">
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
-    <!-- Credentials -->
-    <div>
-      <h3 class="text-xs font-semibold uppercase tracking-widest mb-5" style="color: var(--text-muted);">Credentials</h3>
-      <ul class="space-y-3 text-sm" style="color: var(--text-secondary);">
-        <li class="flex items-center gap-3"><i class="ph ph-check text-primary"></i>10+ years software development</li>
-        <li class="flex items-center gap-3"><i class="ph ph-check text-primary"></i>CTO-level technical leadership</li>
-        <li class="flex items-center gap-3"><i class="ph ph-check text-primary"></i>15+ open source repositories</li>
-        <li class="flex items-center gap-3"><i class="ph ph-check text-primary"></i>Remote-first, worldwide</li>
-      </ul>
-    </div>
+<footer class="section" style="border-top: 1px solid var(--border);">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
+      <div>
+        <h3 class="text-xs font-semibold uppercase tracking-wider mb-4" style="color: var(--text-muted);">Credentials</h3>
+        <ul class="space-y-2 text-sm" style="color: var(--text-secondary);">
+          <li class="flex items-center gap-2"><i class="ph ph-check" style="color: var(--text-muted);"></i>10+ years software development</li>
+          <li class="flex items-center gap-2"><i class="ph ph-check" style="color: var(--text-muted);"></i>CTO-level technical leadership</li>
+          <li class="flex items-center gap-2"><i class="ph ph-check" style="color: var(--text-muted);"></i>15+ open source repositories</li>
+          <li class="flex items-center gap-2"><i class="ph ph-check" style="color: var(--text-muted);"></i>Remote-first, worldwide</li>
+        </ul>
+      </div>
 
-    <!-- Quick links -->
-    <div>
-      <h3 class="text-xs font-semibold uppercase tracking-widest mb-5" style="color: var(--text-muted);">Quick Links</h3>
-      <ul class="space-y-3 text-sm" style="color: var(--text-secondary);">
-        <li><a href="#skills" class="hover:text-primary transition-colors duration-300">Technical Skills</a></li>
-        <li><a href="#experience" class="hover:text-primary transition-colors duration-300">Work Experience</a></li>
-        <li><a href="#projects" class="hover:text-primary transition-colors duration-300">Open Source Projects</a></li>
-        <li><a href="/blog" class="hover:text-primary transition-colors duration-300">Blog & Articles</a></li>
-        <li><a href="/resume.pdf" download class="hover:text-primary transition-colors duration-300">Download Resume</a></li>
-      </ul>
-    </div>
+      <div>
+        <h3 class="text-xs font-semibold uppercase tracking-wider mb-4" style="color: var(--text-muted);">Quick links</h3>
+        <ul class="space-y-2 text-sm" style="color: var(--text-secondary);">
+          <li><a href="#skills" class="hover:opacity-70 transition-opacity">Technical Skills</a></li>
+          <li><a href="#experience" class="hover:opacity-70 transition-opacity">Work Experience</a></li>
+          <li><a href="#projects" class="hover:opacity-70 transition-opacity">Open Source Projects</a></li>
+          <li><a href="/blog" class="hover:opacity-70 transition-opacity">Blog & Articles</a></li>
+          <li><a href="/resume.pdf" download class="hover:opacity-70 transition-opacity">Download Resume</a></li>
+        </ul>
+      </div>
 
-    <!-- Contact -->
-    <div>
-      <h3 class="text-xs font-semibold uppercase tracking-widest mb-5" style="color: var(--text-muted);">Contact</h3>
-      <ul class="space-y-3 text-sm" style="color: var(--text-secondary);">
-        <li class="flex items-center gap-3"><i class="ph ph-envelope text-primary"></i><a href="mailto:hantsaniala@gmail.com" class="hover:text-primary transition-colors">hantsaniala@gmail.com</a></li>
-        <li class="flex items-center gap-3"><i class="ph ph-phone text-primary"></i>{site.phone}</li>
-        <li class="flex items-center gap-3"><i class="ph ph-map-pin text-primary"></i>Madagascar (Remote)</li>
-      </ul>
-      <div class="flex items-center gap-2 mt-5">
-        {site.socials.map((social) => (
-          <a href={social.url} target="_blank" rel="noopener noreferrer"
-             class="w-8 h-8 flex items-center justify-center rounded-xl transition-all duration-300 hover:bg-[var(--pill-hover-bg)]"
-             style="color: var(--text-muted);" title={social.name} aria-label={social.name}>
-            <i class={`ph ph-${social.icon} text-base`}></i>
-          </a>
-        ))}
+      <div>
+        <h3 class="text-xs font-semibold uppercase tracking-wider mb-4" style="color: var(--text-muted);">Contact</h3>
+        <ul class="space-y-2 text-sm" style="color: var(--text-secondary);">
+          <li class="flex items-center gap-2"><i class="ph ph-whatsapp-logo" style="color: var(--text-muted);"></i><a href={site.whatsapp} target="_blank" rel="noopener noreferrer" class="hover:opacity-70 transition-opacity">WhatsApp</a></li>
+          <li class="flex items-center gap-2"><i class="ph ph-envelope" style="color: var(--text-muted);"></i><a href="mailto:hantsaniala@gmail.com" class="hover:opacity-70 transition-opacity">hantsaniala@gmail.com</a></li>
+          <li class="flex items-center gap-2"><i class="ph ph-phone" style="color: var(--text-muted);"></i>{site.phone}</li>
+          <li class="flex items-center gap-2"><i class="ph ph-map-pin" style="color: var(--text-muted);"></i>Madagascar (Remote)</li>
+        </ul>
+        <div class="flex items-center gap-2 mt-4">
+          {site.socials.map((social) => (
+            <a href={social.url} target="_blank" rel="noopener noreferrer"
+               class="w-8 h-8 flex items-center justify-center rounded-full transition-all duration-200 hover:opacity-70"
+               style="background: var(--pill-bg); color: var(--text-secondary);" title={social.name} aria-label={social.name}>
+              <i class={`ph ph-${social.icon} text-sm`}></i>
+            </a>
+          ))}
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4"
-       style="border-top: 1px solid var(--card-border);">
-    <p class="text-xs" style="color: var(--text-muted);">
-      &copy; {currentYear} {site.firstName} {site.lastName}
-    </p>
-    <p class="text-xs" style="color: var(--text-muted);">
-      Built with <span class="text-primary">Astro</span> · {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long' })}
-    </p>
+    <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4" style="border-top: 1px solid var(--border);">
+      <p class="text-xs" style="color: var(--text-muted);">&copy; {currentYear} {site.firstName} {site.lastName}</p>
+      <div class="flex items-center gap-4 text-xs" style="color: var(--text-muted);">
+        <a href="/privacy" class="hover:opacity-70 transition-opacity">Privacy</a>
+        <a href="/terms" class="hover:opacity-70 transition-opacity">Terms</a>
+        <span>Built with <span style="color: var(--text);">Astro</span></span>
+      </div>
+    </div>
   </div>
 </footer>

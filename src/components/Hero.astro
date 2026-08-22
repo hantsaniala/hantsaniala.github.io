@@ -2,83 +2,48 @@
 import { site } from '../data/site';
 ---
 
-<section id="hero" class="min-h-[100dvh] flex items-center relative">
-  <!-- Hero mesh accent -->
-  <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(ellipse at 30% 40%, rgba(250,204,21,0.05) 0%, transparent 60%);"></div>
+<section id="hero" class="min-h-[80dvh] flex items-center relative overflow-hidden">
+  <!-- Unsplash background with parallax -->
+  <div class="parallax-container absolute inset-0">
+    <div class="parallax-bg" style="background-image: url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1920&q=80'); opacity: 0.08;"></div>
+  </div>
 
-  <div class="relative grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-16 lg:gap-24 items-center w-full px-6 py-16 lg:px-16 lg:py-24">
-    <!-- Text content -->
-    <div class="space-y-8">
-      <!-- Eyebrow -->
-      <span class="eyebrow">
-        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+  <div class="relative z-10 w-full max-w-6xl mx-auto px-6 py-16 lg:py-20">
+    <div class="space-y-5">
+      <!-- Eyebrow pill -->
+      <span class="pill">
+        <span class="w-2 h-2 rounded-full bg-green-500"></span>
         Available for hire
       </span>
 
-      <div class="space-y-4">
-        <h1 class="text-display-xl" style="color: var(--text-primary);">
-          Ship Reliable
-          <br />
-          <span class="text-primary">Backends</span>
-        </h1>
-        <p class="text-display-sm max-w-lg" style="color: var(--text-muted);">
-          Freelance Go & Python developer building APIs, microservices, and cloud infrastructure for startups and teams worldwide.
-        </p>
-      </div>
+      <!-- Big headline -->
+      <h1 class="type-hero" style="color: var(--text);">
+        Ship Reliable<br />Backends
+      </h1>
 
-      <!-- AEO blockquote -->
-      <blockquote class="border-l-2 pl-5 py-1 text-[0.9rem] italic max-w-xl leading-relaxed"
-                 style="border-color: var(--accent); color: var(--text-muted);">
-        {site.firstName} {site.lastName} is a freelance software developer with 10+ years of experience
-        building backend systems, REST APIs, microservices, and cloud infrastructure using Go and Python.
-      </blockquote>
+      <!-- Subtext -->
+      <p class="type-body text-lg max-w-xl">
+        <strong>{site.firstName} {site.lastName}</strong>, freelance Go & Python developer building APIs, microservices, and cloud infrastructure.
+      </p>
 
-      <!-- CTAs — pill buttons with nested icons -->
-      <div class="flex flex-wrap items-center gap-4 pt-2">
-        <a href="mailto:hantsaniala@gmail.com?subject=Freelance%20Project%20Inquiry" class="btn-primary">
-          Hire Me
-          <span class="btn-icon">
-            <i class="ph ph-arrow-up-right text-sm"></i>
-          </span>
+      <!-- CTAs -->
+      <div class="flex flex-wrap items-center gap-4 pt-4">
+        <a href={site.whatsapp} target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+          Let's discuss
+          <i class="ph ph-arrow-up-right"></i>
         </a>
-        <a href="/resume.pdf" download class="btn-ghost">
-          <i class="ph ph-download-simple text-sm"></i>
+        <a href="/resume.pdf" download class="btn btn-outline">
+          <i class="ph ph-download-simple"></i>
           Download Resume
         </a>
       </div>
 
-      <!-- Social proof stats — minimal -->
-      <div class="flex flex-wrap gap-10 pt-4">
-        <div class="flex flex-col">
-          <span class="text-3xl font-bold text-primary tracking-tight">10+</span>
-          <span class="text-xs mt-1 tracking-wide" style="color: var(--text-muted);">Years Building Backends</span>
-        </div>
-        <div class="flex flex-col">
-          <span class="text-3xl font-bold text-primary tracking-tight">5+</span>
-          <span class="text-xs mt-1 tracking-wide" style="color: var(--text-muted);">Companies Served</span>
-        </div>
-        <div class="flex flex-col">
-          <span class="text-3xl font-bold text-primary tracking-tight">15+</span>
-          <span class="text-xs mt-1 tracking-wide" style="color: var(--text-muted);">Open Source Repos</span>
-        </div>
+      <!-- Stats pills -->
+      <div class="flex flex-wrap gap-3 pt-4">
+        <span class="pill">10+ years experience</span>
+        <span class="pill">Go & Python</span>
+        <span class="pill">Remote-first</span>
       </div>
-    </div>
-
-    <!-- Profile image — double-bezel -->
-    <div class="hidden lg:block relative">
-      <div class="card-outer">
-        <div class="card-inner overflow-hidden shadow-2xl">
-          <img
-            src={site.profileImage}
-            alt={`Freelance backend developer ${site.firstName} ${site.lastName} — Go and Python specialist`}
-            class="w-56 h-64 object-cover rounded-[calc(1.125rem-0.125rem)]"
-            loading="eager"
-          />
-        </div>
-      </div>
-      <!-- Decorative glow -->
-      <div class="absolute -inset-8 -z-10 rounded-full opacity-30 blur-3xl"
-           style="background: radial-gradient(circle, var(--accent-glow), transparent 70%);"></div>
     </div>
   </div>
 </section>
