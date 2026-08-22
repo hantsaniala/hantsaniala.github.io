@@ -1,30 +1,30 @@
 ---
 const faqs = [
-  { q: 'What does Hantsaniala Eléo do?', a: 'Hantsaniala is a freelance backend developer specialising in Go and Python. He builds REST APIs, microservices, and cloud infrastructure for startups and small businesses.' },
-  { q: 'What technologies does Hantsaniala work with?', a: 'Primary stack is Go (Gin) and Python (Django, DjangoRESTFramework). He also works with Docker, AWS, PostgreSQL, Neovim, and CI/CD pipelines for deployment.' },
-  { q: 'How much does freelance backend development cost?', a: 'Rates depend on project scope and complexity. Contact Hantsaniala for a free consultation and quote. He offers both hourly and fixed-price arrangements.' },
-  { q: 'Can Hantsaniala help migrate a legacy backend?', a: 'Yes. He has experience migrating legacy PHP and monolith systems to modern Go or Python microservices architectures with zero-downtime deployment strategies.' },
-  { q: 'Does Hantsaniala work with international clients remotely?', a: 'Yes. He has worked remotely with US-based companies and is available for international freelance engagements across all time zones.' },
-  { q: 'How can I hire Hantsaniala for a project?', a: 'Send a message on WhatsApp or email hantsaniala@gmail.com with your project details. He typically responds within 24 hours and can start within days of agreeing on scope.' },
+  { i18nQ: 'faq.q1', i18nA: 'faq.a1' },
+  { i18nQ: 'faq.q2', i18nA: 'faq.a2' },
+  { i18nQ: 'faq.q3', i18nA: 'faq.a3' },
+  { i18nQ: 'faq.q4', i18nA: 'faq.a4' },
+  { i18nQ: 'faq.q5', i18nA: 'faq.a5' },
+  { i18nQ: 'faq.q6', i18nA: 'faq.a6' },
 ];
 ---
 
 <section id="faq" class="section">
   <div class="max-w-6xl mx-auto space-y-10">
     <div class="max-w-2xl reveal">
-      <span class="pill mb-6">FAQ</span>
-      <h2 class="type-display" style="color: var(--text);">Frequently asked questions</h2>
+      <span class="pill mb-6" data-i18n="faq.pill">FAQ</span>
+      <h2 class="type-display" style="color: var(--text);" data-i18n="faq.title">Frequently asked questions</h2>
     </div>
 
     <div class="max-w-3xl space-y-3 reveal">
       {faqs.map((faq) => (
         <details class="group">
           <summary class="flex items-center justify-between gap-4 cursor-pointer list-none px-5 py-4 rounded-2xl font-semibold text-sm transition-all duration-200" style="background: var(--bg-alt); color: var(--text);">
-            <span>{faq.q}</span>
+            <span data-i18n={faq.i18nQ}>{faq.i18nQ}</span>
             <i class="ph ph-plus transition-transform duration-200 group-open:rotate-45 flex-shrink-0" style="color: var(--text-muted);"></i>
           </summary>
           <div class="px-5 pb-4 pt-2" style="color: var(--text-secondary);">
-            <p class="text-sm leading-relaxed">{faq.a}</p>
+            <p class="text-sm leading-relaxed" data-i18n={faq.i18nA}>{faq.i18nA}</p>
           </div>
         </details>
       ))}

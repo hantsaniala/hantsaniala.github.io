@@ -5,39 +5,39 @@ import { site } from '../data/site';
 <section id="about" class="section">
   <div class="max-w-6xl mx-auto space-y-16">
     <div class="max-w-2xl reveal">
-      <span class="pill mb-6">About</span>
-      <h2 class="type-display" style="color: var(--text);">Why hire a freelance backend developer?</h2>
+      <span class="pill mb-6" data-i18n="about.pill">About</span>
+      <h2 class="type-display" style="color: var(--text);" data-i18n="about.title">Why hire a freelance backend developer?</h2>
     </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 reveal">
       <div class="flat-card space-y-4">
         <div class="flex items-center gap-3">
-          <span class="pill">The Problem</span>
+          <span class="pill" data-i18n="about.problem.pill">The Problem</span>
         </div>
-        <p class="type-body">Hiring a full-time backend engineer is expensive and slow. Your API is sluggish. Your microservices are tangled. Your cloud bill keeps climbing.</p>
-        <p class="type-body">You need someone who can step in, understand the system fast, and ship fixes, not someone who needs six months to ramp up.</p>
+        <p class="type-body" data-i18n="about.problem.1">Hiring a full-time backend engineer is expensive and slow. Your API is sluggish. Your microservices are tangled. Your cloud bill keeps climbing.</p>
+        <p class="type-body" data-i18n="about.problem.2">You need someone who can step in, understand the system fast, and ship fixes, not someone who needs six months to ramp up.</p>
       </div>
       <div class="flat-card space-y-4">
         <div class="flex items-center gap-3">
-          <span class="pill pill-accent">The Solution</span>
+          <span class="pill pill-accent" data-i18n="about.solution.pill">The Solution</span>
         </div>
-        <p class="type-body">I'm {site.firstName}, a freelance backend developer who has spent 10+ years building and scaling systems in Go and Python. I've shipped microservices for SaaS platforms, built REST and GraphQL APIs, and configured cloud infrastructure.</p>
-        <p class="type-body">Whether you need a new API built from scratch, a legacy system migrated, or DevOps pipelines set up, I can start within days.</p>
+        <p class="type-body" data-i18n-html="about.solution.1">I'm {site.firstName}, a freelance backend developer who has spent 10+ years building and scaling systems in Go and Python. I've shipped microservices for SaaS platforms, built REST and GraphQL APIs, and configured cloud infrastructure.</p>
+        <p class="type-body" data-i18n="about.solution.2">Whether you need a new API built from scratch, a legacy system migrated, or DevOps pipelines set up, I can start within days.</p>
       </div>
     </div>
 
     <div class="reveal">
-      <h3 class="type-heading mb-8">How it works</h3>
+      <h3 class="type-heading mb-8" data-i18n="about.how">How it works</h3>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
         {[
-          { num: '01', title: 'Discovery call', desc: 'We discuss your project, tech stack, and goals. I assess feasibility and suggest the best approach.' },
-          { num: '02', title: 'Plan & build', desc: 'I deliver in weekly sprints with demos. You see progress early and often. No surprises.' },
-          { num: '03', title: 'Ship & support', desc: 'I deploy your system, write documentation, and stay available for handoff and maintenance.' },
+          { num: '01', key: 'step1' },
+          { num: '02', key: 'step2' },
+          { num: '03', key: 'step3' },
         ].map((step) => (
           <div class="flat-card">
             <span class="text-4xl font-bold" style="color: var(--text-muted); opacity: 0.3;">{step.num}</span>
-            <h4 class="font-semibold mt-3 mb-2" style="color: var(--text);">{step.title}</h4>
-            <p class="type-small">{step.desc}</p>
+            <h4 class="font-semibold mt-3 mb-2" style="color: var(--text);" data-i18n={`about.${step.key}.title`}>Discovery call</h4>
+            <p class="type-small" data-i18n={`about.${step.key}.desc`}>We discuss your project, tech stack, and goals. I assess feasibility and suggest the best approach.</p>
           </div>
         ))}
       </div>

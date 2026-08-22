@@ -15,7 +15,7 @@ import { site } from '../data/site';
     <div class="flex flex-col lg:flex-row lg:items-center lg:gap-16">
       <!-- Text content -->
       <div class="flex-1 space-y-5 min-w-0">
-        <span class="pill">
+        <span class="pill" data-i18n="hero.available">
           <span class="w-2 h-2 rounded-full bg-green-500"></span>
           Available for hire
         </span>
@@ -27,16 +27,16 @@ import { site } from '../data/site';
 
         <!-- Subtext -->
         <p class="type-body text-lg max-w-xl">
-          <strong>{site.firstName} {site.lastName}</strong>, freelance Go & Python developer building APIs, microservices, and cloud infrastructure.
+          <strong>{site.firstName} {site.lastName}</strong>, <span data-i18n="hero.subtext.1">freelance Go & Python developer building APIs, microservices, and cloud infrastructure.</span>
         </p>
 
         <!-- CTAs -->
         <div class="flex flex-wrap items-center gap-4 pt-2">
-          <a href={site.whatsapp} target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+          <a href={site.whatsapp} target="_blank" rel="noopener noreferrer" class="btn btn-primary" data-i18n="hero.cta.discuss">
             Let's discuss
             <i class="ph ph-arrow-up-right"></i>
           </a>
-          <a href="/resume.pdf" download class="btn btn-outline">
+          <a href="/resume.pdf" download class="btn btn-outline" data-i18n="hero.cta.resume">
             <i class="ph ph-download-simple"></i>
             Download Resume
           </a>
@@ -46,15 +46,15 @@ import { site } from '../data/site';
         <div class="flex flex-wrap items-baseline gap-8 pt-4" id="hero-stats">
           <div class="flex flex-col">
             <span class="text-4xl lg:text-5xl font-bold counter" data-target="10" data-suffix="+">0</span>
-            <span class="text-sm mt-1" style="color: var(--text-secondary);">Years experience</span>
+            <span class="text-sm mt-1" style="color: var(--text-secondary);" data-i18n="hero.stats.years">Years experience</span>
           </div>
           <div class="flex flex-col">
             <span class="text-4xl lg:text-5xl font-bold counter" data-target="3" data-suffix="+">0</span>
-            <span class="text-sm mt-1" style="color: var(--text-secondary);">Companies</span>
+            <span class="text-sm mt-1" style="color: var(--text-secondary);" data-i18n="hero.stats.companies">Companies</span>
           </div>
           <div class="flex flex-col">
             <span class="text-4xl lg:text-5xl font-bold counter" data-target="15" data-suffix="+">0</span>
-            <span class="text-sm mt-1" style="color: var(--text-secondary);">Tools</span>
+            <span class="text-sm mt-1" style="color: var(--text-secondary);" data-i18n="hero.stats.tools">Tools</span>
           </div>
         </div>
       </div>

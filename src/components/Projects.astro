@@ -1,30 +1,30 @@
 ---
 const creations = [
-  { title: 'dj', description: 'Django + uv helper CLI for streamlined Django project management.', tags: ['Go', 'Docker', 'Django'], url: 'https://github.com/hantsaniala/dj', stars: null },
-  { title: 'trosa', description: 'A Flutter app to manage loan lists, built with Dart.', tags: ['Dart', 'Flutter'], url: 'https://github.com/hantsaniala/trosa', stars: 7 },
-  { title: 'backlog', description: 'Project backlog management tool.', tags: ['Go'], url: 'https://github.com/hantsaniala/backlog', stars: null },
-  { title: 'lazybacklog.nvim', description: 'LazyVim plugin for Backlog, manage projects from Neovim.', tags: ['Lua', 'Neovim'], url: 'https://github.com/hantsaniala/lazybacklog.nvim', stars: 1 },
-  { title: 'hStream', description: 'A simple HLS VOD server made with Go. Stream video on demand with Docker.', tags: ['Go', 'Docker'], url: 'https://github.com/hantsaniala/hStream', stars: 6 },
-  { title: 'uploader', description: 'File uploader across multiple FTP servers, built with Go.', tags: ['Go', 'FTP'], url: 'https://github.com/hantsaniala/uploader', stars: 8 },
+  { title: 'dj', i18nKey: 'dj', tags: ['Go', 'Docker', 'Django'], url: 'https://github.com/hantsaniala/dj', stars: null },
+  { title: 'trosa', i18nKey: 'trosa', tags: ['Dart', 'Flutter'], url: 'https://github.com/hantsaniala/trosa', stars: 7 },
+  { title: 'backlog', i18nKey: 'backlog', tags: ['Go'], url: 'https://github.com/hantsaniala/backlog', stars: null },
+  { title: 'lazybacklog.nvim', i18nKey: 'lazybacklog', tags: ['Lua', 'Neovim'], url: 'https://github.com/hantsaniala/lazybacklog.nvim', stars: 1 },
+  { title: 'hStream', i18nKey: 'hstream', tags: ['Go', 'Docker'], url: 'https://github.com/hantsaniala/hStream', stars: 6 },
+  { title: 'uploader', i18nKey: 'uploader', tags: ['Go', 'FTP'], url: 'https://github.com/hantsaniala/uploader', stars: 8 },
 ];
 
 const contributions = [
-  { title: 'is-a.dev', description: "Grab your own sweet-looking '.is-a.dev' subdomain.", tags: ['JavaScript'], url: 'https://github.com/hantsaniala/is-a.dev' },
-  { title: 'chit', description: 'Go Chi template generator.', tags: ['Go'], url: 'https://github.com/hantsaniala/chit' },
-  { title: 'go-ftp', description: 'A Go client for performing common FTP operations.', tags: ['Go'], url: 'https://github.com/hantsaniala/go-ftp' },
+  { title: 'is-a.dev', i18nKey: 'isadev', tags: ['JavaScript'], url: 'https://github.com/hantsaniala/is-a.dev' },
+  { title: 'chit', i18nKey: 'chit', tags: ['Go'], url: 'https://github.com/hantsaniala/chit' },
+  { title: 'go-ftp', i18nKey: 'goftp', tags: ['Go'], url: 'https://github.com/hantsaniala/go-ftp' },
 ];
 ---
 
 <section id="projects" class="section">
   <div class="max-w-6xl mx-auto space-y-12">
     <div class="max-w-2xl reveal">
-      <h2 class="type-display" style="color: var(--text);">Projects & contributions</h2>
+      <h2 class="type-display" style="color: var(--text);" data-i18n="projects.title">Projects & contributions</h2>
     </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
       <div class="space-y-4 reveal">
         <h3 class="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider" style="color: var(--text-muted);">
-          <i class="ph ph-plus-circle"></i> Creations
+          <i class="ph ph-plus-circle"></i> <span data-i18n="projects.creations">Creations</span>
         </h3>
         <div class="space-y-3">
           {creations.map((project) => (
@@ -41,7 +41,7 @@ const contributions = [
                     <i class="ph ph-arrow-up-right text-sm" style="color: var(--text-muted);"></i>
                   </div>
                 </div>
-                <p class="type-small mt-1">{project.description}</p>
+                <p class="type-small mt-1" data-i18n={`projects.${project.i18nKey}.desc`}>Django + uv helper CLI for streamlined Django project management.</p>
                 <div class="flex flex-wrap gap-1.5 mt-2">
                   {project.tags.map((tag) => (
                     <span class="pill text-xs">{tag}</span>
@@ -55,7 +55,7 @@ const contributions = [
 
       <div class="space-y-4 reveal">
         <h3 class="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider" style="color: var(--text-muted);">
-          <i class="ph ph-git-fork"></i> Contributions
+          <i class="ph ph-git-fork"></i> <span data-i18n="projects.contributions">Contributions</span>
         </h3>
         <div class="space-y-3">
           {contributions.map((project) => (
@@ -65,7 +65,7 @@ const contributions = [
                   <h4 class="font-semibold group-hover:opacity-70 transition-opacity" style="color: var(--text);">{project.title}</h4>
                   <i class="ph ph-arrow-up-right text-sm" style="color: var(--text-muted);"></i>
                 </div>
-                <p class="type-small mt-1">{project.description}</p>
+                <p class="type-small mt-1" data-i18n={`projects.${project.i18nKey}.desc`}>Grab your own sweet-looking '.is-a.dev' subdomain.</p>
                 <div class="flex flex-wrap gap-1.5 mt-2">
                   {project.tags.map((tag) => (
                     <span class="pill text-xs">{tag}</span>

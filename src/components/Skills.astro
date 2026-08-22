@@ -1,22 +1,22 @@
 ---
 const benefits = [
-  { skill: 'Go (Gin)', benefit: 'Ship fast, type-safe APIs that handle high concurrency with minimal memory footprint', icon: 'ph-diamonds-four' },
-  { skill: 'Python (Django)', benefit: 'Rapidly build secure, maintainable backends with built-in admin, ORM, and auth', icon: 'ph-code' },
-  { skill: 'REST & GraphQL APIs', benefit: 'Design clean, documented APIs that frontend and mobile teams enjoy consuming', icon: 'ph-plugs' },
-  { skill: 'Microservices', benefit: 'Decouple monoliths into independently deployable services that scale per-component', icon: 'ph-squares-four' },
-  { skill: 'Docker & AWS', benefit: 'Containerise and deploy with repeatable, infrastructure-as-code pipelines', icon: 'ph-cloud' },
-  { skill: 'PostgreSQL & GORM', benefit: 'Design performant schemas and queries that stay fast as your data grows', icon: 'ph-database' },
-  { skill: 'Neovim & OpenCode', benefit: 'Terminal-speed workflows with keyboard-driven editing and AI-assisted coding', icon: 'ph-terminal' },
-  { skill: 'DevOps & CI/CD', benefit: 'Automate testing, building, and deployment so you ship with confidence', icon: 'ph-arrows-clockwise' },
+  { skill: 'Go (Gin)', i18nKey: 'go', icon: 'ph-diamonds-four' },
+  { skill: 'Python (Django)', i18nKey: 'python', icon: 'ph-code' },
+  { skill: 'REST & GraphQL APIs', i18nKey: 'apis', icon: 'ph-plugs' },
+  { skill: 'Microservices', i18nKey: 'microservices', icon: 'ph-squares-four' },
+  { skill: 'Docker & AWS', i18nKey: 'docker', icon: 'ph-cloud' },
+  { skill: 'PostgreSQL & GORM', i18nKey: 'postgres', icon: 'ph-database' },
+  { skill: 'Neovim & OpenCode', i18nKey: 'neovim', icon: 'ph-terminal' },
+  { skill: 'DevOps & CI/CD', i18nKey: 'devops', icon: 'ph-arrows-clockwise' },
 ];
 ---
 
 <section id="skills" class="section">
   <div class="max-w-6xl mx-auto space-y-12">
     <div class="max-w-2xl reveal">
-      <span class="pill mb-6">Technical Expertise</span>
-      <h2 class="type-display" style="color: var(--text);">What you get</h2>
-      <p class="type-body mt-4">Every skill maps to a concrete outcome for your project.</p>
+      <span class="pill mb-6" data-i18n="skills.pill">Technical Expertise</span>
+      <h2 class="type-display" style="color: var(--text);" data-i18n="skills.title">What you get</h2>
+      <p class="type-body mt-4" data-i18n="skills.subtitle">Every skill maps to a concrete outcome for your project.</p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 reveal">
@@ -26,7 +26,7 @@ const benefits = [
             <span class="pill"><i class={`ph ${item.icon}`}></i></span>
             <h3 class="font-semibold text-sm" style="color: var(--text);">{item.skill}</h3>
           </div>
-          <p class="type-small">{item.benefit}</p>
+          <p class="type-small" data-i18n={`skills.${item.i18nKey}`}>Ship fast, type-safe APIs that handle high concurrency with minimal memory footprint</p>
         </div>
       ))}
     </div>
