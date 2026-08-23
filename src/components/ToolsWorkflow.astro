@@ -1,0 +1,32 @@
+---
+const tools = [
+  { i18nKey: 'env', icon: 'ph-terminal-window', large: true },
+  { i18nKey: 'langs', icon: 'ph-code', large: false },
+  { i18nKey: 'editor', icon: 'ph-terminal', large: false },
+  { i18nKey: 'os', icon: 'ph-linux-logo', large: false },
+  { i18nKey: 'cloud', icon: 'ph-cloud', large: false },
+  { i18nKey: 'db', icon: 'ph-database', large: false },
+  { i18nKey: 'ai', icon: 'ph-brain', large: false },
+  { i18nKey: 'vcs', icon: 'ph-git-branch', large: false },
+];
+---
+
+<section id="tools" class="section">
+  <div class="max-w-6xl mx-auto space-y-10">
+    <div class="max-w-2xl reveal">
+      <h2 class="type-display" style="color: var(--text);" data-i18n="tools.title">Tools & workflow</h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 reveal">
+      {tools.map((tool) => (
+        <div class={`flat-card ${tool.large ? 'md:col-span-2' : ''}`}>
+          <div class="flex items-center gap-3 mb-3">
+            <span class="pill"><i class={`ph ${tool.icon}`}></i></span>
+            <h3 class="font-semibold text-sm" style="color: var(--text);" data-i18n={`tools.${tool.i18nKey}.name`}>—</h3>
+          </div>
+          <p class="type-small" data-i18n={`tools.${tool.i18nKey}`}>—</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
