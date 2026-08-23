@@ -52,6 +52,9 @@ const personSchema = JSON.stringify({
 
   <!-- Canonical -->
   <link rel="canonical" href={canonicalURL} />
+  <link rel="alternate" hreflang="en" href={canonicalURL.href} />
+  <link rel="alternate" hreflang="fr" href={canonicalURL.href} />
+  <link rel="alternate" hreflang="x-default" href={canonicalURL.href} />
 
   <!-- Open Graph -->
   <meta property="og:type" content={type} />
@@ -61,8 +64,11 @@ const personSchema = JSON.stringify({
   <meta property="og:image" content={imageURL} />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Hantsaniala Eléo — Freelance Go & Python Developer" />
+  <meta property="og:image:secure_url" content={imageURL} />
   <meta property="og:site_name" content={site.author} />
   <meta property="og:locale" content="en_US" />
+  <meta property="og:locale:alternate" content="fr_FR" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />

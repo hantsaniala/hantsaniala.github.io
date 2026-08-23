@@ -34,24 +34,5 @@ function formatSummary(summary: string): string[] {
       ))}
     </div>
 
-    <script type="application/ld+json" set:html={JSON.stringify({
-      '@context': 'https://schema.org',
-      '@type': 'Person',
-      name: 'Hantsaniala Eléo',
-      hasOccupation: {
-        '@type': 'Occupation',
-        name: 'Freelance Software Developer',
-        occupationLocation: { '@type': 'Country', name: 'Madagascar' },
-        skills: 'Go, Python, Django, Gin, Docker, AWS, PostgreSQL, Microservices, REST API, GraphQL, DevOps, CI/CD',
-      },
-      hasWorkExperience: experience.map((job) => ({
-        '@type': 'OrganizationRole',
-        roleName: job.role,
-        namedOrganization: { '@type': 'Organization', name: job.company },
-        description: job.summary.replace(/^- /gm, ''),
-        startDate: job.range.split(' - ')[0],
-        endDate: job.range.includes('Present') ? undefined : job.range.split(' - ')[1],
-      })),
-    })} />
   </div>
 </section>
