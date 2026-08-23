@@ -72,7 +72,7 @@ const navIcons: Record<string, string> = {
 
   <div class="w-px h-4" style="background: var(--border);"></div>
 
-  <button id="mobile-menu-toggle" class="relative w-8 h-8 flex items-center justify-center rounded-full" style="color: var(--text-secondary);" aria-label="Open navigation">
+  <button id="mobile-menu-toggle" class="relative w-8 h-8 flex items-center justify-center rounded-full" style="color: var(--text-secondary);" aria-label="Open navigation" aria-expanded="false">
     <span class="hamburger-line absolute w-4 h-px transition-all duration-300" style="background: currentColor; transform: translateY(-3px);"></span>
     <span class="hamburger-line absolute w-4 h-px transition-all duration-300" style="background: currentColor; transform: translateY(3px);"></span>
   </button>
@@ -110,6 +110,7 @@ const navIcons: Record<string, string> = {
 
   function openMenu() {
     isOpen = true;
+    toggle?.setAttribute('aria-expanded', 'true');
     menu?.classList.remove('hidden');
     pill?.classList.add('opacity-0', 'pointer-events-none');
     items.forEach((el) => {
@@ -120,6 +121,7 @@ const navIcons: Record<string, string> = {
 
   function closeMenu() {
     isOpen = false;
+    toggle?.setAttribute('aria-expanded', 'false');
     items.forEach((el, i) => {
       (el as HTMLElement).style.transition = `opacity 0.2s ease ${i * 30}ms, transform 0.2s ease ${i * 30}ms`;
       (el as HTMLElement).style.opacity = '0';
