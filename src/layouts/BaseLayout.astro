@@ -169,6 +169,11 @@ const { title, description } = Astro.props;
           'tools.ai': 'OpenCode · DeepSeek',
           'tools.vcs.name': 'Version Control',
           'tools.vcs': 'Git · GitHub',
+          'resume.summary': 'Professional Summary',
+          'resume.experience': 'Experience',
+          'resume.skills': 'Technical Skills',
+          'resume.education': 'Education',
+          'resume.present': 'Present',
         },
         fr: {
           'nav.about': 'À propos',
@@ -304,6 +309,11 @@ const { title, description } = Astro.props;
           'tools.ai': 'OpenCode · DeepSeek',
           'tools.vcs.name': 'Contrôle de version',
           'tools.vcs': 'Git · GitHub',
+          'resume.summary': 'Résumé',
+          'resume.experience': 'Expérience',
+          'resume.skills': 'Compétences techniques',
+          'resume.education': 'Formation',
+          'resume.present': 'Présent',
         },
       };
 
@@ -317,6 +327,13 @@ const { title, description } = Astro.props;
         return 'fr';
       }
 
+      // Resume download link updater
+      function updateResumeLinks() {
+        var loc = localStorage.getItem('locale') || 'fr';
+        var pdf = loc === 'fr' ? '/CV-Hantsaniala-Eleo.pdf' : '/Resume-Hantsaniala-Eleo.pdf';
+        document.querySelectorAll('a[href*="CV-Hantsaniala"], a[href*="Resume-Hantsaniala"]').forEach(function(a) { a.href = pdf; });
+      }
+
       function setLocale(locale) {
         if (!translations[locale]) return;
         currentLocale = locale;
@@ -324,6 +341,7 @@ const { title, description } = Astro.props;
         document.documentElement.lang = locale;
         applyTranslations();
         updateSwitcherButtons();
+        if (typeof updateResumeLinks === 'function') updateResumeLinks();
       }
 
       function t(key) {
@@ -363,6 +381,7 @@ const { title, description } = Astro.props;
         document.documentElement.lang = currentLocale;
         applyTranslations();
         updateSwitcherButtons();
+        updateResumeLinks();
         document.querySelectorAll('#lang-switcher, #lang-switcher-mobile').forEach(btn => {
           btn.addEventListener('click', () => {
             setLocale(currentLocale === 'en' ? 'fr' : 'en');
@@ -476,5 +495,7 @@ const { title, description } = Astro.props;
         });
       }, { passive: true });
     </script>
+
+
   </body>
 </html>
