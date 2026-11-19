@@ -121,7 +121,9 @@ function buildHTML(d, locale) {
   .edu-date { font-size: 10pt; color: #888; }
   .edu-deg { font-size: 10.5pt; font-style: italic; color: #555; }
   .edu-maj { font-size: 9.5pt; font-style: italic; color: #888; }
-  .page-break { page-break-before: always; }
+  /* Let pages break naturally, but never inside an entry or right after a section title. */
+  .job, .proj, .edu { break-inside: avoid; }
+  h2, hr.sec { break-after: avoid; }
 </style>
 </head>
 <body>
@@ -142,15 +144,13 @@ function buildHTML(d, locale) {
   `).join('')}
 
   <h2>${d.sections.projects}</h2><hr class="sec">
-  ${d.projects.map((p,i) => {
-    const breakBefore = (locale === 'fr' && p.name === 'EduStream') || (locale === 'en' && p.name === 'ElderConnect');
-    return `
-    <div class="proj${breakBefore ? ' page-break' : ''}">
+  ${d.projects.map((p,i) => `
+    <div class="proj">
       <div class="proj-top"><span class="proj-name">${p.name}</span><span class="proj-tech">${p.tech}</span></div>
       <div class="proj-desc">${p.desc}</div>
     </div>
     ${i < d.projects.length-1 ? '<hr class="tiny">' : ''}
-  `;}).join('')}
+  `).join('')}
 
   <h2>${d.sections.skills}</h2><hr class="sec">
   ${d.skills.map(s => `<div class="sk"><b>${s.label} :</b> <span>${s.items}</span></div>`).join('')}
