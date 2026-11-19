@@ -1,21 +1,39 @@
 ---
-import { getCollection, render } from 'astro:content';
-import BaseHead from '../../components/BaseHead.astro';
-import Sidebar from '../../components/Sidebar.astro';
-import ThemeToggle from '../../components/ThemeToggle.astro';
-import ScrollAnimate from '../../components/ScrollAnimate.astro';
-import { site } from '../../data/site';
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import BaseHead from '../../../components/BaseHead.astro';
+import Sidebar from '../../../components/Sidebar.astro';
+import ThemeToggle from '../../../components/ThemeToggle.astro';
+import ScrollAnimate from '../../../components/ScrollAnimate.astro';
+import { site } from '../../../data/site';
+import LangSwitch from '../../../components/LangSwitch.astro';
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blog', ({ data }) => !data.draft);    return posts.map((post) => ({
-    params: { slug: post.id.replace(/\.md$/, '') },
-    props: { post },
-  }));
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  // French posts live in content/blog/fr/ under the same file name as the English one.
+  const slugOf = (p: CollectionEntry<'blog'>) => p.id.replace(/\.md$/, '').replace(/^fr\//, '');
+  const urlOf = (p: CollectionEntry<'blog'>) => `${p.data.lang === 'fr' ? '/fr' : ''}/blog/${slugOf(p)}`;
+  return posts.map((post) => {
+    const other = posts.find((p) => p.data.lang !== post.data.lang && slugOf(p) === slugOf(post));
+    return {
+      params: { lang: post.data.lang === 'fr' ? 'fr' : undefined, slug: slugOf(post) },
+      props: { post, url: urlOf(post), otherUrl: other ? urlOf(other) : null },
+    };
+  });
 }
 
-const { post } = Astro.props;
+const { post, url, otherUrl } = Astro.props;
+const lang = post.data.lang;
+const otherLang = lang === 'fr' ? 'en' : 'fr';
+const blogHome = lang === 'fr' ? '/fr/blog' : '/blog';
+const ui = {
+  en: { all: 'All posts', back: 'Back to all posts', byline: 'a technical article by' },
+  fr: { all: 'Tous les articles', back: 'Retour aux articles', byline: 'un article technique de' },
+}[lang];
+const alternates = { [lang]: url, ...(otherUrl ? { [otherLang]: otherUrl } : {}) };
+// Language button target: the translated post, else the other language's blog home.
+const switchTo = otherUrl ?? (lang === 'fr' ? '/blog' : '/fr/blog');
 const { Content } = await render(post);
-const postDescription = post.data.description || `${post.data.title}, a technical article by Hantsaniala Eléo.`;
+const postDescription = post.data.description || `${post.data.title}, ${ui.byline} Hantsaniala Eléo.`;
 
 // SEO title: keep under 60 chars
 const brand = ' | Hantsaniala';
@@ -24,7 +42,7 @@ const seoTitle = (post.data.title + brand).length <= 60
   : post.data.title;
 
 function formatDate(date: Date): string {
-  return date.toLocaleDateString('en-US', {
+  return date.toLocaleDateString(lang === 'fr' ? 'fr-FR' : 'en-US', {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
@@ -33,7 +51,7 @@ function formatDate(date: Date): string {
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <BaseHead
       title={seoTitle}
@@ -42,6 +60,8 @@ function formatDate(date: Date): string {
       twitterDescription={postDescription}
       image={post.data.ogImage ?? site.ogImage}
       type="article"
+      lang={lang}
+      alternates={alternates}
     />
 
     <!-- Article-specific Open Graph tags for Facebook -->
@@ -79,10 +99,10 @@ function formatDate(date: Date): string {
     <main class="min-h-screen">
       <article class="max-w-3xl mx-auto px-6 pt-24 pb-16 lg:px-12">
         <!-- Back link -->
-        <a href="/blog" class="inline-flex items-center gap-2 text-sm mb-8 transition-colors"
+        <a href={blogHome} class="inline-flex items-center gap-2 text-sm mb-8 transition-colors"
            style="color: var(--text-muted);">
           <i class="ph ph-arrow-left"></i>
-          All posts
+          {ui.all}
         </a>
 
         <!-- Header -->
@@ -110,10 +130,10 @@ function formatDate(date: Date): string {
 
         <!-- Footer -->
         <div class="mt-12 pt-8" style="border-top: 1px solid var(--border);">
-          <a href="/blog" class="inline-flex items-center gap-2 text-sm transition-colors"
+          <a href={blogHome} class="inline-flex items-center gap-2 text-sm transition-colors"
              style="color: var(--text-muted);">
             <i class="ph ph-arrow-left"></i>
-            Back to all posts
+            {ui.back}
           </a>
         </div>
       </article>
@@ -121,6 +141,7 @@ function formatDate(date: Date): string {
 
     <ThemeToggle />
     <ScrollAnimate />
+    <LangSwitch target={switchTo} targetLocale={otherLang} />
   </body>
 </html>
 

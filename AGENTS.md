@@ -18,8 +18,9 @@
 ## Architecture
 - Astro 5 static site. Entry: `src/pages/index.astro` → `src/layouts/BaseLayout.astro`.
 - Content data: `src/data/site.ts` (identity/contact/socials/nav) + `src/data/*.json` (skills, experience, education).
-- Blog: Markdown posts in `src/content/blog/` (frontmatter: title, description, date, tags[], draft).
-- i18n: landing page only. Dict (en/fr) in `src/layouts/BaseLayout.astro`; elements tagged `data-i18n="key"`; language switch via `#lang-switcher`. Blog/privacy/terms stay English.
+- Blog: Markdown posts in `src/content/blog/` (frontmatter: title, description, date, tags[], draft, lang).
+- i18n: landing page only. Dict (en/fr) in `src/layouts/BaseLayout.astro`; elements tagged `data-i18n="key"`; language switch via `#lang-switcher`. Privacy/terms stay English.
+- Blog i18n: one URL per language. French posts in `src/content/blog/fr/<same-file-name>.md` with `lang: fr`; routes `src/pages/[...lang]/blog/` serve `/blog/*` and `/fr/blog/*`. A post without a translation simply has no counterpart.
 - Theme: design tokens in `src/styles/global.css` (`--accent` #ffd200 light / #eab308 dark; accent buttons always dark text via `--accent-text`).
 
 ## Gotchas
