@@ -51,7 +51,7 @@ const navIcons: Record<string, string> = {
 )}
 
 <!-- Mobile floating pill -->
-<div id="mobile-nav-pill" class="lg:hidden fixed top-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2 px-3 py-2 rounded-full transition-all duration-300"
+<div id="mobile-nav-pill" class="lg:hidden fixed top-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-1 px-2 py-1 rounded-full transition-all duration-300"
      style="background: var(--pill-bg);">
   <a href="/" class="flex items-center gap-2 pl-1 pr-2" aria-label="Home">
     <div class="w-7 h-7 rounded-full overflow-hidden">
@@ -65,14 +65,14 @@ const navIcons: Record<string, string> = {
 
   <div class="w-px h-4" style="background: var(--border);"></div>
 
-  <button id="lang-switcher-mobile" class="flex items-center gap-1 px-2 py-2 rounded-full text-sm font-medium" style="color: var(--text-secondary);" aria-label="Switch language">
+  <button id="lang-switcher-mobile" class="flex items-center gap-1 px-2 h-11 rounded-full text-sm font-medium" style="color: var(--text-secondary);" aria-label="Switch language">
     <i class="ph ph-translate"></i>
     <span class="lang-label">FR</span>
   </button>
 
   <div class="w-px h-4" style="background: var(--border);"></div>
 
-  <button id="mobile-menu-toggle" class="relative w-8 h-8 flex items-center justify-center rounded-full" style="color: var(--text-secondary);" aria-label="Open navigation" aria-expanded="false">
+  <button id="mobile-menu-toggle" class="relative w-11 h-11 flex items-center justify-center rounded-full" style="color: var(--text-secondary);" aria-label="Open navigation" aria-expanded="false">
     <span class="hamburger-line absolute w-4 h-px transition-all duration-300" style="background: currentColor; transform: translateY(-3px);"></span>
     <span class="hamburger-line absolute w-4 h-px transition-all duration-300" style="background: currentColor; transform: translateY(3px);"></span>
   </button>
