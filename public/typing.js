@@ -25,7 +25,9 @@
 
 
   var audioCtx = null;
+  var soundOn = true; // click sound only while the first phrase is typed
   function playClick() {
+    if (!soundOn) return;
     try {
       if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
       var now = audioCtx.currentTime;
@@ -58,6 +60,7 @@
       el.textContent = current.slice(0, charIdx);
       playClick();
       if (charIdx === current.length) {
+        soundOn = false;
         setTimeout(function () { deleting = true; tick(); }, PAUSE_AFTER_TYPE);
         return;
       }
