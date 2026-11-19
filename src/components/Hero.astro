@@ -31,13 +31,13 @@ import { site } from '../data/site';
 
         <!-- CTAs -->
         <div class="flex flex-wrap items-center gap-4 pt-2">
-          <a href={site.whatsapp} target="_blank" rel="noopener noreferrer" class="btn btn-primary" data-i18n="hero.cta.discuss">
-            Let's discuss
+          <a href={site.whatsapp} target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+            <span data-i18n="hero.cta.discuss">Let's discuss</span>
             <i class="ph ph-arrow-up-right"></i>
           </a>
-          <a href="/CV-Hantsaniala-Eleo.pdf" download class="btn btn-outline" data-i18n="hero.cta.resume" onclick="const l=localStorage.getItem('locale')||'fr';this.href=l==='fr'?'/CV-Hantsaniala-Eleo.pdf':'/Resume-Hantsaniala-Eleo.pdf'">
+          <a href="/CV-Hantsaniala-Eleo.pdf" download class="btn btn-outline" onclick="const l=localStorage.getItem('locale')||'fr';this.href=l==='fr'?'/CV-Hantsaniala-Eleo.pdf':'/Resume-Hantsaniala-Eleo.pdf'">
             <i class="ph ph-download-simple"></i>
-            Download Resume
+            <span data-i18n="hero.cta.resume">Download Resume</span>
           </a>
         </div>
 

@@ -23,9 +23,9 @@ const navIcons: Record<string, string> = {
     {site.navItems.map((item) => {
       const icon = navIcons[item.label] ?? 'ph-circle';
       return (
-        <a href={item.href} class="flex items-center gap-1.5 px-3 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all duration-200 hover:bg-[var(--pill-hover)]" style="color: var(--text-secondary);" data-i18n={`nav.${item.label.toLowerCase()}`}>
+        <a href={item.href} class="flex items-center gap-1.5 px-3 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all duration-200 hover:bg-[var(--pill-hover)]" style="color: var(--text-secondary);">
           <i class={`ph ${icon}`}></i>
-          <span>{item.label}</span>
+          <span data-i18n={`nav.${item.label.toLowerCase()}`}>{item.label}</span>
         </a>
       );
     })}
@@ -88,9 +88,9 @@ const navIcons: Record<string, string> = {
     <ul class="flex flex-col items-center gap-6">
       {site.navItems.map((item, i) => (
         <li class="mobile-nav-item" style={`opacity: 0; transform: translateY(1rem); transition: opacity 0.4s ease ${80 + i * 60}ms, transform 0.4s ease ${80 + i * 60}ms;`}>
-          <a href={item.href} class="flex items-center gap-3 text-2xl font-semibold mobile-nav-link transition-colors duration-200" style="color: var(--text-secondary);" data-i18n={`nav.${item.label.toLowerCase()}`}>
+          <a href={item.href} class="flex items-center gap-3 text-2xl font-semibold mobile-nav-link transition-colors duration-200" style="color: var(--text-secondary);">
             <i class={`ph ${navIcons[item.label] ?? 'ph-circle'} text-xl`}></i>
-            {item.label}
+            <span data-i18n={`nav.${item.label.toLowerCase()}`}>{item.label}</span>
           </a>
         </li>
       ))}
