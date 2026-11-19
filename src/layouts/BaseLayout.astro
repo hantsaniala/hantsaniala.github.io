@@ -335,11 +335,12 @@ const { title, description } = Astro.props;
         return 'fr';
       }
 
-      // Resume download link updater
-      function updateResumeLinks() {
+      // Locale-dependent links: resume PDF and blog
+      function updateLocaleLinks() {
         var loc = localStorage.getItem('locale') || 'fr';
         var pdf = loc === 'fr' ? '/CV-Hantsaniala-Eleo.pdf' : '/Resume-Hantsaniala-Eleo.pdf';
         document.querySelectorAll('a[href*="CV-Hantsaniala"], a[href*="Resume-Hantsaniala"]').forEach(function(a) { a.href = pdf; });
+        document.querySelectorAll('a[href="/blog"], a[href="/fr/blog"]').forEach(function(a) { a.setAttribute('href', loc === 'fr' ? '/fr/blog' : '/blog'); });
       }
 
       function setLocale(locale) {
@@ -349,7 +350,7 @@ const { title, description } = Astro.props;
         document.documentElement.lang = locale;
         applyTranslations();
         updateSwitcherButtons();
-        if (typeof updateResumeLinks === 'function') updateResumeLinks();
+        if (typeof updateLocaleLinks === 'function') updateLocaleLinks();
       }
 
       function t(key) {
@@ -389,7 +390,7 @@ const { title, description } = Astro.props;
         document.documentElement.lang = currentLocale;
         applyTranslations();
         updateSwitcherButtons();
-        updateResumeLinks();
+        updateLocaleLinks();
         document.querySelectorAll('#lang-switcher, #lang-switcher-mobile').forEach(btn => {
           btn.addEventListener('click', () => {
             setLocale(currentLocale === 'en' ? 'fr' : 'en');
