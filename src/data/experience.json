@@ -3,13 +3,19 @@
         "role": "CTO",
         "company": "LOVICI.FR (Guadeloupe, Full-remote)",
         "summary": "- Backend development in Go and Python\n- Technical leadership and architecture decisions\n- API design and microservices\n- DevOps, CI/CD, and cloud infrastructure\n- Team mentoring and code review",
-        "range": "2024 - Present"
+        "range": "November 2025 - Present"
+    },
+    {
+        "role": "Freelance Backend Developer (Django)",
+        "company": "Elderly Connect (Guadeloupe, Full-remote)",
+        "summary": "- Backend for a platform connecting elderly people with their families through a dedicated Android box\n- REST API with Django REST Framework\n- Video calls with Jitsi\n- Background tasks with Celery",
+        "range": "May 2025 - October 2025"
     },
     {
         "role": "CTO & Lead Dev",
         "company": "SAHA Technology",
         "summary": "- Lead team of frontend and backend developers\n- Project management\n- Fullstack developer\n- Technical marketing\n- DevOps",
-        "range": "June 2022 - 2024"
+        "range": "June 2022 - April 2025"
     },
     {
         "role": "Fullstack developer (Python)",
