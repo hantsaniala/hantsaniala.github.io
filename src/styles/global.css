@@ -246,6 +246,10 @@ body::before {
   will-change: transform;
 }
 
+/* Bilingual blocks rendered from data (see Experience.astro) */
+html:not([lang="fr"]) [data-lang="fr"],
+html[lang="fr"] [data-lang="en"] { display: none; }
+
 /* Font families */
 .font-geist { font-family: 'Geist', system-ui, sans-serif; }
 .font-geist-mono { font-family: 'Geist Mono', 'JetBrains Mono', monospace; }
