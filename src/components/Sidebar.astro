@@ -165,12 +165,4 @@ const navIcons: Record<string, string> = {
     }
   }, { passive: true });
 
-  // Mobile lang switcher
-  const mobileLangBtn = document.getElementById('lang-switcher-mobile');
-  if (mobileLangBtn) {
-    mobileLangBtn.addEventListener('click', () => {
-      // Trigger the same event as desktop switcher
-      document.getElementById('lang-switcher')?.click();
-    });
-  }
 </script>
