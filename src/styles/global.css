@@ -165,7 +165,8 @@ body::before {
 }
 
 .type-display {
-  font-size: clamp(2.5rem, 5vw, 5rem);
+  /* Stays below .type-hero at every width so the h1 leads. */
+  font-size: clamp(2rem, 4.5vw, 4.5rem);
   font-weight: 700;
   letter-spacing: -0.03em;
   line-height: 1.05;
