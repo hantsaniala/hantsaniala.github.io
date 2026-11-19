@@ -18,12 +18,12 @@ const navIcons: Record<string, string> = {
 
 <!-- Desktop top bar -->
 {!hideDesktopNav && (
-<header class="hidden lg:flex fixed top-6 left-1/2 -translate-x-1/2 z-50 items-center gap-2 px-3 py-2 rounded-full" style="background: var(--pill-bg);">
+<header class="hidden lg:flex w-max fixed top-6 left-1/2 -translate-x-1/2 z-50 items-center gap-2 px-3 py-2 rounded-full" style="background: var(--pill-bg);">
   <nav class="flex items-center gap-1">
     {site.navItems.map((item) => {
       const icon = navIcons[item.label] ?? 'ph-circle';
       return (
-        <a href={item.href} class="flex items-center gap-1.5 px-3 py-2 rounded-full text-sm font-medium transition-all duration-200 hover:bg-[var(--pill-hover)]" style="color: var(--text-secondary);" data-i18n={`nav.${item.label.toLowerCase()}`}>
+        <a href={item.href} class="flex items-center gap-1.5 px-3 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all duration-200 hover:bg-[var(--pill-hover)]" style="color: var(--text-secondary);" data-i18n={`nav.${item.label.toLowerCase()}`}>
           <i class={`ph ${icon}`}></i>
           <span>{item.label}</span>
         </a>
