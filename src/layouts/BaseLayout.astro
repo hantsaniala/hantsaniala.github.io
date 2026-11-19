@@ -395,6 +395,8 @@ const { title, description } = Astro.props;
       (function() {
         const canvas = document.getElementById('cursor-canvas');
         if (!canvas) return;
+        // No mouse to follow on touch; no ambient motion when the user asked for less.
+        if (matchMedia('(prefers-reduced-motion: reduce), (hover: none)').matches) { canvas.remove(); return; }
         const ctx = canvas.getContext('2d');
         if (!ctx) return;
 
