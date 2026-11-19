@@ -79,7 +79,7 @@ const navIcons: Record<string, string> = {
 </div>
 
 <!-- Mobile nav overlay -->
-<div id="mobile-menu" class="lg:hidden fixed inset-0 z-40 hidden flex items-center justify-center" style="background: var(--bg);">
+<div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Navigation" class="lg:hidden fixed inset-0 z-40 hidden flex items-center justify-center" style="background: var(--bg);">
   <button id="mobile-menu-close" class="absolute top-6 right-6 w-10 h-10 flex items-center justify-center rounded-full" style="background: var(--pill-bg); color: var(--text-secondary);" aria-label="Close navigation">
     <i class="ph ph-x text-lg"></i>
   </button>
@@ -117,10 +117,13 @@ const navIcons: Record<string, string> = {
       (el as HTMLElement).style.opacity = '1';
       (el as HTMLElement).style.transform = 'translateY(0)';
     });
+    (close as HTMLElement | null)?.focus();
   }
 
   function closeMenu() {
+    if (!isOpen) return;
     isOpen = false;
+    (toggle as HTMLElement | null)?.focus();
     toggle?.setAttribute('aria-expanded', 'false');
     items.forEach((el, i) => {
       (el as HTMLElement).style.transition = `opacity 0.2s ease ${i * 30}ms, transform 0.2s ease ${i * 30}ms`;
@@ -139,6 +142,7 @@ const navIcons: Record<string, string> = {
   toggle?.addEventListener('click', () => isOpen ? closeMenu() : openMenu());
   close?.addEventListener('click', closeMenu);
   links.forEach((link) => link.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
 
   // Hide pill on scroll
   let lastY = 0;
