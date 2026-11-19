@@ -11,7 +11,8 @@
   --bg-alt: #f0f0f0;
   --text: #1a1a1a;
   --text-secondary: #555;
-  --text-muted: #999;
+  --text-muted: #6b6b6b;
+  --accent-ink: #a16207;
   --accent: #ffd200;
   --accent-text: #0a0a0a;
   --pill-bg: #e8e8e8;
@@ -24,7 +25,8 @@
   --bg-alt: #141414;
   --text: #f0f0f0;
   --text-secondary: #aaa;
-  --text-muted: #666;
+  --text-muted: #8a8a8a;
+  --accent-ink: #eab308;
   --accent: #eab308;
   --accent-text: #0a0a0a;
   --pill-bg: #1a1a1a;
@@ -66,7 +68,7 @@ body::before {
 
 /* Focus ring */
 :focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--accent-ink);
   outline-offset: 2px;
 }
 :focus:not(:focus-visible) { outline: none; }
@@ -317,7 +319,7 @@ body::before {
 .font-geist-mono { font-family: 'Geist Mono', 'JetBrains Mono', monospace; }
 
 /* Counter */
-.counter { color: var(--accent); font-variant-numeric: tabular-nums; }
+.counter { color: var(--accent-ink); font-variant-numeric: tabular-nums; }
 
 /* ═══════════════════════════════════════════
    TYPING CURSOR
