@@ -36,10 +36,10 @@ const { title, description } = Astro.props;
       // i18n translations
       const translations = {
         en: {
+          'nav.projects': 'Projects',
           'nav.about': 'About',
           'nav.skills': 'Skills',
           'nav.experience': 'Experience',
-          'nav.education': 'Education',
           'nav.blog': 'Blog',
           'nav.discuss': "Let's discuss",
           'hero.headline': 'Ship Reliable Backends',
@@ -160,8 +160,6 @@ const { title, description } = Astro.props;
           'tools.env': 'Neovim + OpenCode AI — keyboard-driven, AI-assisted development',
           'tools.langs.name': 'Languages',
           'tools.langs': 'Go · Python · Dart',
-          'tools.editor.name': 'Editor',
-          'tools.editor': 'Neovim (custom config)',
           'tools.os.name': 'OS',
           'tools.os': 'Ubuntu Linux',
           'tools.cloud.name': 'Cloud & DevOps',
@@ -169,7 +167,7 @@ const { title, description } = Astro.props;
           'tools.db.name': 'Database',
           'tools.db': 'PostgreSQL · GORM',
           'tools.ai.name': 'AI Tooling',
-          'tools.ai': 'OpenCode · DeepSeek',
+          'tools.ai': 'Claude Code · OpenCode · DeepSeek',
           'tools.vcs.name': 'Version Control',
           'tools.vcs': 'Git · GitHub',
           'resume.summary': 'Professional Summary',
@@ -179,10 +177,10 @@ const { title, description } = Astro.props;
           'resume.present': 'Present',
         },
         fr: {
+          'nav.projects': 'Projets',
           'nav.about': 'À propos',
           'nav.skills': 'Compétences',
           'nav.experience': 'Expérience',
-          'nav.education': 'Formation',
           'nav.blog': 'Blog',
           'nav.discuss': 'Discutons',
           'hero.headline': 'Développez des backends fiables',
@@ -303,8 +301,6 @@ const { title, description } = Astro.props;
           'tools.env': 'Neovim + OpenCode AI — développement piloté par clavier, assisté par IA',
           'tools.langs.name': 'Langages',
           'tools.langs': 'Go · Python · Dart',
-          'tools.editor.name': 'Éditeur',
-          'tools.editor': 'Neovim (config personnalisée)',
           'tools.os.name': 'Système',
           'tools.os': 'Ubuntu Linux',
           'tools.cloud.name': 'Cloud & DevOps',
@@ -312,7 +308,7 @@ const { title, description } = Astro.props;
           'tools.db.name': 'Base de données',
           'tools.db': 'PostgreSQL · GORM',
           'tools.ai.name': 'Outils IA',
-          'tools.ai': 'OpenCode · DeepSeek',
+          'tools.ai': 'Claude Code · OpenCode · DeepSeek',
           'tools.vcs.name': 'Contrôle de version',
           'tools.vcs': 'Git · GitHub',
           'resume.summary': 'Résumé',
@@ -398,69 +394,100 @@ const { title, description } = Astro.props;
     </script>
 
     <script is:inline>
-      // Cursor follower — abstract blobs (pauses when tab hidden)
+      // Cursor glow: accent-coloured blobs that trail the pointer.
       (function() {
         const canvas = document.getElementById('cursor-canvas');
         if (!canvas) return;
-        // No mouse to follow on touch; no ambient motion when the user asked for less.
-        if (matchMedia('(prefers-reduced-motion: reduce), (hover: none)').matches) { canvas.remove(); return; }
+        // Touch screens have no cursor to follow.
+        if (matchMedia('(hover: none)').matches) { canvas.remove(); return; }
         const ctx = canvas.getContext('2d');
         if (!ctx) return;
 
-        let W = 0, H = 0;
-        let mouseX = 0, mouseY = 0;
-        let targetX = 0, targetY = 0;
-        let running = true;
+        const root = document.documentElement;
+        // Big soft halo, mid glow, small bright core; each trails at its own pace.
+        const blobs = [
+          { r: 320, speed: 0.06 },
+          { r: 200, speed: 0.11 },
+          { r: 110, speed: 0.2 },
+        ].map((b) => ({ ...b, x: 0, y: 0 }));
+        // Yellow barely shows on the light page and glares on the dark one.
+        const strength = { light: [0.16, 0.11, 0.08], dark: [0.07, 0.05, 0.05] };
+
+        let W = 0, H = 0, rgb = '255,210,0';
+        let px = 0, py = 0, seen = false;
+        let alpha = 0, targetAlpha = 0, swell = 1;
         let rafId = 0;
 
-        const blobs = [
-          { x: 0, y: 0, r: 300, color: 'rgba(255,210,0,0.08)', speed: 0.03 },
-          { x: 0, y: 0, r: 200, color: 'rgba(255,210,0,0.05)', speed: 0.06 },
-          { x: 0, y: 0, r: 188, color: 'rgba(255,210,0,0.03)', speed: 0.08 },
-        ];
+        function readAccent() {
+          const probe = getComputedStyle(root).getPropertyValue('--accent').trim();
+          const m = /^#([0-9a-f]{6})$/i.exec(probe);
+          if (m) rgb = [0, 2, 4].map((i) => parseInt(m[1].slice(i, i + 2), 16)).join(',');
+        }
 
         function resize() {
           W = canvas.width = window.innerWidth;
           H = canvas.height = window.innerHeight;
+          wake();
         }
-        resize();
-        window.addEventListener('resize', resize);
 
-        document.addEventListener('mousemove', (e) => {
-          mouseX = e.clientX;
-          mouseY = e.clientY;
-        });
+        function wake() {
+          if (!rafId && !document.hidden) rafId = requestAnimationFrame(frame);
+        }
 
-        function animate() {
-          if (!running) return;
+        function frame() {
+          rafId = 0;
+          let moving = false;
+          for (const b of blobs) {
+            b.x += (px - b.x) * b.speed;
+            b.y += (py - b.y) * b.speed;
+            if (Math.abs(px - b.x) + Math.abs(py - b.y) > 0.5) moving = true;
+          }
+          alpha += (targetAlpha - alpha) * 0.08;
+          if (Math.abs(targetAlpha - alpha) > 0.005) moving = true;
+          swell += (1 - swell) * 0.06;
+          if (swell > 1.005) moving = true;
+
           ctx.clearRect(0, 0, W, H);
-          targetX += (mouseX - targetX) * 0.05;
-          targetY += (mouseY - targetY) * 0.05;
-
-          blobs.forEach((b) => {
-            b.x += (targetX - b.x) * b.speed;
-            b.y += (targetY - b.y) * b.speed;
-            const grad = ctx.createRadialGradient(b.x, b.y, 0, b.x, b.y, b.r);
-            grad.addColorStop(0, b.color);
-            grad.addColorStop(1, 'transparent');
-            ctx.fillStyle = grad;
-            ctx.fillRect(0, 0, W, H);
+          const a = strength[root.classList.contains('dark') ? 'dark' : 'light'];
+          blobs.forEach((b, i) => {
+            const r = b.r * swell;
+            const g = ctx.createRadialGradient(b.x, b.y, 0, b.x, b.y, r);
+            g.addColorStop(0, `rgba(${rgb},${a[i] * alpha})`);
+            g.addColorStop(1, `rgba(${rgb},0)`);
+            ctx.fillStyle = g;
+            ctx.fillRect(b.x - r, b.y - r, r * 2, r * 2);
           });
 
-          rafId = requestAnimationFrame(animate);
+          if (moving) wake();
         }
 
-        document.addEventListener('visibilitychange', () => {
-          if (document.hidden) {
-            running = false;
-            cancelAnimationFrame(rafId);
+        document.addEventListener('pointermove', (e) => {
+          if (e.pointerType === 'touch') return;
+          const dist = Math.hypot(e.clientX - px, e.clientY - py);
+          px = e.clientX;
+          py = e.clientY;
+          if (!seen) {
+            // First move: appear at the cursor instead of sliding in from the corner.
+            seen = true;
+            blobs.forEach((b) => { b.x = px; b.y = py; });
           } else {
-            running = true;
-            rafId = requestAnimationFrame(animate);
+            swell = Math.min(1.25, swell + dist / 900);
           }
-        });
+          targetAlpha = 1;
+          wake();
+        }, { passive: true });
 
-        rafId = requestAnimationFrame(animate);
+        // Fade out when the pointer leaves the window, back in when it returns.
+        document.addEventListener('pointerout', (e) => { if (!e.relatedTarget) { targetAlpha = 0; wake(); } });
+        window.addEventListener('blur', () => { targetAlpha = 0; wake(); });
+
+        // Re-read the accent when the theme toggles.
+        new MutationObserver(() => { readAccent(); wake(); }).observe(root, { attributes: true, attributeFilter: ['class'] });
+        document.addEventListener('visibilitychange', () => { if (document.hidden) { cancelAnimationFrame(rafId); rafId = 0; } else wake(); });
+        window.addEventListener('resize', resize);
+
+        readAccent();
+        resize();
       })();
 
       // Back to top

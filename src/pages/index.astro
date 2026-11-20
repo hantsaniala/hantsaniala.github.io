@@ -3,10 +3,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import About from '../components/About.astro';
 import Skills from '../components/Skills.astro';
-import ToolsWorkflow from '../components/ToolsWorkflow.astro';
 import Comparison from '../components/Comparison.astro';
 import Experience from '../components/Experience.astro';
-import Education from '../components/Education.astro';
 import Projects from '../components/Projects.astro';
 import Faq from '../components/Faq.astro';
 import Footer from '../components/Footer.astro';
@@ -22,26 +20,19 @@ import Footer from '../components/Footer.astro';
   <Hero />
 
   <div class="px-6 py-12 lg:px-12 lg:py-16 space-y-4">
-    <!-- 2. Problem + 3. Solution + 7. How It Works + 6. Mid-page CTA -->
-    <About />
-
-    <!-- 4. Features as Benefits -->
-    <Skills />
-
-    <!-- 5. Tools & Workflow -->
-    <ToolsWorkflow />
-
-    <!-- 8. Comparison table -->
-    <Comparison />
-
-    <!-- Credentials -->
-    <Experience />
-    <Education />
-
-    <!-- Open Source portfolio -->
+    <!-- Proof first: client work and open source -->
     <Projects />
 
-    <!-- 9. FAQ -->
+    <!-- Why hire a freelancer: problem, solution, how it works, comparison -->
+    <About />
+    <Comparison />
+
+    <!-- Skills, with the daily tool stack folded in -->
+    <Skills />
+
+    <!-- Experience, with education folded in -->
+    <Experience />
+
     <Faq />
 
     <!-- 10. Trust Signals + 11. Final CTA -->

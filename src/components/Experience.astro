@@ -1,5 +1,6 @@
 ---
 import experience from '../data/experience.json';
+import education from '../data/education.json';
 
 function formatSummary(summary: string): string[] {
   return summary.split('\n').filter(line => line.trim().length > 0);
@@ -44,6 +45,23 @@ const langs = [
         })}
       </div>
     ))}
+
+    <div id="education" class="space-y-4">
+      <h3 class="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider" style="color: var(--text-muted);">
+        <i class="ph ph-graduation-cap"></i> <span data-i18n="education.title">Education & certifications</span>
+      </h3>
+      <ul>
+        {education.map((edu) => (
+          <li class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 py-3" style="border-top: 1px solid var(--border);">
+            <p class="text-sm">
+              <span class="font-semibold" style="color: var(--text);">{edu.school}</span>
+              <span style="color: var(--text-secondary);"> · {edu.degree}{edu.major && ` · ${edu.major}`}</span>
+            </p>
+            <span class="text-xs font-medium" style="color: var(--text-muted);">{edu.range}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
 
   </div>
 </section>
