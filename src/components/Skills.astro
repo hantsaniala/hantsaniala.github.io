@@ -9,6 +9,16 @@ const benefits = [
   { skill: 'Neovim & OpenCode', i18nKey: 'neovim', icon: 'ph-terminal' },
   { skill: 'DevOps & CI/CD', i18nKey: 'devops', icon: 'ph-arrows-clockwise' },
 ];
+
+const tools = [
+  { i18nKey: 'env', icon: 'ph-terminal-window' },
+  { i18nKey: 'langs', icon: 'ph-code' },
+  { i18nKey: 'cloud', icon: 'ph-cloud' },
+  { i18nKey: 'db', icon: 'ph-database' },
+  { i18nKey: 'ai', icon: 'ph-brain' },
+  { i18nKey: 'os', icon: 'ph-linux-logo' },
+  { i18nKey: 'vcs', icon: 'ph-git-branch' },
+];
 ---
 
 <section id="skills" class="section">
@@ -29,6 +39,23 @@ const benefits = [
           <p class="type-small" data-i18n={`skills.${item.i18nKey}`}>Ship fast, type-safe APIs that handle high concurrency with minimal memory footprint</p>
         </div>
       ))}
+    </div>
+
+    <div id="tools" class="space-y-4">
+      <h3 class="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider" style="color: var(--text-muted);">
+        <i class="ph ph-wrench"></i> <span data-i18n="tools.title">Tools & workflow</span>
+      </h3>
+      <dl class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-5">
+        {tools.map((tool) => (
+          <div class="pt-3" style="border-top: 1px solid var(--border);">
+            <dt class="flex items-center gap-2 text-sm font-semibold" style="color: var(--text);">
+              <i class={`ph ${tool.icon}`} style="color: var(--text-muted);"></i>
+              <span data-i18n={`tools.${tool.i18nKey}.name`}>—</span>
+            </dt>
+            <dd class="type-small mt-1" data-i18n={`tools.${tool.i18nKey}`}>—</dd>
+          </div>
+        ))}
+      </dl>
     </div>
   </div>
 </section>
