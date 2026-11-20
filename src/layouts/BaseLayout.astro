@@ -12,7 +12,7 @@ const { title, description } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="fr">
+<html lang="en">
   <BaseHead title={title} description={description} />
   <body>
     <!-- Skip to content -->
@@ -42,7 +42,6 @@ const { title, description } = Astro.props;
           'nav.education': 'Education',
           'nav.blog': 'Blog',
           'nav.discuss': "Let's discuss",
-          'hero.available': 'Available for hire',
           'hero.headline': 'Ship Reliable Backends',
           'hero.subtext.1': 'freelance Go & Python developer building APIs, microservices, and cloud infrastructure.',
           'hero.cta.discuss': "Let's discuss",
@@ -107,6 +106,10 @@ const { title, description } = Astro.props;
           'projects.title': 'Projects & contributions',
           'projects.creations': 'Creations',
           'projects.contributions': 'Contributions',
+          'projects.clients': 'Client work',
+          'projects.elderconnect.desc': 'Platform connecting elderly people with their families through a dedicated Android box: video calls, REST API and background tasks.',
+          'projects.edustream.desc': 'Educational streaming platform with offline playback and AES-128 encrypted video.',
+          'projects.marketplace.desc': 'Centralised management of several marketplaces (PrestaShop, Amazon), shipped as a Windows executable.',
           'projects.dj.desc': 'Django + uv helper CLI for streamlined Django project management.',
           'projects.trosa.desc': 'A Flutter app to manage loan lists, built with Dart.',
           'projects.backlog.desc': 'Project backlog management tool.',
@@ -182,7 +185,6 @@ const { title, description } = Astro.props;
           'nav.education': 'Formation',
           'nav.blog': 'Blog',
           'nav.discuss': 'Discutons',
-          'hero.available': 'Disponible pour recrutement',
           'hero.headline': 'Développez des backends fiables',
           'hero.subtext.1': 'développeur freelance Go & Python construisant des APIs, microservices et infrastructures cloud.',
           'hero.cta.discuss': 'Discutons',
@@ -247,6 +249,10 @@ const { title, description } = Astro.props;
           'projects.title': 'Projets & contributions',
           'projects.creations': 'Créations',
           'projects.contributions': 'Contributions',
+          'projects.clients': 'Projets clients',
+          'projects.elderconnect.desc': "Plateforme qui relie les personnes âgées à leur famille via une box Android dédiée : appels vidéo, API REST et tâches en arrière-plan.",
+          'projects.edustream.desc': 'Plateforme de streaming éducatif avec lecture hors ligne et vidéos chiffrées en AES-128.',
+          'projects.marketplace.desc': 'Gestion centralisée de plusieurs marketplaces (PrestaShop, Amazon), distribuée en exécutable Windows.',
           'projects.dj.desc': 'CLI helper Django + uv pour une gestion de projet Django simplifiée.',
           'projects.trosa.desc': 'Une application Flutter pour gérer des listes de prêts, construite avec Dart.',
           'projects.backlog.desc': 'Outil de gestion de backlog de projet.',
@@ -327,11 +333,12 @@ const { title, description } = Astro.props;
         return 'fr';
       }
 
-      // Resume download link updater
-      function updateResumeLinks() {
+      // Locale-dependent links: resume PDF and blog
+      function updateLocaleLinks() {
         var loc = localStorage.getItem('locale') || 'fr';
         var pdf = loc === 'fr' ? '/CV-Hantsaniala-Eleo.pdf' : '/Resume-Hantsaniala-Eleo.pdf';
         document.querySelectorAll('a[href*="CV-Hantsaniala"], a[href*="Resume-Hantsaniala"]').forEach(function(a) { a.href = pdf; });
+        document.querySelectorAll('a[href="/blog"], a[href="/fr/blog"]').forEach(function(a) { a.setAttribute('href', loc === 'fr' ? '/fr/blog' : '/blog'); });
       }
 
       function setLocale(locale) {
@@ -341,7 +348,7 @@ const { title, description } = Astro.props;
         document.documentElement.lang = locale;
         applyTranslations();
         updateSwitcherButtons();
-        if (typeof updateResumeLinks === 'function') updateResumeLinks();
+        if (typeof updateLocaleLinks === 'function') updateLocaleLinks();
       }
 
       function t(key) {
@@ -381,7 +388,7 @@ const { title, description } = Astro.props;
         document.documentElement.lang = currentLocale;
         applyTranslations();
         updateSwitcherButtons();
-        updateResumeLinks();
+        updateLocaleLinks();
         document.querySelectorAll('#lang-switcher, #lang-switcher-mobile').forEach(btn => {
           btn.addEventListener('click', () => {
             setLocale(currentLocale === 'en' ? 'fr' : 'en');
@@ -395,6 +402,8 @@ const { title, description } = Astro.props;
       (function() {
         const canvas = document.getElementById('cursor-canvas');
         if (!canvas) return;
+        // No mouse to follow on touch; no ambient motion when the user asked for less.
+        if (matchMedia('(prefers-reduced-motion: reduce), (hover: none)').matches) { canvas.remove(); return; }
         const ctx = canvas.getContext('2d');
         if (!ctx) return;
 
@@ -469,18 +478,6 @@ const { title, description } = Astro.props;
         }, { passive: true });
         btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
       }
-
-      // Scroll reveal with stagger
-      const reveals = document.querySelectorAll('.reveal');
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
-      reveals.forEach(el => observer.observe(el));
 
       // Parallax
       const parallaxEls = document.querySelectorAll('.parallax-bg');

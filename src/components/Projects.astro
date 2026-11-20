@@ -9,6 +9,13 @@ const creations = [
   { title: 'kpz', i18nKey: 'kpz', tags: ['Go', 'DevOps', 'CLI', 'HTTPS'], url: 'https://github.com/kopoze/kpz', stars: null },
 ];
 
+// Client work: no public repo, so cards are not links.
+const clients = [
+  { title: 'ElderConnect', i18nKey: 'elderconnect', tags: ['Django', 'DRF', 'Jitsi', 'Celery', 'Android'] },
+  { title: 'EduStream', i18nKey: 'edustream', tags: ['Django', 'Celery', 'AWS', 'Redis', 'HLS'] },
+  { title: 'Marketplace Manager', i18nKey: 'marketplace', tags: ['Go', 'Vue.js', 'PostgreSQL', 'Docker'] },
+];
+
 const contributions = [
   { title: 'is-a.dev', i18nKey: 'isadev', tags: ['JavaScript'], url: 'https://github.com/hantsaniala/is-a.dev' },
   { title: 'sekoliko', i18nKey: 'sekoliko', tags: ['PHP', 'Symfony', 'Education'], url: 'https://github.com/hantsaniala/sekoliko' },
@@ -21,6 +28,25 @@ const contributions = [
   <div class="max-w-6xl mx-auto space-y-12">
     <div class="max-w-2xl reveal">
       <h2 class="type-display" style="color: var(--text);" data-i18n="projects.title">Projects & contributions</h2>
+    </div>
+
+    <div class="space-y-4">
+      <h3 class="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider" style="color: var(--text-muted);">
+        <i class="ph ph-briefcase"></i> <span data-i18n="projects.clients">Client work</span>
+      </h3>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+        {clients.map((project) => (
+          <div class="flat-card">
+            <h4 class="font-semibold" style="color: var(--text);">{project.title}</h4>
+            <p class="type-small mt-1" data-i18n={`projects.${project.i18nKey}.desc`}>{project.title}</p>
+            <div class="flex flex-wrap gap-1.5 mt-2">
+              {project.tags.map((tag) => (
+                <span class="pill text-xs">{tag}</span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">

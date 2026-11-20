@@ -11,7 +11,8 @@
   --bg-alt: #f0f0f0;
   --text: #1a1a1a;
   --text-secondary: #555;
-  --text-muted: #999;
+  --text-muted: #6b6b6b;
+  --accent-ink: #a16207;
   --accent: #ffd200;
   --accent-text: #0a0a0a;
   --pill-bg: #e8e8e8;
@@ -24,7 +25,8 @@
   --bg-alt: #141414;
   --text: #f0f0f0;
   --text-secondary: #aaa;
-  --text-muted: #666;
+  --text-muted: #8a8a8a;
+  --accent-ink: #eab308;
   --accent: #eab308;
   --accent-text: #0a0a0a;
   --pill-bg: #1a1a1a;
@@ -59,6 +61,8 @@ body::before {
   background-size: 256px 256px;
 }
 
+::selection { background: var(--accent); color: var(--accent-text); }
+
 /* Scrollbar */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
@@ -66,7 +70,7 @@ body::before {
 
 /* Focus ring */
 :focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--accent-ink);
   outline-offset: 2px;
 }
 :focus:not(:focus-visible) { outline: none; }
@@ -161,7 +165,8 @@ body::before {
 }
 
 .type-display {
-  font-size: clamp(2.5rem, 5vw, 5rem);
+  /* Stays below .type-hero at every width so the h1 leads. */
+  font-size: clamp(2rem, 4.5vw, 4.5rem);
   font-weight: 700;
   letter-spacing: -0.03em;
   line-height: 1.05;
@@ -242,82 +247,16 @@ body::before {
   will-change: transform;
 }
 
-/* Scroll reveal - enhanced */
-.reveal {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.8s cubic-bezier(0.32, 0.72, 0, 1), transform 0.8s cubic-bezier(0.32, 0.72, 0, 1);
-}
-
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Staggered children inside reveal sections */
-.reveal.visible .flat-card,
-.reveal.visible .timeline-item,
-.reveal.visible .faq-item {
-  opacity: 0;
-  transform: translateY(24px);
-  animation: staggerIn 0.6s cubic-bezier(0.32, 0.72, 0, 1) forwards;
-}
-
-.reveal.visible .flat-card:nth-child(1),
-.reveal.visible .timeline-item:nth-child(1),
-.reveal.visible .faq-item:nth-child(1) { animation-delay: 0.05s; }
-.reveal.visible .flat-card:nth-child(2),
-.reveal.visible .timeline-item:nth-child(2),
-.reveal.visible .faq-item:nth-child(2) { animation-delay: 0.12s; }
-.reveal.visible .flat-card:nth-child(3),
-.reveal.visible .timeline-item:nth-child(3),
-.reveal.visible .faq-item:nth-child(3) { animation-delay: 0.19s; }
-.reveal.visible .flat-card:nth-child(4),
-.reveal.visible .timeline-item:nth-child(4),
-.reveal.visible .faq-item:nth-child(4) { animation-delay: 0.26s; }
-.reveal.visible .flat-card:nth-child(5),
-.reveal.visible .timeline-item:nth-child(5),
-.reveal.visible .faq-item:nth-child(5) { animation-delay: 0.33s; }
-.reveal.visible .flat-card:nth-child(6),
-.reveal.visible .timeline-item:nth-child(6),
-.reveal.visible .faq-item:nth-child(6) { animation-delay: 0.40s; }
-.reveal.visible .flat-card:nth-child(7),
-.reveal.visible .timeline-item:nth-child(7),
-.reveal.visible .faq-item:nth-child(7) { animation-delay: 0.47s; }
-.reveal.visible .flat-card:nth-child(8),
-.reveal.visible .timeline-item:nth-child(8),
-.reveal.visible .faq-item:nth-child(8) { animation-delay: 0.54s; }
-
-@keyframes staggerIn {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Table rows stagger */
-.reveal.visible table tr {
-  opacity: 0;
-  transform: translateY(12px);
-  animation: staggerIn 0.5s cubic-bezier(0.32, 0.72, 0, 1) forwards;
-}
-.reveal.visible table tr:nth-child(1) { animation-delay: 0.05s; }
-.reveal.visible table tr:nth-child(2) { animation-delay: 0.1s; }
-.reveal.visible table tr:nth-child(3) { animation-delay: 0.15s; }
-.reveal.visible table tr:nth-child(4) { animation-delay: 0.2s; }
-.reveal.visible table tr:nth-child(5) { animation-delay: 0.25s; }
-.reveal.visible table tr:nth-child(6) { animation-delay: 0.3s; }
-.reveal.visible table tr:nth-child(7) { animation-delay: 0.35s; }
-.reveal.visible table tr:nth-child(8) { animation-delay: 0.4s; }
-.reveal.visible table tr:nth-child(9) { animation-delay: 0.45s; }
-.reveal.visible table tr:nth-child(10) { animation-delay: 0.5s; }
+/* Bilingual blocks rendered from data (see Experience.astro) */
+html:not([lang="fr"]) [data-lang="fr"],
+html[lang="fr"] [data-lang="en"] { display: none; }
 
 /* Font families */
 .font-geist { font-family: 'Geist', system-ui, sans-serif; }
 .font-geist-mono { font-family: 'Geist Mono', 'JetBrains Mono', monospace; }
 
 /* Counter */
-.counter { color: var(--accent); font-variant-numeric: tabular-nums; }
+.counter { color: var(--accent-ink); font-variant-numeric: tabular-nums; }
 
 /* ═══════════════════════════════════════════
    TYPING CURSOR

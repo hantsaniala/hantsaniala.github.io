@@ -18,6 +18,7 @@ const data = {
     sections: { experience: 'EXPÉRIENCE', skills: 'COMPÉTENCES TECHNIQUES', projects: 'PROJETS', education: 'FORMATION' },
     jobs: [
       { role: 'CTO', company: 'LOVICI.FR, Guadeloupe, Full-remote', range: 'Nov 2025 - Présent', bullets: ["Architecture backend Go/Python pour plateforme e-commerce (catalogue, commandes, paiements)","Conception d'APIs REST et microservices à déploiement indépendant, accélérant la vélocité d'équipe","Mise en place CI/CD avec GitHub Actions, Docker et CloudFlare, réduisant le cycle de release de jours à heures","Direction technique : revues de code et décisions d'architecture"] },
+      { role: 'Développeur Backend Freelance (Django)', company: 'Elderly Connect, Guadeloupe, Full-remote', range: 'Mai 2025 - Oct 2025', bullets: ["Backend Django REST Framework d'une plateforme reliant les personnes âgées à leur famille via une box Android dédiée","Intégration de Jitsi pour les appels vidéo entre la famille et la box","Tâches en arrière-plan avec Celery"] },
       { role: 'CTO, Lead Dev & DevOps', company: 'SAHA Technology, Antananarivo, Madagascar', range: 'Juin 2022 - Avr 2025', bullets: ["Direction d'une équipe de 5+ développeurs frontend et backend sur plusieurs produits","Infrastructure de production avec Docker, gestion des environnements staging et production","Recrutement, intégration et mentorat de 5+ ingénieurs, mise en place de standards et revues de code","Contact technique principal avec les clients, traduction des besoins métier en architecture système"] },
       { role: 'Développeur Fullstack (Python)', company: 'Cloud Diodes, US, NY, Full-remote', range: 'Août 2021 - Mai 2022', bullets: ["Dashboard SaaS de monitoring Docker avec métriques temps réel et alertes (Django, Redis)","Automatisation des déploiements et provisioning avec Bash et Docker Compose"] },
       { role: 'Développeur PHP', company: 'Linkeo Madagascar, Antananarivo', range: 'Fév 2021 - Juil 2021', bullets: ["Intégration de passerelle de paiement tierce, réduisant les frictions de checkout","Maintenance et refactoring du codebase Symfony legacy, améliorant les temps de chargement"] },
@@ -48,6 +49,7 @@ const data = {
     sections: { experience: 'EXPERIENCE', skills: 'TECHNICAL SKILLS', projects: 'PROJECTS', education: 'EDUCATION' },
     jobs: [
       { role: 'CTO', company: 'LOVICI.FR, Guadeloupe, Full-remote', range: 'Nov 2025 - Present', bullets: ["Architected Go/Python backend for e-commerce platform handling product catalog, orders, and payment processing","Designed REST APIs and microservices with independent deployment, enabling parallel team velocity","Implemented CI/CD pipelines with GitHub Actions, Docker, and CloudFlare, reducing release cycle from days to hours","Led code reviews and technical decisions across the engineering team"] },
+      { role: 'Freelance Backend Developer (Django)', company: 'Elderly Connect, Guadeloupe, Full-remote', range: 'May 2025 - Oct 2025', bullets: ["Built the Django REST Framework backend of a platform connecting elderly people with their families through a dedicated Android box","Integrated Jitsi for video calls between families and the box","Ran background jobs with Celery"] },
       { role: 'CTO, Lead Dev & DevOps', company: 'SAHA Technology, Antananarivo, Madagascar', range: 'Jun 2022 - Apr 2025', bullets: ["Led technical team of 5+ frontend and backend developers across multiple product lines","Built production infrastructure with Docker, managing staging and production environments","Recruited, onboarded, and mentored 5+ engineers, establishing coding standards and review processes","Served as primary technical contact for clients, translating business requirements into system architecture"] },
       { role: 'Fullstack Developer (Python)', company: 'Cloud Diodes, US, NY, Full-remote', range: 'Aug 2021 - May 2022', bullets: ["Built SaaS Docker container monitoring dashboard with real-time metrics and alerting using Django and Redis","Automated deployment pipelines and infrastructure provisioning with Bash and Docker Compose"] },
       { role: 'PHP Developer', company: 'Linkeo Madagascar, Antananarivo', range: 'Feb 2021 - Jul 2021', bullets: ["Integrated third-party payment gateway into existing PHP application, reducing checkout friction","Maintained and refactored legacy Symfony codebase, improving page load times"] },
@@ -121,7 +123,9 @@ function buildHTML(d, locale) {
   .edu-date { font-size: 10pt; color: #888; }
   .edu-deg { font-size: 10.5pt; font-style: italic; color: #555; }
   .edu-maj { font-size: 9.5pt; font-style: italic; color: #888; }
-  .page-break { page-break-before: always; }
+  /* Let pages break naturally, but never inside an entry or right after a section title. */
+  .job, .proj, .edu { break-inside: avoid; }
+  h2, hr.sec { break-after: avoid; }
 </style>
 </head>
 <body>
@@ -142,15 +146,13 @@ function buildHTML(d, locale) {
   `).join('')}
 
   <h2>${d.sections.projects}</h2><hr class="sec">
-  ${d.projects.map((p,i) => {
-    const breakBefore = (locale === 'fr' && p.name === 'EduStream') || (locale === 'en' && p.name === 'ElderConnect');
-    return `
-    <div class="proj${breakBefore ? ' page-break' : ''}">
+  ${d.projects.map((p,i) => `
+    <div class="proj">
       <div class="proj-top"><span class="proj-name">${p.name}</span><span class="proj-tech">${p.tech}</span></div>
       <div class="proj-desc">${p.desc}</div>
     </div>
     ${i < d.projects.length-1 ? '<hr class="tiny">' : ''}
-  `;}).join('')}
+  `).join('')}
 
   <h2>${d.sections.skills}</h2><hr class="sec">
   ${d.skills.map(s => `<div class="sk"><b>${s.label} :</b> <span>${s.items}</span></div>`).join('')}

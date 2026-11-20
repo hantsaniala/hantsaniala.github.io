@@ -3,30 +3,60 @@
         "role": "CTO",
         "company": "LOVICI.FR (Guadeloupe, Full-remote)",
         "summary": "- Backend development in Go and Python\n- Technical leadership and architecture decisions\n- API design and microservices\n- DevOps, CI/CD, and cloud infrastructure\n- Team mentoring and code review",
-        "range": "2024 - Present"
+        "range": "November 2025 - Present",
+        "role_fr": "CTO",
+        "summary_fr": "- Développement backend en Go et Python\n- Direction technique et choix d'architecture\n- Conception d'APIs et de microservices\n- DevOps, CI/CD et infrastructure cloud\n- Mentorat d'équipe et revue de code",
+        "range_fr": "Novembre 2025 - Présent",
+        "company_fr": "LOVICI.FR (Guadeloupe, Full remote)"
+    },
+    {
+        "role": "Freelance Backend Developer (Django)",
+        "company": "Elderly Connect (Guadeloupe, Full-remote)",
+        "summary": "- Backend for a platform connecting elderly people with their families through a dedicated Android box\n- REST API with Django REST Framework\n- Video calls with Jitsi\n- Background tasks with Celery",
+        "range": "May 2025 - October 2025",
+        "role_fr": "Développeur backend freelance (Django)",
+        "summary_fr": "- Backend d'une plateforme qui relie les personnes âgées à leur famille via une box Android dédiée\n- API REST avec Django REST Framework\n- Appels vidéo avec Jitsi\n- Tâches en arrière-plan avec Celery",
+        "range_fr": "Mai 2025 - Octobre 2025",
+        "company_fr": "Elderly Connect (Guadeloupe, Full remote)"
     },
     {
         "role": "CTO & Lead Dev",
         "company": "SAHA Technology",
         "summary": "- Lead team of frontend and backend developers\n- Project management\n- Fullstack developer\n- Technical marketing\n- DevOps",
-        "range": "June 2022 - 2024"
+        "range": "June 2022 - April 2025",
+        "role_fr": "CTO & Lead Dev",
+        "summary_fr": "- Direction d'une équipe de développeurs frontend et backend\n- Gestion de projet\n- Développement fullstack\n- Marketing technique\n- DevOps",
+        "range_fr": "Juin 2022 - Avril 2025",
+        "company_fr": "SAHA Technology"
     },
     {
         "role": "Fullstack developer (Python)",
         "company": "Cloud Diodes (Remote - New York City)",
         "summary": "Build SaaS web app container monitoring.",
-        "range": "August 2021 - May 2022"
+        "range": "August 2021 - May 2022",
+        "role_fr": "Développeur fullstack (Python)",
+        "summary_fr": "Développement d'une application SaaS de monitoring de conteneurs.",
+        "range_fr": "Août 2021 - Mai 2022",
+        "company_fr": "Cloud Diodes (Remote - New York)"
     },
     {
         "role": "PHP Developer",
         "company": "Linkeo Madagascar",
         "summary": "Existing app maintenance. External module integration. Migration and automation.",
-        "range": "February 2021 - July 2021"
+        "range": "February 2021 - July 2021",
+        "role_fr": "Développeur PHP",
+        "summary_fr": "Maintenance d'applications existantes. Intégration de modules externes. Migration et automatisation.",
+        "range_fr": "Février 2021 - Juillet 2021",
+        "company_fr": "Linkeo Madagascar"
     },
     {
         "role": "Designer, Developer & SysAdmin",
         "company": "SIR Madagascar SARL",
         "summary": "Computer and networks management. Tech assistant. Automation script developer. Designer.",
-        "range": "February 2014 - January 2021"
+        "range": "February 2014 - January 2021",
+        "role_fr": "Graphiste, développeur & administrateur système",
+        "summary_fr": "Gestion du parc informatique et des réseaux. Assistance technique. Développement de scripts d'automatisation. Graphisme.",
+        "range_fr": "Février 2014 - Janvier 2021",
+        "company_fr": "SIR Madagascar SARL"
     }
 ]

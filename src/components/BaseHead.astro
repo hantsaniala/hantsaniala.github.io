@@ -10,6 +10,9 @@ interface Props {
   image?: string;
   type?: string;
   noindex?: boolean;
+  lang?: 'en' | 'fr';
+  /** Language versions of this page; defaults to the current URL for both. */
+  alternates?: { en?: string; fr?: string };
 }
 
 const {
@@ -20,6 +23,8 @@ const {
   image = site.ogImage,
   type = 'website',
   noindex = false,
+  lang = 'en',
+  alternates,
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, site.url);
@@ -52,9 +57,19 @@ const personSchema = JSON.stringify({
 
   <!-- Canonical -->
   <link rel="canonical" href={canonicalURL} />
-  <link rel="alternate" hreflang="en" href={canonicalURL.href} />
-  <link rel="alternate" hreflang="fr" href={canonicalURL.href} />
-  <link rel="alternate" hreflang="x-default" href={canonicalURL.href} />
+  {alternates ? (
+    <>
+      {alternates.en && <link rel="alternate" hreflang="en" href={new URL(alternates.en, site.url).href} />}
+      {alternates.fr && <link rel="alternate" hreflang="fr" href={new URL(alternates.fr, site.url).href} />}
+      <link rel="alternate" hreflang="x-default" href={new URL(alternates.en ?? Astro.url.pathname, site.url).href} />
+    </>
+  ) : (
+    <>
+      <link rel="alternate" hreflang="en" href={canonicalURL.href} />
+      <link rel="alternate" hreflang="fr" href={canonicalURL.href} />
+      <link rel="alternate" hreflang="x-default" href={canonicalURL.href} />
+    </>
+  )}
 
   <!-- Open Graph -->
   <meta property="og:type" content={type} />
@@ -67,8 +82,8 @@ const personSchema = JSON.stringify({
   <meta property="og:image:alt" content="Hantsaniala Eléo — Freelance Go & Python Developer" />
   <meta property="og:image:secure_url" content={imageURL} />
   <meta property="og:site_name" content={site.author} />
-  <meta property="og:locale" content="en_US" />
-  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:locale" content={lang === 'fr' ? 'fr_FR' : 'en_US'} />
+  <meta property="og:locale:alternate" content={lang === 'fr' ? 'en_US' : 'fr_FR'} />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />

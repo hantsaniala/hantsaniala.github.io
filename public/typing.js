@@ -5,14 +5,25 @@
   // Clear static fallback text so crawlers see it but users see typing
   el.textContent = '';
 
-  var phrases = [
-    'Ship Reliable Backends',
-    'Scale Without the Headache',
-    'From MVP to Production',
-    'Cut Costs, Boost Performance',
-    'APIs That Just Work',
-    'Your Backend, Done Right',
-  ];
+  var phrases = {
+    en: [
+      'Ship Reliable Backends',
+      'Scale Without the Headache',
+      'From MVP to Production',
+      'Cut Costs, Boost Performance',
+      'APIs That Just Work',
+      'Your Backend, Done Right',
+    ],
+    fr: [
+      'Développez des backends fiables',
+      'Évoluez sans prise de tête',
+      'Du MVP à la production',
+      'Moins de coûts, plus de vitesse',
+      'Des APIs qui fonctionnent',
+      'Votre backend, bien fait',
+    ],
+  };
+  function list() { return phrases[document.documentElement.lang] || phrases.en; }
 
   var TYPING_SPEED = 50;
   var DELETING_SPEED = 25;
@@ -22,10 +33,13 @@
   var phraseIdx = 0;
   var charIdx = 0;
   var deleting = false;
+  var current = '';
 
 
   var audioCtx = null;
+  var soundOn = true; // click sound only while the first phrase is typed
   function playClick() {
+    if (!soundOn) return;
     try {
       if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
       var now = audioCtx.currentTime;
@@ -52,12 +66,14 @@
   }
 
   function tick() {
-    var current = phrases[phraseIdx];
+    // Pick the phrase in the current page language at the start of each phrase.
+    if (!deleting && charIdx === 0) current = list()[phraseIdx];
     if (!deleting) {
       charIdx++;
       el.textContent = current.slice(0, charIdx);
       playClick();
       if (charIdx === current.length) {
+        soundOn = false;
         setTimeout(function () { deleting = true; tick(); }, PAUSE_AFTER_TYPE);
         return;
       }
@@ -68,14 +84,15 @@
       playClick();
       if (charIdx === 0) {
         deleting = false;
-        phraseIdx = (phraseIdx + 1) % phrases.length;
+        phraseIdx = (phraseIdx + 1) % list().length;
         setTimeout(tick, PAUSE_AFTER_DELETE);
         return;
       }
       setTimeout(tick, DELETING_SPEED);
     }
   }
-  tick();
+  // Start after the i18n script has set <html lang> on DOMContentLoaded.
+  document.addEventListener('DOMContentLoaded', tick);
 })();
 
 (function () {

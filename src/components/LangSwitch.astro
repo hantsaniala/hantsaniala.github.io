@@ -1,0 +1,21 @@
+---
+// Language button for pages with one URL per language (the blog). The landing page
+// translates in place instead, through the i18n script in BaseLayout.
+interface Props {
+  target: string;
+  targetLocale: 'en' | 'fr';
+}
+const { target, targetLocale } = Astro.props;
+const label = targetLocale === 'fr' ? 'Français' : 'English';
+---
+
+<script is:inline define:vars={{ target, targetLocale, label }}>
+  document.querySelectorAll('.lang-label').forEach((el) => { el.textContent = targetLocale.toUpperCase(); });
+  document.querySelectorAll('#lang-switcher, #lang-switcher-mobile').forEach((btn) => {
+    btn.setAttribute('aria-label', `Switch to ${label}`);
+    btn.addEventListener('click', () => {
+      try { localStorage.setItem('locale', targetLocale); } catch (e) { void e; }
+      location.href = target;
+    });
+  });
+</script>

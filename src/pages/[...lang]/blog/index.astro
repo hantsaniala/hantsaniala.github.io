@@ -1,16 +1,51 @@
 ---
 import { getCollection } from 'astro:content';
-import BaseHead from '../../components/BaseHead.astro';
-import Sidebar from '../../components/Sidebar.astro';
-import ThemeToggle from '../../components/ThemeToggle.astro';
-import ScrollAnimate from '../../components/ScrollAnimate.astro';
+import BaseHead from '../../../components/BaseHead.astro';
+import Sidebar from '../../../components/Sidebar.astro';
+import ThemeToggle from '../../../components/ThemeToggle.astro';
+import ScrollAnimate from '../../../components/ScrollAnimate.astro';
 
+import LangSwitch from '../../../components/LangSwitch.astro';
+
+export function getStaticPaths() {
+  return [{ params: { lang: undefined } }, { params: { lang: 'fr' } }];
+}
+
+const lang = Astro.params.lang === 'fr' ? 'fr' : 'en';
+const prefix = lang === 'fr' ? '/fr' : '';
 const posts = (await getCollection('blog'))
-  .filter((post) => !post.data.draft)
+  .filter((post) => !post.data.draft && post.data.lang === lang)
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 
+const ui = {
+  en: {
+    title: 'Backend Dev Tips on Go, Python & Flutter | Hantsaniala',
+    description: 'Looking to level up your Go, Python or Flutter skills? Tutorials, deep dives, and real-world dev insights from a senior engineer.',
+    ogDescription: 'Practical tutorials and deep dives on Go, Python, Flutter & backend architecture. Real code from a senior freelance developer.',
+    twitterDescription: 'Go, Python & Flutter tutorials from a freelance backend dev. Real-world articles on APIs, microservices & cloud.',
+    back: 'Back to portfolio',
+    intro: 'Thoughts on software development, architecture, and open source.',
+    search: 'Search articles...',
+    noResults: 'No articles match your search.',
+    empty: 'No posts yet. Check back soon.',
+    read: 'Read article',
+  },
+  fr: {
+    title: 'Articles backend Go, Python & Flutter | Hantsaniala',
+    description: 'Tutoriels et retours d’expérience concrets sur Go, Python, Flutter et l’architecture backend, par un développeur freelance senior.',
+    ogDescription: 'Tutoriels pratiques et analyses sur Go, Python, Flutter et l’architecture backend. Du vrai code, par un développeur backend freelance.',
+    twitterDescription: 'Tutoriels Go, Python et Flutter par un développeur backend freelance : APIs, microservices et cloud.',
+    back: 'Retour au portfolio',
+    intro: 'Développement logiciel, architecture et open source.',
+    search: 'Rechercher un article...',
+    noResults: 'Aucun article ne correspond à votre recherche.',
+    empty: 'Pas encore d’article. Revenez bientôt.',
+    read: 'Lire l’article',
+  },
+}[lang];
+
 function formatDate(date: Date): string {
-  return date.toLocaleDateString('en-US', {
+  return date.toLocaleDateString(lang === 'fr' ? 'fr-FR' : 'en-US', {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
@@ -19,13 +54,15 @@ function formatDate(date: Date): string {
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <BaseHead
-      title="Backend Dev Tips on Go, Python & Flutter | Hantsaniala"
-      description="Looking to level up your Go, Python or Flutter skills? Tutorials, deep dives, and real-world dev insights from a senior engineer."
-      ogDescription="Practical tutorials and deep dives on Go, Python, Flutter & backend architecture. Real code from a senior freelance developer."
-      twitterDescription="Go, Python & Flutter tutorials from a freelance backend dev. Real-world articles on APIs, microservices & cloud."
+      title={ui.title}
+      description={ui.description}
+      ogDescription={ui.ogDescription}
+      twitterDescription={ui.twitterDescription}
+      lang={lang}
+      alternates={{ en: '/blog', fr: '/fr/blog' }}
     />
   </head>
   <body class="min-h-screen" style="background: var(--bg); color: var(--text);">
@@ -38,13 +75,13 @@ function formatDate(date: Date): string {
           <a href="/" class="inline-flex items-center gap-2 text-sm mb-6 transition-colors"
              style="color: var(--text-muted);">
             <i class="ph ph-arrow-left"></i>
-            Back to portfolio
+            {ui.back}
           </a>
           <h1 class="text-3xl lg:text-4xl font-bold tracking-tight" style="color: var(--text);">
             Blog
           </h1>
           <p class="mt-3 text-lg" style="color: var(--text-muted);">
-            Thoughts on software development, architecture, and open source.
+            {ui.intro}
           </p>
         </div>
 
@@ -54,7 +91,8 @@ function formatDate(date: Date): string {
           <input
             id="blog-search"
             type="text"
-            placeholder="Search articles..."
+            placeholder={ui.search}
+            aria-label={ui.search}
             class="w-full pl-10 pr-4 py-3 rounded-xl text-sm outline-none transition-all duration-300"
             style="background: var(--bg-alt); border: 1px solid var(--border); color: var(--text);"
           />
@@ -66,19 +104,19 @@ function formatDate(date: Date): string {
 
         <!-- No results message -->
         <p id="no-results" class="text-center py-12 hidden" style="color: var(--text-muted);">
-          No articles match your search.
+          {ui.noResults}
         </p>
 
         <!-- Posts -->
         <div id="blog-posts" class="space-y-5">
           {posts.length === 0 && (
             <p class="text-center py-12" style="color: var(--text-muted);">
-              No posts yet. Check back soon.
+              {ui.empty}
             </p>
           )}
           {posts.map((post) => (
             <a
-              href={`/blog/${post.id.replace(/\.md$/, '')}`}
+              href={`${prefix}/blog/${post.id.replace(/\.md$/, '').replace(/^fr\//, '')}`}
               class="block group rounded-2xl transition-all duration-300 hover:translate-y-[-2px] blog-post"
               style="background: var(--bg-alt); border: 1px solid var(--border);"
               data-title={post.data.title.toLowerCase()}
@@ -123,7 +161,7 @@ function formatDate(date: Date): string {
 
                 <!-- Read more -->
                 <div class="flex items-center gap-2 text-sm font-medium text-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  Read article
+                  {ui.read}
                   <i class="ph ph-arrow-right text-sm transition-transform duration-300 group-hover:translate-x-1"></i>
                 </div>
               </div>
@@ -135,6 +173,7 @@ function formatDate(date: Date): string {
 
     <ThemeToggle />
     <ScrollAnimate />
+    <LangSwitch target={lang === 'fr' ? '/blog' : '/fr/blog'} targetLocale={lang === 'fr' ? 'en' : 'fr'} />
 
     <script>
       const searchInput = document.getElementById('blog-search') as HTMLInputElement;
